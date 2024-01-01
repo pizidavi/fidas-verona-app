@@ -1,0 +1,9 @@
+{
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "bradlc.vscode-tailwindcss",
+    "mRaffaello.vs-code-js-import-organizer",
+    "Lokalise.i18n-ally"
+  ]
+}

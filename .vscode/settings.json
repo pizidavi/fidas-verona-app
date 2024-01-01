@@ -1,0 +1,8 @@
+{
+  "editor.formatOnSave": true,
+  "i18n-ally.indent": 2,
+  "i18n-ally.keystyle": "nested",
+  "i18n-ally.annotationDelimiter": ":",
+  "i18n-ally.regex.usageMatchAppend": ["'([a-zA-Z0-9]+:[a-zA-Z0-9]+)+'"],
+  "i18n-ally.localesPaths": ["src/locales"]
+}

@@ -1,0 +1,36 @@
+{
+  "errors": {
+    "completeFields": "Complete all fields",
+    "internalApplicationError": "Internal application error",
+    "invalidCredentials": "Invalid credentials",
+    "networkMissingError": "Network missing",
+    "networkRequestError": "Network request error",
+    "required": "Required",
+    "serverUnavailable": "Server unavailable, retry later"
+  },
+  "general": {
+    "days": "Days",
+    "donations": "Donations",
+    "error": "Error",
+    "hours": "Hours",
+    "logout": "Logout",
+    "max": "Max",
+    "months": "Months",
+    "pi": "PI",
+    "pl": "PL",
+    "sa": "SA"
+  },
+  "login": {
+    "login": "Login",
+    "password": "Password",
+    "username": "Username"
+  },
+  "messages": {
+    "congratulations": "Congratulations!",
+    "hello": "Hello,",
+    "nextDonation": "Next donation:",
+    "nextLevel": "Next level:",
+    "totalDonations": "Total donations",
+    "youPerformed": "You performed:"
+  }
+}

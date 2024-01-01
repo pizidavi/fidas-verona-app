@@ -1,0 +1,66 @@
+{
+  "root": "src",
+  "organizeOnSave": true,
+  "blocks": [
+    {
+      "name": "React",
+      "libraries": ["react", "react-native"]
+    },
+    {
+      "name": "Hooks",
+      "folders": ["hooks"]
+    },
+    {
+      "name": "Redux",
+      "libraries": ["redux", "react-redux", "redux-persist", "@reduxjs/toolkit"],
+      "folders": ["store"]
+    },
+    {
+      "name": "Api",
+      "libraries": ["react-query"],
+      "folders": ["api"]
+    },
+    {
+      "name": "Views",
+      "folders": ["views"]
+    },
+    {
+      "name": "Screens",
+      "folders": ["screens"]
+    },
+    {
+      "name": "Components",
+      "folders": ["components"]
+    },
+    {
+      "name": "Navigation",
+      "libraries": [
+        "@react-navigation/native",
+        "@react-navigation/native-stack",
+        "@react-navigation/bottom-tabs"
+      ]
+    },
+    {
+      "name": "Config",
+      "folders": ["config"]
+    },
+    {
+      "name": "Utils",
+      "folders": ["utils", "factories"]
+    },
+    {
+      "name": "Assets",
+      "folders": ["assets"],
+      "libraries": ["react-native-heroicons", "react-native-svg"]
+    },
+    {
+      "name": "Themes",
+      "libraries": ["@shopify/restyle"],
+      "folders": ["themes"]
+    },
+    {
+      "name": "Types",
+      "folders": ["types"]
+    }
+  ]
+}

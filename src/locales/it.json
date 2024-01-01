@@ -1,0 +1,36 @@
+{
+  "errors": {
+    "completeFields": "Completa tutti i campi",
+    "internalApplicationError": "Errore interno dell'applicazione",
+    "invalidCredentials": "Credenziali non valide",
+    "networkMissingError": "Nessuna connessione di rete",
+    "networkRequestError": "Errore nella richiesta",
+    "required": "Obbligatorio",
+    "serverUnavailable": "Server non disponibile, riprova più tardi"
+  },
+  "general": {
+    "days": "Giorni",
+    "donations": "Donazioni",
+    "error": "Errore",
+    "hours": "Ore",
+    "logout": "Esci",
+    "max": "Max",
+    "months": "Mesi",
+    "pi": "PI",
+    "pl": "PL",
+    "sa": "SA"
+  },
+  "login": {
+    "login": "Accedi",
+    "password": "Password",
+    "username": "Nome utente"
+  },
+  "messages": {
+    "congratulations": "Complimenti!",
+    "hello": "Ciao,",
+    "nextDonation": "Potrai donare tra:",
+    "nextLevel": "Prossimo traguardo:",
+    "totalDonations": "Donazioni totali",
+    "youPerformed": "Hai effettuato:"
+  }
+}
