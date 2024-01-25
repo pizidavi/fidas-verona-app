@@ -47,13 +47,13 @@ function BaseScreen(props: BaseScreenProps) {
         <ScrollView
           bounces={false}
           automaticallyAdjustKeyboardInsets={true}
-          contentContainerClassName={clx('grow p-4', className)}
+          contentContainerClassName={clx('grow p-5', className)}
           {...rest}
         >
           {children}
         </ScrollView>
       ) : (
-        <View className={clx('flex-1 p-4', className)} {...rest}>
+        <View className={clx('flex-1 p-5', className)} {...rest}>
           {children}
         </View>
       )}

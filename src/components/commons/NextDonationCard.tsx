@@ -70,7 +70,7 @@ function NextDonationCard({ lastDonation }: NextDonationCardProps) {
           <Badge theme={BADGE_THEME.SA} className='min-w-11' />
           <LocaleText text={formateDate(nextSADonationDate)} />
         </View>
-        <View className='flex-row items-center gap-2'>
+        <View className='flex-row gap-2'>
           <Badge theme={BADGE_THEME.PL} className='min-w-11' />
           <LocaleText text={formateDate(nextPLDonationDate)} />
         </View>

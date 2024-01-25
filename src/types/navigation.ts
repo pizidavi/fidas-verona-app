@@ -1,5 +1,5 @@
 // Navigation
-import { Route } from '@react-navigation/native';
+import { NavigatorScreenParams, Route } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 export type RootStackParamList = {
@@ -7,6 +7,15 @@ export type RootStackParamList = {
   Login: undefined;
 
   // Auth
+  AuthView: NavigatorScreenParams<BottomTabParamList>;
+};
+
+export type BottomTabParamList = {
+  HomeView: NavigatorScreenParams<HomeStackParamList>;
+  Donations: undefined;
+};
+
+export type HomeStackParamList = {
   Home: undefined;
 };
 

@@ -1,4 +1,9 @@
 {
+  "donations": {
+    "donationsHistory": "Donations history",
+    "oldDonationsWarning": "Donations before 2014 are not available",
+    "title": "My donations"
+  },
   "errors": {
     "completeFields": "Complete all fields",
     "internalApplicationError": "Internal application error",
@@ -13,12 +18,18 @@
     "donations": "Donations",
     "error": "Error",
     "hours": "Hours",
+    "in": "In",
     "logout": "Logout",
     "max": "Max",
     "months": "Months",
     "pi": "PI",
     "pl": "PL",
-    "sa": "SA"
+    "sa": "SA",
+    "total": "Total",
+    "totals": "Totals"
+  },
+  "home": {
+    "title": "Home"
   },
   "login": {
     "login": "Login",
