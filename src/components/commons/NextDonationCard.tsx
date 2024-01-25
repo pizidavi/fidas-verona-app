@@ -62,7 +62,7 @@ function NextDonationCard({ lastDonation }: NextDonationCardProps) {
 
   // Render
   return (
-    <Card>
+    <Card className='items-center'>
       <LocaleText text='messages:nextDonation' className='font-bold' />
       <Countdown targetDate={nextSADonationDate} />
       <View className='gap-2'>

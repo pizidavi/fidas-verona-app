@@ -1,7 +1,3 @@
-/**
- * @format
- */
-
 // React
 import { AppRegistry } from 'react-native';
 

@@ -3,12 +3,10 @@ import { useCallback } from 'react';
 import { RefreshControl, View } from 'react-native';
 
 // Hooks
-import useAppDispatch from '../hooks/useAppDispatch';
 import useAppSelector from '../hooks/useAppSelector';
 
 // Redux
 import { selectUser } from '../store/slices/authSlice';
-import { logout } from '../store/thunk';
 
 // Api
 import { getUser } from '../api/AuthManager';
@@ -23,15 +21,22 @@ import TotalDonationsCard from '../components/commons/TotalDonationsCard';
 import UserIconButton from '../components/commons/UserIconButton';
 import Header from '../components/navigation/Header';
 
+// Navigation
+import { useNavigation } from '@react-navigation/native';
+
 // Utils
 import { showAlert } from '../utils/alert';
 
+// Types
+import { HomeNavigationProp } from '../types/navigation';
+
 // Others
+import colors from '../../colors';
 import { useMutation } from '@tanstack/react-query';
 
 function HomeScreen() {
   // Hooks
-  const dispatch = useAppDispatch();
+  const navigation = useNavigation<HomeNavigationProp>();
 
   // Global states
   const user = useAppSelector(selectUser);
@@ -41,7 +46,7 @@ function HomeScreen() {
 
   // Callbacks
   const handleUserPress = useCallback(() => {
-    dispatch(logout());
+    navigation.navigate('User');
   }, []);
 
   const handleUserRefresh = useCallback(() => {
@@ -56,7 +61,11 @@ function HomeScreen() {
       as='scroll'
       className='gap-5'
       refreshControl={
-        <RefreshControl refreshing={userMutation.isPending} onRefresh={handleUserRefresh} />
+        <RefreshControl
+          refreshing={userMutation.isPending}
+          onRefresh={handleUserRefresh}
+          colors={[colors.secondary[500]]}
+        />
       }
     >
       <Header headerRight={<UserIconButton onPress={handleUserPress} />} />
@@ -67,7 +76,7 @@ function HomeScreen() {
         />
       </View>
       <TotalDonationsCard donationsNumber={user.donations_count} gender={user.gender} />
-      <NextDonationCard lastDonation={user.donations.at(-1)} />
+      <NextDonationCard lastDonation={user.donations[0]} />
     </BaseScreen>
   );
 }

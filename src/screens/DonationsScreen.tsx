@@ -45,14 +45,14 @@ function DonationsScreen() {
         />
       </View>
       <View className='flex-row gap-2'>
-        <Card className='aspect-square flex-1 justify-center bg-secondary-500'>
+        <Card className='aspect-square flex-1 items-center justify-center bg-secondary-500'>
           <LocaleText
             text='general:totals'
             className='text-2xl font-bold uppercase text-secondary-300'
           />
           <LocaleText text={user.donations_count} className='text-4xl font-extrabold text-white' />
         </Card>
-        <Card className='aspect-square flex-1 justify-center bg-secondary-300'>
+        <Card className='aspect-square flex-1 items-center justify-center bg-secondary-300'>
           <LocaleText
             text={['general:in', currentYear]}
             className='text-2xl font-bold uppercase text-secondary-500'
@@ -65,24 +65,39 @@ function DonationsScreen() {
       </View>
       <View className='gap-2'>
         <LocaleText text='donations:donationsHistory' className='text-lg font-bold' />
-        {user.donations.reverse().map(donation => (
-          <View key={donation.date} className='flex-row gap-2'>
-            <Badge
-              theme={
-                donation.type === 'SA'
-                  ? BADGE_THEME.SA
-                  : donation.type === 'PL'
-                    ? BADGE_THEME.PL
-                    : BADGE_THEME.PI
-              }
-              className='min-w-11'
-            />
-            <LocaleText text={formateDate(donation.date)} />
+        <View className='gap-2'>
+          <View className='flex-row gap-2'>
+            <View className='w-1/3 items-center'>
+              <LocaleText text='Tipologia' className='text-sm' />
+            </View>
+            <View className='w-2/3'>
+              <LocaleText text='Data' className='text-sm' />
+            </View>
           </View>
-        ))}
+          {user.donations.map(donation => (
+            <View key={donation.date} className='flex-row gap-2'>
+              <View className='w-1/3'>
+                <Badge
+                  theme={
+                    donation.type === 'SA'
+                      ? BADGE_THEME.SA
+                      : donation.type === 'PL'
+                        ? BADGE_THEME.PL
+                        : BADGE_THEME.PI
+                  }
+                  full
+                  className='min-w-11'
+                />
+              </View>
+              <View className='w-2/3'>
+                <LocaleText text={formateDate(donation.date)} />
+              </View>
+            </View>
+          ))}
+        </View>
         <LocaleText
           text='donations:oldDonationsWarning'
-          className='text-center text-sm text-dark-300'
+          className='text-center text-xs text-dark-300'
         />
       </View>
     </BaseScreen>

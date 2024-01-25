@@ -9,13 +9,14 @@ import LocaleText from './LocaleText';
 import { clx } from '../../utils/utils';
 
 export enum BADGE_THEME {
-  SA = 'general:sa',
-  PL = 'general:pl',
-  PI = 'general:pi',
+  SA,
+  PL,
+  PI,
 }
 
 type BadgeProps = {
   theme: BADGE_THEME;
+  full?: boolean;
   className?: string;
 };
 
@@ -24,7 +25,7 @@ type BadgeProps = {
  * @param props
  */
 function Badge(props: BadgeProps) {
-  const { theme, className } = props;
+  const { theme, full, className } = props;
 
   // Memos
   const viewClassName = useMemo(() => {
@@ -53,10 +54,22 @@ function Badge(props: BadgeProps) {
     theme satisfies never;
   }, [theme]);
 
+  const text = useMemo(() => {
+    switch (theme) {
+      case BADGE_THEME.SA:
+        return full ? 'general:blood' : 'general:sa';
+      case BADGE_THEME.PL:
+        return full ? 'general:plasma' : 'general:pl';
+      case BADGE_THEME.PI:
+        return full ? 'general:platelet' : 'general:pi';
+    }
+    theme satisfies never;
+  }, [theme, full]);
+
   // Render
   return (
     <View className={viewClassName}>
-      <LocaleText text={theme.valueOf()} className={textClassName} />
+      <LocaleText text={text} className={textClassName} />
     </View>
   );
 }

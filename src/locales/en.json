@@ -1,4 +1,15 @@
 {
+  "achievements": {
+    "badgeOfMerit": "Badge of merit",
+    "bronzeDrop": "Bronze drop",
+    "certificateOfMerit": "Certificate of merit",
+    "crossOfMerit": "Cross of merit",
+    "godOfDonations": "God of donations",
+    "goldenDrop": "Golden drop",
+    "kingOfDonations": "King of donations",
+    "silveredDrop": "Silvered drop",
+    "starOfMerit": "Star of merit"
+  },
   "donations": {
     "donationsHistory": "Donations history",
     "oldDonationsWarning": "Donations before 2014 are not available",
@@ -14,17 +25,27 @@
     "serverUnavailable": "Server unavailable, retry later"
   },
   "general": {
+    "birthdate": "Birthdate",
+    "blood": "Blood",
+    "bloodGroup": "Blood group",
+    "caiCode": "CAI code",
     "days": "Days",
     "donations": "Donations",
+    "email": "Email",
     "error": "Error",
+    "gender": "Gender",
     "hours": "Hours",
     "in": "In",
     "logout": "Logout",
     "max": "Max",
     "months": "Months",
+    "phone": "Phone",
     "pi": "PI",
     "pl": "PL",
+    "plasma": "Plasma",
+    "platelet": "Platelet",
     "sa": "SA",
+    "section": "Section",
     "total": "Total",
     "totals": "Totals"
   },
@@ -37,10 +58,11 @@
     "username": "Username"
   },
   "messages": {
+    "achievements": "Achievements:",
     "congratulations": "Congratulations!",
     "hello": "Hello,",
+    "nextAchievement": "Next achievement:",
     "nextDonation": "Next donation:",
-    "nextLevel": "Next level:",
     "totalDonations": "Total donations",
     "youPerformed": "You performed:"
   }

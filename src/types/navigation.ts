@@ -17,7 +17,9 @@ export type BottomTabParamList = {
 
 export type HomeStackParamList = {
   Home: undefined;
+  User: undefined;
 };
 
 export type AppRoute = Route<keyof RootStackParamList>;
 export type AppNavigationProp = NativeStackNavigationProp<RootStackParamList>;
+export type HomeNavigationProp = NativeStackNavigationProp<HomeStackParamList>;

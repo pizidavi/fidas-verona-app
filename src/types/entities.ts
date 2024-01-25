@@ -22,7 +22,7 @@ export type User = {
   traits: {
     group: string;
     rh: string;
-    type: string;
+    type?: string;
   };
 };
 

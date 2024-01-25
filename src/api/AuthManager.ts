@@ -76,7 +76,7 @@ export const getUser = async (): Promise<User> => {
       birthdate: data.birthdate,
       province: data.province,
       donations: data.donations
-        .sort((a, b) => a.date - b.date)
+        .sort((a, b) => b.date - a.date)
         .map(donation => ({
           date: donation.date,
           description: donation.descr,
@@ -86,7 +86,7 @@ export const getUser = async (): Promise<User> => {
       traits: {
         group: data.traits.group,
         rh: data.traits.rh,
-        type: data.traits.type,
+        type: data.traits.type ? data.traits.type : undefined,
       },
     };
     store.dispatch(setUser(user));

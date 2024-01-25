@@ -17,7 +17,9 @@ type CardProps = {
 function Card(props: CardProps) {
   // Render
   return (
-    <View className={clx('items-center gap-3 rounded-3xl bg-white p-4 shadow', props.className)}>
+    <View
+      className={clx('gap-3 rounded-xl bg-white p-4 shadow shadow-secondary-300', props.className)}
+    >
       {props.children}
     </View>
   );

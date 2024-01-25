@@ -24,6 +24,7 @@ type BaseButtonProps = {
   icon?: (props: any) => JSX.Element;
   /** On press callback */
   onPress?: () => void;
+  className?: string;
 };
 
 /**
@@ -31,7 +32,7 @@ type BaseButtonProps = {
  * @param props
  */
 function BaseButton(props: BaseButtonProps) {
-  const { theme = 'primary' } = props;
+  const { theme = 'primary', className } = props;
 
   // Memos
   const mainClassName = useMemo(() => {
@@ -41,12 +42,12 @@ function BaseButton(props: BaseButtonProps) {
     );
     switch (theme) {
       case 'primary':
-        return clx(base, 'bg-primary-500');
+        return clx(base, 'bg-primary-500', className);
       case 'outline':
-        return clx(base, 'bg-white-500 border border-primary-500');
+        return clx(base, 'bg-white-500 border border-primary-500', className);
     }
     theme satisfies never;
-  }, [theme, props.disabled]);
+  }, [theme, className, props.disabled]);
 
   const textClassName = useMemo(() => {
     const base = 'text-center font-semibold';

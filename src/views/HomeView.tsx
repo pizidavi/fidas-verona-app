@@ -3,6 +3,7 @@ import { Platform } from 'react-native';
 
 // Screens
 import HomeScreen from '../screens/HomeScreen';
+import UserScreen from '../screens/UserScreen';
 
 // Navigation
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -26,6 +27,7 @@ function HomeView() {
       }}
     >
       <Stack.Screen name='Home' component={HomeScreen} />
+      <Stack.Screen name='User' component={UserScreen} />
     </Stack.Navigator>
   );
 }

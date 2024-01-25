@@ -1,4 +1,15 @@
 {
+  "achievements": {
+    "badgeOfMerit": "Distintivo al merito",
+    "bronzeDrop": "Goccia bronzea",
+    "certificateOfMerit": "Attestato di benemerenza",
+    "crossOfMerit": "Croce al merito",
+    "godOfDonations": "Dio delle donazioni",
+    "goldenDrop": "Goccia dorata",
+    "kingOfDonations": "Re delle donazioni",
+    "silveredDrop": "Goccia argentata",
+    "starOfMerit": "Stella al merito"
+  },
   "donations": {
     "donationsHistory": "Storico donazioni",
     "oldDonationsWarning": "Donazioni prima del 2014 non sono disponibili",
@@ -14,17 +25,27 @@
     "serverUnavailable": "Server non disponibile, riprova più tardi"
   },
   "general": {
+    "birthdate": "Data di nascita",
+    "blood": "Sangue",
+    "bloodGroup": "Gruppo sanguigno",
+    "caiCode": "Codice CAI",
     "days": "Giorni",
     "donations": "Donazioni",
+    "email": "Email",
     "error": "Errore",
+    "gender": "Sesso",
     "hours": "Ore",
     "in": "Nel",
     "logout": "Esci",
     "max": "Max",
     "months": "Mesi",
+    "phone": "Telefono",
     "pi": "PI",
     "pl": "PL",
+    "plasma": "Plasma",
+    "platelet": "Piastrine",
     "sa": "SA",
+    "section": "Sezione provinciale",
     "total": "Totale",
     "totals": "Totali"
   },
@@ -37,10 +58,11 @@
     "username": "Nome utente"
   },
   "messages": {
+    "achievements": "Traguardi raggiunti:",
     "congratulations": "Complimenti!",
     "hello": "Ciao,",
+    "nextAchievement": "Prossimo traguardo:",
     "nextDonation": "Potrai donare tra:",
-    "nextLevel": "Prossimo traguardo:",
     "totalDonations": "Donazioni totali",
     "youPerformed": "Hai effettuato:"
   }

@@ -15,11 +15,11 @@ type CountdownProps = {
  */
 function Countdown({ targetDate }: CountdownProps) {
   // States
-  const [timeLeft, setTimeLeft] = useState({
-    months: 0,
-    days: 0,
-    hours: 0,
-  });
+  const [timeLeft, setTimeLeft] = useState<{
+    months?: number;
+    days?: number;
+    hours?: number;
+  }>({ months: undefined, days: undefined, hours: undefined });
 
   // Callbacks
   const calculateTimeLeft = useCallback(() => {
@@ -33,7 +33,13 @@ function Countdown({ targetDate }: CountdownProps) {
 
       setTimeLeft({ months, days, hours });
     } else {
-      setTimeLeft({ months: 0, days: 0, hours: 0 });
+      const days = -Math.floor(Math.abs(difference) / (1000 * 60 * 60 * 24));
+      const hours = -Math.floor((Math.abs(difference) / (1000 * 60 * 60)) % 24);
+      setTimeLeft({
+        months: undefined,
+        days: days !== 0 ? days : undefined,
+        hours: days === 0 ? hours : undefined,
+      });
     }
   }, [targetDate]);
 
@@ -48,18 +54,24 @@ function Countdown({ targetDate }: CountdownProps) {
   // Render
   return (
     <View className='flex-row justify-evenly'>
-      <View className='flex-1 items-center'>
-        <LocaleText text={timeLeft.months} className='text-5xl font-extrabold text-primary-500' />
-        <LocaleText text='general:months' className='text-sm uppercase text-dark-300' />
-      </View>
-      <View className='flex-1 items-center'>
-        <LocaleText text={timeLeft.days} className='text-5xl font-extrabold text-primary-500' />
-        <LocaleText text='general:days' className='text-sm uppercase text-dark-300' />
-      </View>
-      <View className='flex-1 items-center'>
-        <LocaleText text={timeLeft.hours} className='text-5xl font-extrabold text-primary-500' />
-        <LocaleText text='general:hours' className='text-sm uppercase text-dark-300' />
-      </View>
+      {timeLeft.months !== undefined && (
+        <View className='flex-1 items-center'>
+          <LocaleText text={timeLeft.months} className='text-5xl font-extrabold text-primary-500' />
+          <LocaleText text='general:months' className='text-sm uppercase text-dark-300' />
+        </View>
+      )}
+      {timeLeft.days !== undefined && (
+        <View className='flex-1 items-center'>
+          <LocaleText text={timeLeft.days} className='text-5xl font-extrabold text-primary-500' />
+          <LocaleText text='general:days' className='text-sm uppercase text-dark-300' />
+        </View>
+      )}
+      {timeLeft.hours !== undefined && (
+        <View className='flex-1 items-center'>
+          <LocaleText text={timeLeft.hours} className='text-5xl font-extrabold text-primary-500' />
+          <LocaleText text='general:hours' className='text-sm uppercase text-dark-300' />
+        </View>
+      )}
     </View>
   );
 }
