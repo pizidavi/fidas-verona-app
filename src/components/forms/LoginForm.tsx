@@ -68,7 +68,6 @@ function LoginForm() {
         onChangeText={v => setForm({ ...form, username: v })}
         autoComplete='username'
         autoCapitalize='none'
-        autoFocus={!__DEV__}
         autoCorrect={false}
         validator={v => (v === '' ? 'errors:required' : undefined)}
       />
