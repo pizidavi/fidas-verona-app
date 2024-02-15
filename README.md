@@ -4,7 +4,7 @@ FIDAS Verona – Federazione Italiana Associazioni Donatori di Sangue
 
 ## Setup
 
-### Install dependencies
+### Project setup
 
 Clone the project
 
@@ -24,7 +24,7 @@ Install dependencies
 yarn install
 ```
 
-### Setup environment
+### Environment setup
 
 The `.env` and `.env.dev` file is needed to run this application.
 An example `.env.sample` file can be found inside the repository

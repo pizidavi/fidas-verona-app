@@ -65,40 +65,44 @@ function DonationsScreen() {
       </View>
       <View className='gap-2'>
         <LocaleText text='donations:donationsHistory' className='text-lg font-bold' />
-        <View className='gap-2'>
-          <View className='flex-row gap-2'>
-            <View className='w-1/3 items-center'>
-              <LocaleText text='Tipologia' className='text-sm' />
-            </View>
-            <View className='w-2/3'>
-              <LocaleText text='Data' className='text-sm' />
-            </View>
-          </View>
-          {user.donations.map(donation => (
-            <View key={donation.date} className='flex-row gap-2'>
-              <View className='w-1/3'>
-                <Badge
-                  theme={
-                    donation.type === 'SA'
-                      ? BADGE_THEME.SA
-                      : donation.type === 'PL'
-                        ? BADGE_THEME.PL
-                        : BADGE_THEME.PI
-                  }
-                  full
-                  className='min-w-11'
-                />
+        {user.donations.length ? (
+          <View className='gap-2'>
+            <View className='flex-row gap-2'>
+              <View className='w-1/3 items-center'>
+                <LocaleText text='Tipologia' className='text-sm' />
               </View>
               <View className='w-2/3'>
-                <LocaleText text={formateDate(donation.date)} />
+                <LocaleText text='Data' className='text-sm' />
               </View>
             </View>
-          ))}
-        </View>
-        <LocaleText
-          text='donations:oldDonationsWarning'
-          className='text-center text-xs text-dark-300'
-        />
+            {user.donations.map(donation => (
+              <View key={donation.date} className='flex-row gap-2'>
+                <View className='w-1/3'>
+                  <Badge
+                    theme={
+                      donation.type === 'SA'
+                        ? BADGE_THEME.SA
+                        : donation.type === 'PL'
+                          ? BADGE_THEME.PL
+                          : BADGE_THEME.PI
+                    }
+                    full
+                    className='min-w-11'
+                  />
+                </View>
+                <View className='w-2/3'>
+                  <LocaleText text={formateDate(donation.date)} />
+                </View>
+              </View>
+            ))}
+            <LocaleText
+              text='donations:oldDonationsWarning'
+              className='text-center text-xs text-dark-300'
+            />
+          </View>
+        ) : (
+          <LocaleText text='messages:noDonationsToShow' className='text-center text-dark-300' />
+        )}
       </View>
     </BaseScreen>
   );

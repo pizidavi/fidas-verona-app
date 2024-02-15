@@ -24,6 +24,7 @@ import Header from '../components/navigation/Header';
 import { DONATIONS_ACHIEVEMENTS } from '../config/constants';
 
 // Utils
+import { showAlert } from '../utils/alert';
 import { formateDate } from '../utils/formatters';
 
 // Types
@@ -58,7 +59,14 @@ function UserScreen() {
 
   // Callbacks
   const handleLogoutPress = useCallback(() => {
-    dispatch(logout());
+    showAlert('general:warning', 'messages:logoutMessage', [
+      { text: 'general:cancel', style: 'cancel' },
+      {
+        text: 'general:logout',
+        style: 'destructive',
+        onPress: () => dispatch(logout()),
+      },
+    ]);
   }, []);
 
   // Render
@@ -99,17 +107,17 @@ function UserScreen() {
         </View>
         <View className='flex-row items-center justify-between'>
           <LocaleText text='general:phone' className='text-sm' />
-          <LocaleText text={user.phone} className='font-bold' />
-        </View>
-        {user.secondaryPhone && (
-          <View className='flex-row items-center justify-between'>
-            <LocaleText text='general:phone' className='text-sm' />
+          <View>
             <LocaleText text={user.phone} className='font-bold' />
+            {user.secondaryPhone && <LocaleText text={user.secondaryPhone} className='font-bold' />}
           </View>
-        )}
+        </View>
         <View className='flex-row items-center justify-between'>
           <LocaleText text='general:bloodGroup' className='text-sm' />
-          <LocaleText text={[user.traits.group, user.traits.rh]} className='font-bold' />
+          <LocaleText
+            text={[user.traits.group, user.traits.type ?? '', user.traits.rh]}
+            className='font-bold'
+          />
         </View>
       </Card>
       <View className='gap-2'>

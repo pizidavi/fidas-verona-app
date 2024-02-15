@@ -22,7 +22,7 @@ import { formateDate } from '../../utils/formatters';
 import { Donation } from '../../types/entities';
 
 type NextDonationCardProps = {
-  lastDonation?: Donation;
+  lastDonation: Donation;
 };
 
 /**
@@ -32,29 +32,22 @@ type NextDonationCardProps = {
 function NextDonationCard({ lastDonation }: NextDonationCardProps) {
   // Memos
   const lastDonationDate = useMemo(() => {
-    if (!lastDonation) return undefined;
     return new Date(lastDonation.date);
   }, [lastDonation]);
 
   const nextSADonationDate = useMemo(() => {
-    if (!lastDonationDate) return new Date();
-
     const date = new Date(lastDonationDate);
     date.setDate(date.getDate() + SA_DONATION_INTERVAL);
     return date;
   }, [lastDonationDate]);
 
   const nextPLDonationDate = useMemo(() => {
-    if (!lastDonationDate) return new Date();
-
     const date = new Date(lastDonationDate);
     date.setDate(date.getDate() + PL_DONATION_INTERVAL);
     return date;
   }, [lastDonationDate]);
 
   const nextPIDonationDate = useMemo(() => {
-    if (!lastDonationDate) return new Date();
-
     const date = new Date(lastDonationDate);
     date.setDate(date.getDate() + PI_DONATION_INTERVAL);
     return date;

@@ -66,8 +66,10 @@
     "confirmOperation": "Do you confirm the operation?",
     "congratulations": "Congratulations!",
     "hello": "Hello,",
+    "logoutMessage": "Are you sure you want to logout?",
     "nextAchievement": "Next achievement:",
     "nextDonation": "Next donation:",
+    "noDonationsToShow": "No donation to show",
     "totalDonations": "Total donations",
     "whereDonate": "Where you can donate",
     "youPerformed": "You performed:"

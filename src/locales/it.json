@@ -66,8 +66,10 @@
     "confirmOperation": "Confermi l'operazione?",
     "congratulations": "Complimenti!",
     "hello": "Ciao,",
+    "logoutMessage": "Sei sicuro di voler fare il logout?",
     "nextAchievement": "Prossimo traguardo:",
     "nextDonation": "Potrai donare tra:",
+    "noDonationsToShow": "Nessuna donaziona da mostrare",
     "totalDonations": "Donazioni totali",
     "whereDonate": "Dove puoi donare",
     "youPerformed": "Hai effettuato:"

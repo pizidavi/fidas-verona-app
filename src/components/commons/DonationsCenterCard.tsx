@@ -43,7 +43,7 @@ function DonationsCenterCard({ donationsCenter, onBookmarkPress }: DonationsCent
 
   // Render
   return (
-    <View className='flex-row gap-4'>
+    <View className='flex-row gap-2'>
       <View className='flex-1'>
         <LocaleText className='text-lg font-bold text-secondary-500' text={donationsCenter.name} />
         <LocaleText text={donationsCenter.address} />
@@ -72,7 +72,7 @@ function DonationsCenterCard({ donationsCenter, onBookmarkPress }: DonationsCent
 
 const styles = StyleSheet.create({
   contactContainer: {
-    columnGap: 12,
+    columnGap: 8,
   },
 });
 
