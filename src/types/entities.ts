@@ -27,3 +27,18 @@ export type User = {
 };
 
 export type Donation = User['donations'][number];
+
+export type Company = {
+  name: string;
+  description: string;
+  donationsCenters: {
+    id: number;
+    name: string;
+    address: string;
+    phone1?: string;
+    phone2?: string;
+    email?: string;
+  }[];
+};
+
+export type DonationsCenter = Company['donationsCenters'][number];

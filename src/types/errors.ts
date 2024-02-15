@@ -15,6 +15,12 @@ export class NetworkMissingError extends ApiError {
   }
 }
 
+export class AuthError extends ApiError {
+  constructor() {
+    super('Auth failed');
+  }
+}
+
 export class NoLocalAuthError extends ApiError {
   constructor() {
     super('User not found in local storage');

@@ -2,6 +2,7 @@
 import { Platform } from 'react-native';
 
 // Screens
+import DonationsCentersScreen from '../screens/DonationsCentersScreen';
 import HomeScreen from '../screens/HomeScreen';
 import UserScreen from '../screens/UserScreen';
 
@@ -28,6 +29,7 @@ function HomeView() {
     >
       <Stack.Screen name='Home' component={HomeScreen} />
       <Stack.Screen name='User' component={UserScreen} />
+      <Stack.Screen name='DonationsCenters' component={DonationsCentersScreen} />
     </Stack.Navigator>
   );
 }

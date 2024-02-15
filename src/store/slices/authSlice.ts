@@ -25,7 +25,7 @@ export const authSlice = createSlice({
 });
 
 export const selectUser = createSelector([(state: RootStore) => state.auth], state => {
-  if (!state.user) throw new Error();
+  if (!state.user) throw new Error('User not found');
   return state.user;
 });
 

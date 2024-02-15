@@ -2,7 +2,7 @@
 import { getLocalAuth } from '../store/local';
 
 // Config
-import { API_URL, AUTHORIZATION_HEADER, COMPANY_ID, X_WSSE_HEADER_KEY } from '../config/constants';
+import { API_URL, AUTHORIZATION_HEADER, X_WSSE_HEADER_KEY } from '../config/constants';
 
 // Utils
 import { generateXWsseHeader } from '../utils/api';
@@ -12,11 +12,7 @@ import { apiLog } from '../utils/logger';
 import axios, { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 
 const unauthAxios = axios.create({
-  baseURL: `${API_URL}/companyrests/${COMPANY_ID}`,
-});
-
-const authAxios = axios.create({
-  baseURL: `${API_URL}/companyrests/${COMPANY_ID}`,
+  baseURL: `${API_URL}/companyrests`,
 });
 
 const secureAxios = axios.create({
@@ -48,13 +44,10 @@ const errorLoggerInterceptor = (error: AxiosError<any>) => {
 unauthAxios.interceptors.request.use(requestInterceptor);
 unauthAxios.interceptors.response.use(responseInterceptor, errorLoggerInterceptor);
 
-authAxios.interceptors.request.use(requestInterceptor);
-authAxios.interceptors.response.use(responseInterceptor, errorLoggerInterceptor);
-
 secureAxios.interceptors.request.use(requestInterceptor);
 secureAxios.interceptors.request.use(appendAccessHeaderInterceptor);
 secureAxios.interceptors.response.use(responseInterceptor, errorLoggerInterceptor);
 
-export { unauthAxios, authAxios, secureAxios };
+export { unauthAxios, secureAxios };
 
-export default authAxios;
+export default unauthAxios;

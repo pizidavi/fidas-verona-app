@@ -18,6 +18,7 @@ export type BottomTabParamList = {
 export type HomeStackParamList = {
   Home: undefined;
   User: undefined;
+  DonationsCenters: undefined;
 };
 
 export type AppRoute = Route<keyof RootStackParamList>;

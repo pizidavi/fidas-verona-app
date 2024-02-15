@@ -12,10 +12,10 @@ type BaseScreenProps = {
   children: ReactNode;
 } & (
   | ({
-      as?: 'view';
+      as: 'view';
     } & ViewProps)
   | ({
-      as?: 'scroll';
+      as: 'scroll';
     } & ScrollViewProps)
 );
 

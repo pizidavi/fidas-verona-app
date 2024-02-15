@@ -1,7 +1,8 @@
 // React
-import { Pressable, View } from 'react-native';
+import { View } from 'react-native';
 
 // Components
+import BaseIcon from '../commons/BaseIcon';
 import Logo from '../icons/Logo';
 
 // Navigation
@@ -33,9 +34,12 @@ function Header({ back, headerRight }: HeaderProps) {
     <View className='flex-row content-center items-center justify-between bg-secondary-100'>
       <View className='flex-row'>
         {canGoBack ? (
-          <Pressable className='px-2 py-3' onPress={() => navigation.goBack()}>
-            <ChevronLeftIcon size={25} color={colors.secondary[500]} />
-          </Pressable>
+          <BaseIcon
+            icon={ChevronLeftIcon}
+            size={25}
+            color={colors.secondary[500]}
+            onPress={() => navigation.goBack()}
+          />
         ) : (
           <Logo />
         )}

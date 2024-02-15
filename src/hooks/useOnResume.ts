@@ -11,9 +11,13 @@ import { logout } from '../store/thunk';
 
 // Api
 import { getUser } from '../api/AuthManager';
+import { getCompany } from '../api/SyncManager';
 
 // Utils
 import { appLog } from '../utils/logger';
+
+// Types
+import { AuthError } from '../types/errors';
 
 // Others
 import i18n, { isLanguageAvailable } from '../locales';
@@ -29,14 +33,21 @@ function useOnResume() {
 
   // Api
   const userMutation = useMutation({ mutationFn: getUser });
+  const companyMutation = useMutation({ mutationFn: getCompany });
 
   // Callbacks
   const refreshOnStartup = useCallback(async () => {
     const auth = await getUnsafeLocalAuth();
 
     if (auth) {
-      appLog.debug('Refreshing user after startup');
-      userMutation.mutateAsync().catch(() => dispatch(logout()));
+      appLog.debug('Refreshing on startup');
+      userMutation
+        .mutateAsync()
+        .catch(() => {
+          dispatch(logout());
+          throw new AuthError();
+        })
+        .then(() => companyMutation.mutateAsync());
     } else dispatch(logout());
   }, []);
 

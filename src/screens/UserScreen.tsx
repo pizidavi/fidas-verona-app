@@ -1,6 +1,6 @@
 // React
 import { useCallback, useMemo } from 'react';
-import { Pressable, View } from 'react-native';
+import { View } from 'react-native';
 
 // Hooks
 import useAppDispatch from '../hooks/useAppDispatch';
@@ -15,6 +15,7 @@ import BaseScreen from './BaseScreen';
 
 // Components
 import AchievementCard from '../components/commons/AchievementCard';
+import BaseIcon from '../components/commons/BaseIcon';
 import Card from '../components/commons/Card';
 import LocaleText from '../components/commons/LocaleText';
 import Header from '../components/navigation/Header';
@@ -65,9 +66,12 @@ function UserScreen() {
     <BaseScreen as='scroll' className='gap-5 p-5'>
       <Header
         headerRight={
-          <Pressable className='px-2 py-3' onPress={handleLogoutPress}>
-            <ArrowLeftEndOnRectangleIcon size={25} color={colors.secondary[500]} />
-          </Pressable>
+          <BaseIcon
+            icon={ArrowLeftEndOnRectangleIcon}
+            size={25}
+            color={colors.secondary[500]}
+            onPress={handleLogoutPress}
+          />
         }
       />
       <View className='items-center gap-2'>

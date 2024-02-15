@@ -1,7 +1,10 @@
 // Types
-import { User } from './entities';
+import { Company, User } from './entities';
 
-export type ConfigStore = Record<string, never>;
+export type ConfigStore = {
+  company?: Company;
+  favoriteDonationsCenterIds: number[];
+};
 
 export type AuthStore = {
   user?: User | null;

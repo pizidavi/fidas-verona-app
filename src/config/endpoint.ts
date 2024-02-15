@@ -1,5 +1,8 @@
+// GET
+export const GET_COMPANY = '/:companyId.json';
+
 // POST
-export const POST_ACCOUNT_SALT = '/accountsalts.json';
+export const POST_ACCOUNT_SALT = '/:companyId/accountsalts.json';
 
 // Secure
 // GET

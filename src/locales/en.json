@@ -29,6 +29,7 @@
     "blood": "Blood",
     "bloodGroup": "Blood group",
     "caiCode": "CAI code",
+    "cancel": "Cancel",
     "days": "Days",
     "donations": "Donations",
     "email": "Email",
@@ -39,6 +40,7 @@
     "logout": "Logout",
     "max": "Max",
     "months": "Months",
+    "ok": "Ok",
     "phone": "Phone",
     "pi": "PI",
     "pl": "PL",
@@ -47,7 +49,8 @@
     "sa": "SA",
     "section": "Section",
     "total": "Total",
-    "totals": "Totals"
+    "totals": "Totals",
+    "warning": "Warning"
   },
   "home": {
     "title": "Home"
@@ -59,11 +62,14 @@
   },
   "messages": {
     "achievements": "Achievements:",
+    "addDonationsCenter": "Use the pencil to add your favorite Donation Centers",
+    "confirmOperation": "Do you confirm the operation?",
     "congratulations": "Congratulations!",
     "hello": "Hello,",
     "nextAchievement": "Next achievement:",
     "nextDonation": "Next donation:",
     "totalDonations": "Total donations",
+    "whereDonate": "Where you can donate",
     "youPerformed": "You performed:"
   }
 }

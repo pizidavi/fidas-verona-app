@@ -26,7 +26,7 @@ yarn install
 
 ### Setup environment
 
-The `.env` file is needed to run this application.
+The `.env` and `.env.dev` file is needed to run this application.
 An example `.env.sample` file can be found inside the repository
 
 | Parameter      | Required | Type     |

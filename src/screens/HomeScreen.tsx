@@ -15,10 +15,11 @@ import { getUser } from '../api/AuthManager';
 import BaseScreen from './BaseScreen';
 
 // Components
+import BaseIcon from '../components/commons/BaseIcon';
+import DonationsCentersCard from '../components/commons/DonationsCentersCard';
 import LocaleText from '../components/commons/LocaleText';
 import NextDonationCard from '../components/commons/NextDonationCard';
 import TotalDonationsCard from '../components/commons/TotalDonationsCard';
-import UserIconButton from '../components/commons/UserIconButton';
 import Header from '../components/navigation/Header';
 
 // Navigation
@@ -33,6 +34,7 @@ import { HomeNavigationProp } from '../types/navigation';
 // Others
 import colors from '../../colors';
 import { useMutation } from '@tanstack/react-query';
+import { UserIcon } from 'react-native-heroicons/outline';
 
 function HomeScreen() {
   // Hooks
@@ -68,7 +70,17 @@ function HomeScreen() {
         />
       }
     >
-      <Header headerRight={<UserIconButton onPress={handleUserPress} />} />
+      <Header
+        headerRight={
+          <BaseIcon
+            icon={UserIcon}
+            size={25}
+            color={colors.secondary[100]}
+            className='rounded-full bg-secondary-500'
+            onPress={handleUserPress}
+          />
+        }
+      />
       <View>
         <LocaleText
           className='text-3xl font-extrabold capitalize text-secondary-500'
@@ -77,6 +89,7 @@ function HomeScreen() {
       </View>
       <TotalDonationsCard donationsNumber={user.donations_count} gender={user.gender} />
       <NextDonationCard lastDonation={user.donations[0]} />
+      <DonationsCentersCard onEditPress={() => navigation.navigate('DonationsCenters')} />
     </BaseScreen>
   );
 }

@@ -29,6 +29,7 @@
     "blood": "Sangue",
     "bloodGroup": "Gruppo sanguigno",
     "caiCode": "Codice CAI",
+    "cancel": "Annulla",
     "days": "Giorni",
     "donations": "Donazioni",
     "email": "Email",
@@ -39,6 +40,7 @@
     "logout": "Esci",
     "max": "Max",
     "months": "Mesi",
+    "ok": "Ok",
     "phone": "Telefono",
     "pi": "PI",
     "pl": "PL",
@@ -47,7 +49,8 @@
     "sa": "SA",
     "section": "Sezione provinciale",
     "total": "Totale",
-    "totals": "Totali"
+    "totals": "Totali",
+    "warning": "Attenzione"
   },
   "home": {
     "title": "Home"
@@ -59,11 +62,14 @@
   },
   "messages": {
     "achievements": "Traguardi raggiunti:",
+    "addDonationsCenter": "Usa la matita per aggiungere i tuoi Centri Donazioni preferiti",
+    "confirmOperation": "Confermi l'operazione?",
     "congratulations": "Complimenti!",
     "hello": "Ciao,",
     "nextAchievement": "Prossimo traguardo:",
     "nextDonation": "Potrai donare tra:",
     "totalDonations": "Donazioni totali",
+    "whereDonate": "Dove puoi donare",
     "youPerformed": "Hai effettuato:"
   }
 }

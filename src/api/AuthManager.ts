@@ -5,6 +5,7 @@ import { setUser } from '../store/slices/authSlice';
 
 // Api
 import { secureAxios, unauthAxios } from './axios';
+import { getCompany } from './SyncManager';
 
 // Config
 import { AUTHORIZATION_HEADER, COMPANY_ID, X_WSSE_HEADER_KEY } from '../config/constants';
@@ -24,7 +25,8 @@ import axios from 'axios';
 
 export const postLogin = async (request: LoginRequest): Promise<void> => {
   try {
-    const saltResponse = await unauthAxios.post<SaltResponse>(POST_ACCOUNT_SALT, {
+    const url = parseUrl(POST_ACCOUNT_SALT, [{ key: 'companyId', value: COMPANY_ID }]);
+    const saltResponse = await unauthAxios.post<SaltResponse>(url, {
       username: request.username,
     });
 
@@ -47,6 +49,7 @@ export const postLogin = async (request: LoginRequest): Promise<void> => {
       passwordSalt: saltedPassword,
     });
 
+    await getCompany();
     await getUser();
   } catch (error) {
     if (axios.isAxiosError(error)) {
