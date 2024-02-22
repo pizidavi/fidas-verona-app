@@ -40,6 +40,7 @@ An example `.env.sample` file can be found inside the repository
 | `API_URL`             | `true`   | `string` |
 | `COMPANY_ID`          | `true`   | `number` |
 | `FORGOT_PASSWORD_URL` | `true`   | `string` |
+| `REPOSITORY_URL`      | `true`   | `string` |
 | `DEV_USER`            | `false`  | `string` |
 | `DEV_PASSWORD`        | `false`  | `string` |
 

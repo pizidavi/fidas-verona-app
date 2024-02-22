@@ -37,6 +37,7 @@
     "gender": "Sesso",
     "hours": "Ore",
     "in": "Nel",
+    "later": "Più tardi",
     "logout": "Esci",
     "max": "Max",
     "months": "Mesi",
@@ -50,6 +51,7 @@
     "section": "Sezione provinciale",
     "total": "Totale",
     "totals": "Totali",
+    "update": "Aggiorna",
     "warning": "Attenzione"
   },
   "home": {
@@ -73,6 +75,7 @@
     "nextDonationSince": "Puoi donare da",
     "noDonationsToShow": "Nessuna donaziona da mostrare",
     "totalDonations": "Donazioni totali",
+    "updateAvailable": "È disponibile un nuovo aggiornamento!",
     "whereDonate": "Dove puoi donare",
     "youPerformed": "Hai effettuato"
   }

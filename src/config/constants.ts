@@ -4,6 +4,7 @@ import { ACHIEVEMENT, ENV } from '../types/enums';
 
 // Others
 import Config from 'react-native-config';
+import { version } from '../../package.json';
 
 // Check if all env variables required are set
 Object.values(ENV).forEach(e => {
@@ -13,8 +14,11 @@ Object.values(ENV).forEach(e => {
 export const API_URL = Config.API_URL!;
 export const COMPANY_ID = Config.COMPANY_ID!;
 export const FORGOT_PASSWORD_URL = Config.FORGOT_PASSWORD_URL!;
+export const REPOSITORY_URL = Config.REPOSITORY_URL!;
 export const DEV_USERNAME = Config.DEV_USER ?? '';
 export const DEV_PASSWORD = Config.DEV_PASSWORD ?? '';
+
+export const APP_VERSION = version;
 
 export const AUTHORIZATION_HEADER = 'WSSE profile="UsernameToken"';
 export const X_WSSE_HEADER_KEY = 'X-WSSE';

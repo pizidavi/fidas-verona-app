@@ -37,6 +37,7 @@
     "gender": "Gender",
     "hours": "Hours",
     "in": "In",
+    "later": "Later",
     "logout": "Logout",
     "max": "Max",
     "months": "Months",
@@ -50,6 +51,7 @@
     "section": "Section",
     "total": "Total",
     "totals": "Totals",
+    "update": "Update",
     "warning": "Warning"
   },
   "home": {
@@ -73,6 +75,7 @@
     "nextDonationSince": "You can donate since",
     "noDonationsToShow": "No donation to show",
     "totalDonations": "Total donations",
+    "updateAvailable": "A new update is available!",
     "whereDonate": "Where you can donate",
     "youPerformed": "You performed"
   }

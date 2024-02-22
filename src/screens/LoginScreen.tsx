@@ -15,6 +15,9 @@ import LocaleText from '../components/commons/LocaleText';
 import LoginForm from '../components/forms/LoginForm';
 import Logo from '../components/icons/Logo';
 
+// Config
+import { APP_VERSION } from '../config/constants';
+
 // Others
 import colors from '../../colors';
 
@@ -33,7 +36,12 @@ function LoginScreen() {
         text='login:login'
       />
       {user === null ? (
-        <LoginForm />
+        <>
+          <View className='flex-1'>
+            <LoginForm />
+          </View>
+          <LocaleText text={APP_VERSION} className='text-center text-xs' />
+        </>
       ) : (
         <View className='flex-1 justify-center'>
           <ActivityIndicator size={32} color={colors.secondary[500]} />

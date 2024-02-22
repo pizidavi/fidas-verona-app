@@ -1,4 +1,5 @@
 // GET
+export const GET_LATEST_RELEASE = 'https://api.github.com/repos/:repo/releases/latest';
 export const GET_COMPANY = '/:companyId.json';
 
 // POST
