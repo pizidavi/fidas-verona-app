@@ -56,22 +56,24 @@
     "title": "Home"
   },
   "login": {
+    "forgotPassword": "Forgot your password?",
     "login": "Login",
     "password": "Password",
     "username": "Username"
   },
   "messages": {
-    "achievements": "Achievements:",
+    "achievements": "Achievements",
     "addDonationsCenter": "Use the pencil to add your favorite Donation Centers",
     "confirmOperation": "Do you confirm the operation?",
     "congratulations": "Congratulations!",
     "hello": "Hello,",
     "logoutMessage": "Are you sure you want to logout?",
-    "nextAchievement": "Next achievement:",
-    "nextDonation": "Next donation:",
+    "nextAchievement": "Next achievement",
+    "nextDonationIn": "You can donate in",
+    "nextDonationSince": "You can donate since",
     "noDonationsToShow": "No donation to show",
     "totalDonations": "Total donations",
     "whereDonate": "Where you can donate",
-    "youPerformed": "You performed:"
+    "youPerformed": "You performed"
   }
 }

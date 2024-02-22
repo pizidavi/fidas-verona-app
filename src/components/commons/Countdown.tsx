@@ -33,8 +33,8 @@ function Countdown({ targetDate }: CountdownProps) {
 
       setTimeLeft({ months, days, hours });
     } else {
-      const days = -Math.floor(Math.abs(difference) / (1000 * 60 * 60 * 24));
-      const hours = -Math.floor((Math.abs(difference) / (1000 * 60 * 60)) % 24);
+      const days = Math.floor(Math.abs(difference) / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((Math.abs(difference) / (1000 * 60 * 60)) % 24);
       setTimeLeft({
         months: undefined,
         days: days !== 0 ? days : undefined,

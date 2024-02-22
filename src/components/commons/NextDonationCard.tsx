@@ -56,7 +56,14 @@ function NextDonationCard({ lastDonation }: NextDonationCardProps) {
   // Render
   return (
     <Card className='items-center'>
-      <LocaleText text='messages:nextDonation' className='font-bold' />
+      <LocaleText
+        text={
+          nextSADonationDate.getTime() - new Date().getTime() > 0
+            ? 'messages:nextDonationIn'
+            : 'messages:nextDonationSince'
+        }
+        className='font-bold'
+      />
       <Countdown targetDate={nextSADonationDate} />
       <View className='gap-2'>
         <View className='flex-row gap-2'>

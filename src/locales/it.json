@@ -56,22 +56,24 @@
     "title": "Home"
   },
   "login": {
+    "forgotPassword": "Hai dimenticato la password?",
     "login": "Accedi",
     "password": "Password",
     "username": "Nome utente"
   },
   "messages": {
-    "achievements": "Traguardi raggiunti:",
+    "achievements": "Traguardi raggiunti",
     "addDonationsCenter": "Usa la matita per aggiungere i tuoi Centri Donazioni preferiti",
     "confirmOperation": "Confermi l'operazione?",
     "congratulations": "Complimenti!",
     "hello": "Ciao,",
     "logoutMessage": "Sei sicuro di voler fare il logout?",
-    "nextAchievement": "Prossimo traguardo:",
-    "nextDonation": "Potrai donare tra:",
+    "nextAchievement": "Prossimo traguardo",
+    "nextDonationIn": "Potrai donare tra",
+    "nextDonationSince": "Puoi donare da",
     "noDonationsToShow": "Nessuna donaziona da mostrare",
     "totalDonations": "Donazioni totali",
     "whereDonate": "Dove puoi donare",
-    "youPerformed": "Hai effettuato:"
+    "youPerformed": "Hai effettuato"
   }
 }

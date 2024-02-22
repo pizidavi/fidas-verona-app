@@ -1,6 +1,7 @@
 export enum ENV {
   API_URL = 'API_URL',
   COMPANY_ID = 'COMPANY_ID',
+  FORGOT_PASSWORD_URL = 'FORGOT_PASSWORD_URL',
 }
 
 export enum LANGUAGE {

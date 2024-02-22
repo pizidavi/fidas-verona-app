@@ -1,6 +1,6 @@
 // React
 import { useCallback, useState } from 'react';
-import { View } from 'react-native';
+import { Linking, View } from 'react-native';
 
 // Api
 import { postLogin } from '../../api/AuthManager';
@@ -8,14 +8,16 @@ import { postLogin } from '../../api/AuthManager';
 // Components
 import BaseButton from '../commons/BaseButton';
 import BaseInput from '../commons/BaseInput';
+import LocaleText from '../commons/LocaleText';
 
 // Config
-import { DEV_PASSWORD, DEV_USERNAME } from '../../config/constants';
+import { DEV_PASSWORD, DEV_USERNAME, FORGOT_PASSWORD_URL } from '../../config/constants';
 
 // Utils
 import { showAlert } from '../../utils/alert';
 import { handleStandardError } from '../../utils/api';
 import { appLog } from '../../utils/logger';
+import { validateRequired } from '../../utils/validators';
 
 // Others
 import { useMutation } from '@tanstack/react-query';
@@ -59,6 +61,10 @@ function LoginForm() {
       });
   }, [form]);
 
+  const handleForgotPasswordPress = useCallback(() => {
+    Linking.openURL(FORGOT_PASSWORD_URL);
+  }, []);
+
   // Render
   return (
     <View className='gap-2'>
@@ -69,7 +75,7 @@ function LoginForm() {
         autoComplete='username'
         autoCapitalize='none'
         autoCorrect={false}
-        validator={v => (v === '' ? 'errors:required' : undefined)}
+        validator={validateRequired}
       />
       <BaseInput
         title='login:password'
@@ -79,9 +85,14 @@ function LoginForm() {
         autoCapitalize='none'
         autoCorrect={false}
         secureTextEntry
-        validator={v => (v === '' ? 'errors:required' : undefined)}
+        validator={validateRequired}
       />
       <BaseButton text='login:login' onPress={handleLoginPress} loading={loginMutation.isPending} />
+      <LocaleText
+        text='login:forgotPassword'
+        className='py-2 text-center text-secondary-500 underline'
+        onPress={handleForgotPasswordPress}
+      />
     </View>
   );
 }

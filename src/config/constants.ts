@@ -12,6 +12,7 @@ Object.values(ENV).forEach(e => {
 
 export const API_URL = Config.API_URL!;
 export const COMPANY_ID = Config.COMPANY_ID!;
+export const FORGOT_PASSWORD_URL = Config.FORGOT_PASSWORD_URL!;
 export const DEV_USERNAME = Config.DEV_USER ?? '';
 export const DEV_PASSWORD = Config.DEV_PASSWORD ?? '';
 
