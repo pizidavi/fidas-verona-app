@@ -82,7 +82,7 @@ export const getUser = async (): Promise<User> => {
         .sort((a, b) => b.date - a.date)
         .map(donation => ({
           date: donation.date,
-          description: donation.descr,
+          description: donation.descr ? donation.descr : undefined,
           type: donation.type as User['donations'][number]['type'],
         })),
       donations_count: data.donations_count,

@@ -88,7 +88,9 @@ function HomeScreen() {
         />
       </View>
       <TotalDonationsCard donationsNumber={user.donations_count} gender={user.gender} />
-      {user.donations[0] && <NextDonationCard lastDonation={user.donations[0]} />}
+      {user.donations[0] && (
+        <NextDonationCard lastDonation={user.donations[0]} gender={user.gender} />
+      )}
       <DonationsCentersCard onEditPress={() => navigation.navigate('DonationsCenters')} />
     </BaseScreen>
   );

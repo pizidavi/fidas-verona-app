@@ -15,8 +15,8 @@ export type User = {
   province: string;
   donations: {
     date: number;
-    description: string;
     type: 'SA' | 'PL' | 'PI';
+    description?: string;
   }[];
   donations_count: number;
   traits: {

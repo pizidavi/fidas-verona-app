@@ -33,8 +33,8 @@ export const DONATIONS_ACHIEVEMENTS: Record<ACHIEVEMENT, Record<User['gender'], 
   [ACHIEVEMENT.STAR_OF_MERIT]: { M: 130, F: 100 },
   [ACHIEVEMENT.KING_OF_DONATIONS]: { M: 200, F: 150 },
   [ACHIEVEMENT.GOD_OF_DONATIONS]: { M: 300, F: 200 },
-};
+} as const;
 
-export const SA_DONATION_INTERVAL = 90;
-export const PL_DONATION_INTERVAL = 45;
-export const PI_DONATION_INTERVAL = SA_DONATION_INTERVAL;
+export const SA_DONATION_INTERVAL = { M: 90, F: 180 } as const;
+export const PL_DONATION_INTERVAL = { M: 45, F: 45 } as const;
+export const PI_DONATION_INTERVAL = { M: 90, F: 90 } as const;

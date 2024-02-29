@@ -19,17 +19,18 @@ import {
 import { formateDate } from '../../utils/formatters';
 
 // Types
-import { Donation } from '../../types/entities';
+import { Donation, User } from '../../types/entities';
 
 type NextDonationCardProps = {
   lastDonation: Donation;
+  gender: User['gender'];
 };
 
 /**
  * NextDonationCard component
  * @param props
  */
-function NextDonationCard({ lastDonation }: NextDonationCardProps) {
+function NextDonationCard({ lastDonation, gender }: NextDonationCardProps) {
   // Memos
   const lastDonationDate = useMemo(() => {
     return new Date(lastDonation.date);
@@ -37,21 +38,21 @@ function NextDonationCard({ lastDonation }: NextDonationCardProps) {
 
   const nextSADonationDate = useMemo(() => {
     const date = new Date(lastDonationDate);
-    date.setDate(date.getDate() + SA_DONATION_INTERVAL);
+    date.setDate(date.getDate() + SA_DONATION_INTERVAL[gender]);
     return date;
-  }, [lastDonationDate]);
+  }, [lastDonationDate, gender]);
 
   const nextPLDonationDate = useMemo(() => {
     const date = new Date(lastDonationDate);
-    date.setDate(date.getDate() + PL_DONATION_INTERVAL);
+    date.setDate(date.getDate() + PL_DONATION_INTERVAL[gender]);
     return date;
-  }, [lastDonationDate]);
+  }, [lastDonationDate, gender]);
 
   const nextPIDonationDate = useMemo(() => {
     const date = new Date(lastDonationDate);
-    date.setDate(date.getDate() + PI_DONATION_INTERVAL);
+    date.setDate(date.getDate() + PI_DONATION_INTERVAL[gender]);
     return date;
-  }, [lastDonationDate]);
+  }, [lastDonationDate, gender]);
 
   // Render
   return (
