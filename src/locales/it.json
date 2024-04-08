@@ -25,6 +25,7 @@
     "serverUnavailable": "Server non disponibile, riprova più tardi"
   },
   "general": {
+    "attachments": "Allegati",
     "birthdate": "Data di nascita",
     "blood": "Sangue",
     "bloodGroup": "Gruppo sanguigno",
@@ -34,6 +35,7 @@
     "donations": "Donazioni",
     "email": "Email",
     "error": "Errore",
+    "event": "Evento",
     "gender": "Sesso",
     "hours": "Ore",
     "in": "Nel",
@@ -47,6 +49,8 @@
     "pl": "PL",
     "plasma": "Plasma",
     "platelet": "Piastrine",
+    "publication": "News",
+    "retry": "Riprova",
     "sa": "SA",
     "section": "Sezione provinciale",
     "total": "Totale",
@@ -78,5 +82,8 @@
     "updateAvailable": "È disponibile un nuovo aggiornamento!",
     "whereDonate": "Dove puoi donare",
     "youPerformed": "Hai effettuato"
+  },
+  "news": {
+    "title": "News"
   }
 }

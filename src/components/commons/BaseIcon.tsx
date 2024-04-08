@@ -24,11 +24,7 @@ function BaseIcon(props: BaseIconProps) {
 
   // Render
   return (
-    <TouchableOpacity
-      activeOpacity={0.7}
-      className={clx('aspect-square p-2', className)}
-      onPress={onPress}
-    >
+    <TouchableOpacity activeOpacity={0.7} className={clx('p-2', className)} onPress={onPress}>
       <Icon size={size ?? 20} color={color ?? colors.dark[500]} {...rest} />
     </TouchableOpacity>
   );

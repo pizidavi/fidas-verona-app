@@ -1,5 +1,6 @@
 // Views
 import HomeView from './HomeView';
+import NewsView from './NewsView';
 
 // Screens
 import DonationsScreen from '../screens/DonationsScreen';
@@ -14,7 +15,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { BottomTabParamList } from '../types/navigation';
 
 // Others
-import { HomeIcon, QueueListIcon } from 'react-native-heroicons/solid';
+import { HomeIcon, NewspaperIcon, QueueListIcon } from 'react-native-heroicons/solid';
 
 const Tab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -47,12 +48,24 @@ function AuthView() {
           tabBarIcon: DonationsTabBarIcon,
         }}
       />
+      <Tab.Screen
+        name='NewsView'
+        component={NewsView}
+        options={{
+          tabBarLabel: 'news:title',
+          tabBarIcon: NewsTabBarIcon,
+        }}
+      />
     </Tab.Navigator>
   );
 }
 
 const HomeTabBarIcon = ({ color, size }: { color: string; size: number }) => (
   <HomeIcon color={color} size={size} />
+);
+
+const NewsTabBarIcon = ({ color, size }: { color: string; size: number }) => (
+  <NewspaperIcon color={color} size={size} />
 );
 
 const DonationsTabBarIcon = ({ color, size }: { color: string; size: number }) => (

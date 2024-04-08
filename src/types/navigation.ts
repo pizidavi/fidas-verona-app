@@ -1,6 +1,9 @@
 // Navigation
 import { NavigatorScreenParams, Route } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { NativeStackNavigationProp, NativeStackScreenProps } from '@react-navigation/native-stack';
+
+// Types
+import { News } from './entities';
 
 export type RootStackParamList = {
   // UnAuth
@@ -13,6 +16,7 @@ export type RootStackParamList = {
 export type BottomTabParamList = {
   HomeView: NavigatorScreenParams<HomeStackParamList>;
   Donations: undefined;
+  NewsView: NavigatorScreenParams<NewsStackParamList>;
 };
 
 export type HomeStackParamList = {
@@ -21,6 +25,14 @@ export type HomeStackParamList = {
   DonationsCenters: undefined;
 };
 
+export type NewsStackParamList = {
+  News: undefined;
+  NewsDetails: { news: News };
+};
+
 export type AppRoute = Route<keyof RootStackParamList>;
 export type AppNavigationProp = NativeStackNavigationProp<RootStackParamList>;
 export type HomeNavigationProp = NativeStackNavigationProp<HomeStackParamList>;
+export type NewsNavigationProp = NativeStackNavigationProp<NewsStackParamList>;
+
+export type NewsDetailsScreenProps = NativeStackScreenProps<NewsStackParamList, 'NewsDetails'>;

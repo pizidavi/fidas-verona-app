@@ -27,3 +27,8 @@ export enum ACHIEVEMENT {
   KING_OF_DONATIONS = 'achievements:kingOfDonations',
   GOD_OF_DONATIONS = 'achievements:godOfDonations',
 }
+
+export enum NEWS_TYPE {
+  PUBLICATION = 'PUBLICATION',
+  EVENT = 'EVENT',
+}

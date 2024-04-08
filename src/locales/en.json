@@ -25,6 +25,7 @@
     "serverUnavailable": "Server unavailable, retry later"
   },
   "general": {
+    "attachments": "Attachments",
     "birthdate": "Birthdate",
     "blood": "Blood",
     "bloodGroup": "Blood group",
@@ -34,6 +35,7 @@
     "donations": "Donations",
     "email": "Email",
     "error": "Error",
+    "event": "Event",
     "gender": "Gender",
     "hours": "Hours",
     "in": "In",
@@ -47,6 +49,8 @@
     "pl": "PL",
     "plasma": "Plasma",
     "platelet": "Platelet",
+    "publication": "News",
+    "retry": "Retry",
     "sa": "SA",
     "section": "Section",
     "total": "Total",
@@ -78,5 +82,8 @@
     "updateAvailable": "A new update is available!",
     "whereDonate": "Where you can donate",
     "youPerformed": "You performed"
+  },
+  "news": {
+    "title": "News"
   }
 }
