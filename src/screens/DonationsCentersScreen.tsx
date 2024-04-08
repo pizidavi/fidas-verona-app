@@ -38,7 +38,7 @@ function DonationsCentersScreen() {
       <Header />
       <View>
         <LocaleText
-          className='text-3xl font-extrabold capitalize text-secondary-500'
+          className='text-3xl font-bold capitalize text-secondary-500'
           text='messages:whereDonate'
         />
       </View>

@@ -4,6 +4,7 @@ import { Linking, View } from 'react-native';
 
 // Api
 import { postLogin } from '../../api/AuthManager';
+import { useMutation } from '@tanstack/react-query';
 
 // Components
 import BaseButton from '../commons/BaseButton';
@@ -19,17 +20,14 @@ import { handleStandardError } from '../../utils/api';
 import { appLog } from '../../utils/logger';
 import { validateRequired } from '../../utils/validators';
 
-// Others
-import { useMutation } from '@tanstack/react-query';
-
 /**
  * Login form
  */
 function LoginForm() {
   // State
   const [form, setForm] = useState({
-    username: __DEV__ ? DEV_USERNAME : '',
-    password: __DEV__ ? DEV_PASSWORD : '',
+    username: __DEV__ && DEV_USERNAME ? DEV_USERNAME : '',
+    password: __DEV__ && DEV_PASSWORD ? DEV_PASSWORD : '',
   });
 
   // Api
@@ -42,7 +40,7 @@ function LoginForm() {
 
     loginMutation
       .mutateAsync({
-        username: form.username,
+        username: form.username.replace(/^0+/, ''),
         password: form.password,
       })
       .then(() => appLog.info('Login success'))
@@ -50,12 +48,10 @@ function LoginForm() {
         appLog.error('Error during login', e);
         const { axiosError, error } = handleStandardError(e);
         if (axiosError) {
-          if (axiosError.response?.status === 401)
-            showAlert('general:error', 'errors:invalidCredentials');
-          else if (!axiosError.response?.status)
+          if (!axiosError.response?.status)
             showAlert('general:error', 'errors:networkMissingError');
-          else if (axiosError.response?.status >= 500)
-            showAlert('general:error', 'errors:serverUnavailable');
+          else if (axiosError.response?.status >= 400)
+            showAlert('general:error', 'errors:invalidCredentials');
           else showAlert('general:error', 'errors:networkRequestError');
         } else if (error) showAlert('general:error', 'errors:internalApplicationError');
       });

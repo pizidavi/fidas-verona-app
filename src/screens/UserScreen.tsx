@@ -83,10 +83,7 @@ function UserScreen() {
         }
       />
       <View className='items-center gap-2'>
-        <LocaleText
-          className='text-3xl font-extrabold capitalize text-secondary-500'
-          text={user.name}
-        />
+        <LocaleText className='text-3xl font-bold capitalize text-secondary-500' text={user.name} />
       </View>
       <Card className='gap-1 px-5'>
         <View className='flex-row items-center justify-between'>

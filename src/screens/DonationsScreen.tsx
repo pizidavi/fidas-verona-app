@@ -40,7 +40,7 @@ function DonationsScreen() {
       <Header back={false} />
       <View>
         <LocaleText
-          className='text-3xl font-extrabold capitalize text-secondary-500'
+          className='text-3xl font-bold capitalize text-secondary-500'
           text='donations:title'
         />
       </View>
@@ -50,17 +50,14 @@ function DonationsScreen() {
             text='general:totals'
             className='text-2xl font-bold uppercase text-secondary-300'
           />
-          <LocaleText text={user.donations_count} className='text-4xl font-extrabold text-white' />
+          <LocaleText text={user.donations_count} className='text-4xl font-bold text-white' />
         </Card>
         <Card className='aspect-square flex-1 items-center justify-center bg-secondary-300'>
           <LocaleText
             text={['general:in', currentYear]}
             className='text-2xl font-bold uppercase text-secondary-500'
           />
-          <LocaleText
-            text={donationsInCurrentYear}
-            className='text-4xl font-extrabold text-white'
-          />
+          <LocaleText text={donationsInCurrentYear} className='text-4xl font-bold text-white' />
         </Card>
       </View>
       <View className='gap-2'>

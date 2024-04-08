@@ -60,7 +60,7 @@ function TotalDonationsCard({ donationsNumber, gender }: TotalDonationsCardProps
           <LocaleText text='messages:congratulations' className='text-lg font-bold' />
         )}
         <LocaleText text='messages:youPerformed' />
-        <LocaleText text={donationsNumber} className='text-5xl font-extrabold text-primary-500' />
+        <LocaleText text={donationsNumber} className='text-5xl font-bold text-primary-500' />
         <LocaleText text='messages:totalDonations' className='lowercase text-dark-300' />
       </View>
       <View className='w-2/3 items-center gap-1'>

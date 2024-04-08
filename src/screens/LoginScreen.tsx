@@ -32,7 +32,7 @@ function LoginScreen() {
         <Logo size={100} />
       </View>
       <LocaleText
-        className='text-center text-3xl font-extrabold text-secondary-500'
+        className='text-center text-3xl font-bold text-secondary-500'
         text='login:login'
       />
       {user === null ? (

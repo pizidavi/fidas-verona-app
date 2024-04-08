@@ -9,11 +9,13 @@ import useOnResume from './hooks/useOnResume';
 import { persistor, store } from './store';
 import { Provider } from 'react-redux';
 
+// Api
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
 // Components
 import Navigation from './components/navigation/Navigation';
 
 // Others
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { PersistGate } from 'redux-persist/integration/react';

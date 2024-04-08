@@ -56,19 +56,19 @@ function Countdown({ targetDate }: CountdownProps) {
     <View className='flex-row justify-evenly'>
       {timeLeft.months !== undefined && (
         <View className='flex-1 items-center'>
-          <LocaleText text={timeLeft.months} className='text-5xl font-extrabold text-primary-500' />
+          <LocaleText text={timeLeft.months} className='text-5xl font-bold text-primary-500' />
           <LocaleText text='general:months' className='text-sm uppercase text-dark-300' />
         </View>
       )}
       {timeLeft.days !== undefined && (
         <View className='flex-1 items-center'>
-          <LocaleText text={timeLeft.days} className='text-5xl font-extrabold text-primary-500' />
+          <LocaleText text={timeLeft.days} className='text-5xl font-bold text-primary-500' />
           <LocaleText text='general:days' className='text-sm uppercase text-dark-300' />
         </View>
       )}
       {timeLeft.hours !== undefined && (
         <View className='flex-1 items-center'>
-          <LocaleText text={timeLeft.hours} className='text-5xl font-extrabold text-primary-500' />
+          <LocaleText text={timeLeft.hours} className='text-5xl font-bold text-primary-500' />
           <LocaleText text='general:hours' className='text-sm uppercase text-dark-300' />
         </View>
       )}

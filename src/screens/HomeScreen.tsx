@@ -10,6 +10,7 @@ import { selectUser } from '../store/slices/authSlice';
 
 // Api
 import { getUser } from '../api/AuthManager';
+import { useMutation } from '@tanstack/react-query';
 
 // Screens
 import BaseScreen from './BaseScreen';
@@ -33,7 +34,6 @@ import { HomeNavigationProp } from '../types/navigation';
 
 // Others
 import colors from '../../colors';
-import { useMutation } from '@tanstack/react-query';
 import { UserIcon } from 'react-native-heroicons/outline';
 
 function HomeScreen() {
@@ -83,7 +83,7 @@ function HomeScreen() {
       />
       <View>
         <LocaleText
-          className='text-3xl font-extrabold capitalize text-secondary-500'
+          className='text-3xl font-bold capitalize text-secondary-500'
           text={['messages:hello', user.name]}
         />
       </View>
