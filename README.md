@@ -1,4 +1,4 @@
-# FIDAS Verona App
+# FIDAS Verona app
 
 [![Downloads](https://img.shields.io/github/downloads/pizidavi/fidas-verona-app/total)](https://github.com/pizidavi/fidas-verona-app/releases)
 
@@ -6,7 +6,7 @@
 
 ## Download
 
-Get the app from the [releases page](https://github.com/pizidavi/fidas-verona-app/releases).
+Get the app from the [releases page](https://github.com/pizidavi/fidas-verona-app/releases/latest).
 
 ## Screenshots
 
