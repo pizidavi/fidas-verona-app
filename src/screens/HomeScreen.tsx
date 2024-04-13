@@ -1,16 +1,12 @@
 // React
 import { useCallback } from 'react';
-import { RefreshControl, View } from 'react-native';
+import { View } from 'react-native';
 
 // Hooks
 import useAppSelector from '../hooks/useAppSelector';
 
 // Redux
 import { selectUser } from '../store/slices/authSlice';
-
-// Api
-import { getUser } from '../api/AuthManager';
-import { useMutation } from '@tanstack/react-query';
 
 // Screens
 import BaseScreen from './BaseScreen';
@@ -26,9 +22,6 @@ import Header from '../components/navigation/Header';
 // Navigation
 import { useNavigation } from '@react-navigation/native';
 
-// Utils
-import { showAlert } from '../utils/alert';
-
 // Types
 import { HomeNavigationProp } from '../types/navigation';
 
@@ -43,33 +36,14 @@ function HomeScreen() {
   // Global states
   const user = useAppSelector(selectUser);
 
-  // Api
-  const userMutation = useMutation({ mutationFn: getUser });
-
   // Callbacks
   const handleUserPress = useCallback(() => {
     navigation.navigate('User');
   }, []);
 
-  const handleUserRefresh = useCallback(() => {
-    userMutation.mutateAsync().catch(() => {
-      showAlert('general:error', 'errors:networkRequestError');
-    });
-  }, []);
-
   // Render
   return (
-    <BaseScreen
-      as='scroll'
-      className='gap-5'
-      refreshControl={
-        <RefreshControl
-          refreshing={userMutation.isPending}
-          onRefresh={handleUserRefresh}
-          colors={[colors.secondary[500]]}
-        />
-      }
-    >
+    <BaseScreen as='scroll' className='gap-5'>
       <Header
         headerRight={
           <BaseIcon

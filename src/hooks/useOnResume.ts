@@ -78,8 +78,8 @@ function useOnResume() {
   // Effects
   useEffect(() => {
     refreshOnStartup();
-    if (!__DEV__) searchAppUpdate();
     updateLanguage();
+    if (!__DEV__) searchAppUpdate();
   }, []);
 
   useEffect(() => {
