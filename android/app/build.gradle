@@ -90,8 +90,8 @@ android {
         applicationId "it.fidasverona"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 101011
-        versionName "1.1.1"
+        versionCode 102001
+        versionName "1.2.0"
     }
     signingConfigs {
         release {
