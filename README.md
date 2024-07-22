@@ -32,7 +32,7 @@ yarn install
 
 ### Environment setup
 
-A `.env` and `.env.dev` file is needed to run this application.
+A `.env` file is needed to run this application.
 An example `.env.sample` file can be found inside the repository
 
 | Parameter             | Required | Type     |

@@ -1,4 +1,48 @@
 {
-  "name": "fidasverona",
-  "displayName": "FIDAS Verona"
+  "expo": {
+    "name": "FIDAS Verona",
+    "slug": "fidas-verona-app",
+    "version": "2.0.0",
+    "runtimeVersion": "2.0.0",
+    "icon": "./assets/ic_launcher.png",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "platforms": ["android", "ios"],
+    "android": {
+      "package": "it.fidasverona",
+      "versionCode": 200000,
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/ic_launcher_foreground.png",
+        "backgroundImage": "./assets/ic_launcher_background.png",
+        "monochromeImage": "./assets/ic_launcher_monochrome.png",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "ios": {},
+    "plugins": [
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "usesCleartextTraffic": true
+          }
+        }
+      ],
+      "expo-localization",
+      "expo-secure-store"
+    ],
+    "splash": {
+      "image": "./assets/ic_launcher.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/8bc28922-a421-4c14-b4aa-b546b099c90f"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "8bc28922-a421-4c14-b4aa-b546b099c90f"
+      }
+    }
+  }
 }

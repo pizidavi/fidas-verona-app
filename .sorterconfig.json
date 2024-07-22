@@ -1,5 +1,5 @@
 {
-  "root": "src",
+  "root": "app",
   "organizeOnSave": true,
   "blocks": [
     {
@@ -11,8 +11,8 @@
       "folders": ["hooks"]
     },
     {
-      "name": "Redux",
-      "libraries": ["redux", "react-redux", "redux-persist", "@reduxjs/toolkit"],
+      "name": "Store",
+      "libraries": ["zustand", "zustand/middleware"],
       "folders": ["store"]
     },
     {
@@ -50,8 +50,8 @@
     },
     {
       "name": "Assets",
-      "folders": ["assets"],
-      "libraries": ["react-native-heroicons", "react-native-svg"]
+      "libraries": ["react-native-svg", "lucide-react-native"],
+      "folders": ["assets"]
     },
     {
       "name": "Types",
