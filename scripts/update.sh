@@ -5,11 +5,6 @@ if [ -z "$1" ]; then
   exit 1
 fi
 
-if [ -z "$2" ]; then
-  echo "Platform is required"
-  exit 1
-fi
-
 if [ -f .env ]; then
   while IFS= read -r line || [ -n "$line" ]; do
     if [ -n "$line" ] && [[ "$line" != \#* ]]; then
@@ -21,4 +16,4 @@ else
   exit 1
 fi
 
-eas build --profile $1 --platform $2 --local --clear-cache --non-interactive
+eas update --channel $1 --auto --clear-cache --non-interactive

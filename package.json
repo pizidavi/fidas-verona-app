@@ -10,10 +10,11 @@
     "ios": "expo run:ios",
     "android:prebuild": "expo prebuild -p android",
     "ios:prebuild": "expo prebuild -p ios",
-    "android:build": "source scripts/build.sh preview android",
-    "ios:build": "source scripts/build.sh preview ios",
-    "android:pubblish": "source scripts/build.sh production android",
-    "ios:pubblish": "source scripts/build.sh production ios"
+    "android:build": "scripts/build.sh preview android",
+    "ios:build": "scripts/build.sh preview ios",
+    "android:pubblish": "scripts/build.sh production android",
+    "ios:pubblish": "scripts/build.sh production ios",
+    "update:preview": "scripts/update.sh preview"
   },
   "dependencies": {
     "@craftzdog/react-native-buffer": "^6.0.5",
