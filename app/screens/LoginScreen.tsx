@@ -33,12 +33,9 @@ function LoginScreen() {
         text='login:login'
       />
       {user === null ? (
-        <>
-          <View className='flex-1'>
-            <LoginForm />
-          </View>
-          <LocaleText text={`v${APP_VERSION}`} className='text-center text-xs' avoidTranslation />
-        </>
+        <View className='flex-1'>
+          <LoginForm />
+        </View>
       ) : (
         <View className='flex-1 justify-center'>
           <ActivityIndicator size={32} color={colors.secondary[500]} />

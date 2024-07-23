@@ -30,6 +30,7 @@ import { Achievement } from '../types/structs';
 
 // Others
 import colors from '../../colors';
+import * as Updates from 'expo-updates';
 
 function UserScreen() {
   // Global state
@@ -117,7 +118,16 @@ function UserScreen() {
           <AchievementCard key={achievement.value} achievement={achievement} />
         ))}
       </View>
-      <LocaleText text={`v${APP_VERSION}`} className='text-center text-xs' avoidTranslation />
+      <LocaleText
+        text={
+          `v${APP_VERSION}` +
+          (!Updates.isEmbeddedLaunch && Updates.createdAt
+            ? ' - ' + formateDate(Updates.createdAt)
+            : '')
+        }
+        className='text-center text-xs'
+        avoidTranslation
+      />
     </BaseScreen>
   );
 }
