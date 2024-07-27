@@ -52,6 +52,10 @@
   "devDependencies": {
     "@babel/core": "^7.20.0",
     "@types/react": "~18.2.45",
+    "eslint": "^8.57.0",
+    "eslint-config-expo": "^7.1.2",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
     "expo-dev-client": "~4.0.20",
     "husky": "^9.0.11",
     "lint-staged": "^15.2.7",
@@ -64,8 +68,9 @@
     "node": ">=20.0.0"
   },
   "lint-staged": {
-    "**/*.{json,js,jsx,ts,tsx}": [
-      "prettier --write ."
+    "**/*.{js,jsx,ts,tsx}": [
+      "prettier --write .",
+      "eslint app"
     ]
   }
 }

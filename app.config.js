@@ -1,4 +1,4 @@
-const env = process.env.APP_ENV || 'development';
+const env = process.env.NODE_ENV || 'development';
 
 module.exports = ({ config }) => {
   const name = getAppName(config.name);

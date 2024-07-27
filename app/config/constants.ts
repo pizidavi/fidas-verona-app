@@ -5,6 +5,7 @@ import { ACHIEVEMENT, ENV } from '../types/enums';
 // Others
 import { expo } from '../../app.json';
 
+// eslint-disable-next-line no-var
 declare var process: {
   env: Record<ENV, string | undefined>;
 };

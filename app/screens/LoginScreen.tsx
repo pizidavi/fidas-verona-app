@@ -12,9 +12,6 @@ import LocaleText from '../components/commons/LocaleText';
 import LoginForm from '../components/forms/LoginForm';
 import Logo from '../components/icons/Logo';
 
-// Config
-import { APP_VERSION } from '../config/constants';
-
 // Others
 import colors from '../../colors';
 

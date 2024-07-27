@@ -8,16 +8,13 @@
       "distribution": "internal",
       "channel": "development",
       "env": {
-        "NODE_ENV": "development",
-        "APP_ENV": "development"
+        "NODE_ENV": "development"
       }
     },
     "preview": {
-      "distribution": "internal",
       "channel": "preview",
       "env": {
-        "NODE_ENV": "test",
-        "APP_ENV": "test"
+        "NODE_ENV": "test"
       }
     },
     "production": {
@@ -27,8 +24,7 @@
         "buildType": "apk"
       },
       "env": {
-        "NODE_ENV": "production",
-        "APP_ENV": "production"
+        "NODE_ENV": "production"
       }
     }
   }
