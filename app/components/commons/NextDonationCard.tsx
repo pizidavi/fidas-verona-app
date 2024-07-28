@@ -8,21 +8,15 @@ import Card from './Card';
 import Countdown from './Countdown';
 import LocaleText from './LocaleText';
 
-// Config
-import {
-  PI_DONATION_INTERVAL,
-  PL_DONATION_INTERVAL,
-  SA_DONATION_INTERVAL,
-} from '../../config/constants';
-
 // Utils
 import { formateDate } from '../../utils/formatters';
+import { getNextDonationDate } from '../../utils/utils';
 
 // Types
 import { Donation, User } from '../../types/entities';
 
 type NextDonationCardProps = {
-  lastDonation: Donation;
+  donations: Donation[];
   gender: User['gender'];
 };
 
@@ -30,29 +24,12 @@ type NextDonationCardProps = {
  * NextDonationCard component
  * @param props
  */
-function NextDonationCard({ lastDonation, gender }: NextDonationCardProps) {
+function NextDonationCard({ donations, gender }: NextDonationCardProps) {
   // Memos
-  const lastDonationDate = useMemo(() => {
-    return new Date(lastDonation.date);
-  }, [lastDonation]);
-
-  const nextSADonationDate = useMemo(() => {
-    const date = new Date(lastDonationDate);
-    date.setDate(date.getDate() + SA_DONATION_INTERVAL[gender]);
-    return date;
-  }, [lastDonationDate, gender]);
-
-  const nextPLDonationDate = useMemo(() => {
-    const date = new Date(lastDonationDate);
-    date.setDate(date.getDate() + PL_DONATION_INTERVAL[gender]);
-    return date;
-  }, [lastDonationDate, gender]);
-
-  const nextPIDonationDate = useMemo(() => {
-    const date = new Date(lastDonationDate);
-    date.setDate(date.getDate() + PI_DONATION_INTERVAL[gender]);
-    return date;
-  }, [lastDonationDate, gender]);
+  const { nextPLDonationDate, nextSADonationDate } = useMemo(
+    () => getNextDonationDate(donations, gender),
+    [donations, gender],
+  );
 
   // Render
   return (
@@ -74,10 +51,6 @@ function NextDonationCard({ lastDonation, gender }: NextDonationCardProps) {
         <View className='flex-row gap-2'>
           <Badge theme={BADGE_THEME.PL} className='min-w-11' />
           <LocaleText text={formateDate(nextPLDonationDate)} />
-        </View>
-        <View className='flex-row gap-2'>
-          <Badge theme={BADGE_THEME.PI} className='min-w-11' />
-          <LocaleText text={formateDate(nextPIDonationDate)} />
         </View>
       </View>
     </Card>

@@ -1,3 +1,13 @@
+// Config
+import {
+  PI_DONATION_INTERVAL,
+  PL_DONATION_INTERVAL,
+  SA_DONATION_INTERVAL,
+} from '../config/constants';
+
+// Types
+import { Donation, User } from '../types/entities';
+
 // Others
 import { ClassNameValue, twMerge } from 'tailwind-merge';
 
@@ -40,3 +50,51 @@ export const versionToNumber = (version: string) =>
       .filter(c => '0123456789'.includes(c))
       .join('') || '0',
   );
+
+/**
+ * Get next donation date
+ * @param lastDonation Last donation
+ */
+export const getNextDonationDate = (donations: Donation[], gender: User['gender']) => {
+  const lastDonation = {
+    date: new Date(donations[0].date),
+    type: donations[0].type,
+  };
+
+  const nextSADonationDate = new Date(lastDonation.date);
+  const nextPLDonationDate = new Date(lastDonation.date);
+  const nextPIDonationDate = new Date(lastDonation.date);
+
+  if (lastDonation.type === 'SA') {
+    nextSADonationDate.setDate(lastDonation.date.getDate() + SA_DONATION_INTERVAL[gender]);
+    nextPLDonationDate.setDate(lastDonation.date.getDate() + PL_DONATION_INTERVAL[gender]);
+    nextPIDonationDate.setDate(lastDonation.date.getDate() + PI_DONATION_INTERVAL[gender]);
+
+    return {
+      nextSADonationDate,
+      nextPLDonationDate,
+      nextPIDonationDate,
+    };
+  } else if (lastDonation.type === 'PL' || lastDonation.type === 'PI') {
+    const lastSADonation = donations.find(donation => donation.type === 'SA');
+    const lastSADonationDate = new Date(lastSADonation?.date ?? 0);
+
+    nextSADonationDate.setDate(
+      Math.max(
+        lastDonation.date.getDate() + PL_DONATION_INTERVAL[gender],
+        lastSADonationDate.getDate() + SA_DONATION_INTERVAL[gender],
+      ),
+    );
+    nextPLDonationDate.setDate(lastDonation.date.getDate() + SA_DONATION_INTERVAL.M);
+    nextPIDonationDate.setDate(lastDonation.date.getDate() + SA_DONATION_INTERVAL.M);
+
+    return {
+      nextSADonationDate,
+      nextPLDonationDate,
+      nextPIDonationDate,
+    };
+  } else {
+    lastDonation.type satisfies never;
+    throw new Error('Invalid donation type');
+  }
+};
