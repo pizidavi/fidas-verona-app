@@ -46,9 +46,14 @@ function NewsDetailsScreen(props: NewsDetailsScreenProps) {
     [],
   );
 
+  const description = useMemo(() => {
+    if (news.image) return `<img src="${news.image}" />${news.description}`;
+    return news.description;
+  }, [news.description, news.image]);
+
   // Callbacks
   const handleShare = useCallback(() => {
-    const message = news.title;
+    const message = `${news.title}\n\n${news.image}`;
     Share.share({
       message: message,
     }).catch(error => {
@@ -79,7 +84,7 @@ function NewsDetailsScreen(props: NewsDetailsScreenProps) {
           <BaseIcon icon={ShareIcon} onPress={handleShare} />
         </View>
       </View>
-      <RenderHtml contentWidth={width} source={{ html: news.description }} tagsStyles={htmlStyle} />
+      <RenderHtml contentWidth={width} source={{ html: description }} tagsStyles={htmlStyle} />
       {news.attachments && (
         <View className='flex gap-2'>
           <LocaleText className='font-bold' text='general:attachments' />

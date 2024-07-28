@@ -71,7 +71,7 @@ function UserScreen() {
         headerRight={
           <BaseIcon
             icon={LogOutIcon}
-            size={25}
+            size={20}
             color={colors.secondary[500]}
             onPress={handleLogoutPress}
           />
