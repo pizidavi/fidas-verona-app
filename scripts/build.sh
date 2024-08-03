@@ -1,11 +1,14 @@
 #!/bin/sh
 
-if [ -z "$1" ]; then
+profile=$1
+platform=$2
+
+if [ -z "$profile" ]; then
   echo "Profile is required"
   exit 1
 fi
 
-if [ -z "$2" ]; then
+if [ -z "$platform" ]; then
   echo "Platform is required"
   exit 1
 fi
@@ -21,4 +24,4 @@ else
   exit 1
 fi
 
-eas build --profile $1 --platform $2 --local --clear-cache --non-interactive
+eas build --profile $profile --platform $platform --local --clear-cache --non-interactive

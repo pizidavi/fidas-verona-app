@@ -1,6 +1,8 @@
 #!/bin/sh
 
-if [ -z "$1" ]; then
+profile=$1
+
+if [ -z "$profile" ]; then
   echo "Profile is required"
   exit 1
 fi
@@ -16,4 +18,4 @@ else
   exit 1
 fi
 
-eas update --channel $1 --auto --clear-cache --non-interactive
+eas update --channel $profile --auto --clear-cache --non-interactive

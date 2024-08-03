@@ -1,24 +1,23 @@
 const env = process.env.NODE_ENV || 'development';
 
 module.exports = ({ config }) => {
-  const name = getAppName(config.name);
-  const packageName = getPackageName(config.android.package);
-  const bundleIdentifier = getBundleIdentifier(config.ios.bundleIdentifier);
-
   return {
     ...config,
-    name,
+    name: getAppName(config.name),
     android: {
       ...config.android,
-      package: packageName,
+      package: getPackageName(config.android.package),
     },
     ios: {
       ...config.ios,
-      bundleIdentifier,
+      bundleIdentifier: getBundleIdentifier(config.ios.bundleIdentifier),
     },
   };
 };
 
+/**
+ * @param {string} name
+ */
 function getAppName(name) {
   if (env === 'development') {
     return `${name} (Dev)`;
@@ -28,6 +27,9 @@ function getAppName(name) {
   return name;
 }
 
+/**
+ * @param {string | undefined} packageName
+ */
 function getPackageName(packageName) {
   if (!packageName) return packageName;
   if (env === 'development') {
@@ -38,6 +40,9 @@ function getPackageName(packageName) {
   return packageName;
 }
 
+/**
+ * @param {string | undefined} bundleIdentifier
+ */
 function getBundleIdentifier(bundleIdentifier) {
   if (!bundleIdentifier) return bundleIdentifier;
   if (env === 'development') {
