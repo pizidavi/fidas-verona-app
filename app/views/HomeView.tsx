@@ -1,18 +1,21 @@
-// React
-import { Platform } from 'react-native';
-
 // Screens
-import DonationsCentersScreen from '../screens/DonationsCentersScreen';
+import DonationsScreen from '../screens/DonationsScreen';
 import HomeScreen from '../screens/HomeScreen';
-import UserScreen from '../screens/UserScreen';
+import NewsScreen from '../screens/NewsScreen';
+
+// Components
+import TabBar from '../components/navigation/TabBar';
 
 // Navigation
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
+// Assets
+import { AlignJustifyIcon, HomeIcon, NewspaperIcon } from 'lucide-react-native';
 
 // Types
-import { HomeStackParamList } from '../types/navigation';
+import { BottomTabParamList } from '../types/navigation';
 
-const Stack = createNativeStackNavigator<HomeStackParamList>();
+const Tab = createBottomTabNavigator<BottomTabParamList>();
 
 /**
  * Home view
@@ -20,18 +23,51 @@ const Stack = createNativeStackNavigator<HomeStackParamList>();
 function HomeView() {
   // Render
   return (
-    <Stack.Navigator
+    <Tab.Navigator
       initialRouteName='Home'
+      tabBar={TabBar}
       screenOptions={{
         headerShown: false,
-        animation: Platform.select({ ios: 'ios', android: 'fade' }),
       }}
     >
-      <Stack.Screen name='Home' component={HomeScreen} />
-      <Stack.Screen name='User' component={UserScreen} />
-      <Stack.Screen name='DonationsCenters' component={DonationsCentersScreen} />
-    </Stack.Navigator>
+      <Tab.Screen
+        name='Home'
+        component={HomeScreen}
+        options={{
+          tabBarLabel: 'home:title',
+          tabBarIcon: HomeTabBarIcon,
+        }}
+      />
+      <Tab.Screen
+        name='Donations'
+        component={DonationsScreen}
+        options={{
+          tabBarLabel: 'donations:title',
+          tabBarIcon: DonationsTabBarIcon,
+        }}
+      />
+      <Tab.Screen
+        name='News'
+        component={NewsScreen}
+        options={{
+          tabBarLabel: 'news:title',
+          tabBarIcon: NewsTabBarIcon,
+        }}
+      />
+    </Tab.Navigator>
   );
 }
+
+const HomeTabBarIcon = ({ color, size }: { color: string; size: number }) => (
+  <HomeIcon color={color} size={size} />
+);
+
+const DonationsTabBarIcon = ({ color, size }: { color: string; size: number }) => (
+  <AlignJustifyIcon color={color} size={size} />
+);
+
+const NewsTabBarIcon = ({ color, size }: { color: string; size: number }) => (
+  <NewspaperIcon color={color} size={size} />
+);
 
 export default HomeView;

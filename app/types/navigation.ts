@@ -10,29 +10,25 @@ export type RootStackParamList = {
   Login: undefined;
 
   // Auth
-  AuthView: NavigatorScreenParams<BottomTabParamList>;
-};
-
-export type BottomTabParamList = {
-  HomeView: NavigatorScreenParams<HomeStackParamList>;
-  Donations: undefined;
-  NewsView: NavigatorScreenParams<NewsStackParamList>;
+  AuthView: NavigatorScreenParams<HomeStackParamList>;
 };
 
 export type HomeStackParamList = {
-  Home: undefined;
+  HomeView: NavigatorScreenParams<BottomTabParamList>;
   User: undefined;
   DonationsCenters: undefined;
+  NewsDetails: { news: News };
 };
 
-export type NewsStackParamList = {
+export type BottomTabParamList = {
+  Home: undefined;
+  Donations: undefined;
   News: undefined;
-  NewsDetails: { news: News };
 };
 
 export type AppRoute = Route<keyof RootStackParamList>;
 export type AppNavigationProp = NativeStackNavigationProp<RootStackParamList>;
 export type HomeNavigationProp = NativeStackNavigationProp<HomeStackParamList>;
-export type NewsNavigationProp = NativeStackNavigationProp<NewsStackParamList>;
+export type BottomTapNavigationProp = NativeStackNavigationProp<BottomTabParamList>;
 
-export type NewsDetailsScreenProps = NativeStackScreenProps<NewsStackParamList, 'NewsDetails'>;
+export type NewsDetailsScreenProps = NativeStackScreenProps<HomeStackParamList, 'NewsDetails'>;

@@ -24,7 +24,7 @@ import { formateDate } from '../utils/formatters';
 // Types
 import { News } from '../types/entities';
 import { NEWS_TYPE } from '../types/enums';
-import { NewsNavigationProp } from '../types/navigation';
+import { BottomTapNavigationProp, HomeNavigationProp } from '../types/navigation';
 
 // Others
 import colors from '../../colors';
@@ -32,7 +32,7 @@ import { RefreshControl } from 'react-native-gesture-handler';
 
 function NewsScreen() {
   // Hooks
-  const navigation = useNavigation<NewsNavigationProp>();
+  const navigation = useNavigation<BottomTapNavigationProp>();
 
   // Api
   const newsQuery = useQuery({ queryFn: getNews, queryKey: ['news'] });
@@ -40,7 +40,12 @@ function NewsScreen() {
   // Callbacks
   const renderItem = useCallback(
     ({ item }: { item: News }) => (
-      <Pressable key={item.id} onPress={() => navigation.navigate('NewsDetails', { news: item })}>
+      <Pressable
+        key={item.id}
+        onPress={() =>
+          navigation.getParent<HomeNavigationProp>().navigate('NewsDetails', { news: item })
+        }
+      >
         <Card className='p-0'>
           <Image source={{ uri: item.image }} className='h-32 w-full rounded-lg rounded-b-none' />
           <View className='p-5 pt-0'>

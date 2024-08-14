@@ -1,23 +1,21 @@
+// React
+import { Platform } from 'react-native';
+
 // Views
 import HomeView from './HomeView';
-import NewsView from './NewsView';
 
 // Screens
-import DonationsScreen from '../screens/DonationsScreen';
-
-// Components
-import TabBar from '../components/navigation/TabBar';
+import DonationsCentersScreen from '../screens/DonationsCentersScreen';
+import NewsDetailsScreen from '../screens/NewsDetailsScreen';
+import UserScreen from '../screens/UserScreen';
 
 // Navigation
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-
-// Assets
-import { AlignJustifyIcon, HomeIcon, NewspaperIcon } from 'lucide-react-native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 // Types
-import { BottomTabParamList } from '../types/navigation';
+import { HomeStackParamList } from '../types/navigation';
 
-const Tab = createBottomTabNavigator<BottomTabParamList>();
+const Stack = createNativeStackNavigator<HomeStackParamList>();
 
 /**
  * Auth view
@@ -25,51 +23,19 @@ const Tab = createBottomTabNavigator<BottomTabParamList>();
 function AuthView() {
   // Render
   return (
-    <Tab.Navigator
+    <Stack.Navigator
       initialRouteName='HomeView'
-      tabBar={TabBar}
       screenOptions={{
         headerShown: false,
+        animation: Platform.select({ ios: 'ios', android: 'fade' }),
       }}
     >
-      <Tab.Screen
-        name='HomeView'
-        component={HomeView}
-        options={{
-          tabBarLabel: 'home:title',
-          tabBarIcon: HomeTabBarIcon,
-        }}
-      />
-      <Tab.Screen
-        name='Donations'
-        component={DonationsScreen}
-        options={{
-          tabBarLabel: 'donations:title',
-          tabBarIcon: DonationsTabBarIcon,
-        }}
-      />
-      <Tab.Screen
-        name='NewsView'
-        component={NewsView}
-        options={{
-          tabBarLabel: 'news:title',
-          tabBarIcon: NewsTabBarIcon,
-        }}
-      />
-    </Tab.Navigator>
+      <Stack.Screen name='HomeView' component={HomeView} />
+      <Stack.Screen name='User' component={UserScreen} />
+      <Stack.Screen name='DonationsCenters' component={DonationsCentersScreen} />
+      <Stack.Screen name='NewsDetails' component={NewsDetailsScreen} />
+    </Stack.Navigator>
   );
 }
-
-const HomeTabBarIcon = ({ color, size }: { color: string; size: number }) => (
-  <HomeIcon color={color} size={size} />
-);
-
-const DonationsTabBarIcon = ({ color, size }: { color: string; size: number }) => (
-  <AlignJustifyIcon color={color} size={size} />
-);
-
-const NewsTabBarIcon = ({ color, size }: { color: string; size: number }) => (
-  <NewspaperIcon color={color} size={size} />
-);
 
 export default AuthView;
