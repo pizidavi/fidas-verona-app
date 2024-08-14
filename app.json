@@ -7,6 +7,9 @@
     "icon": "./assets/ic_launcher.png",
     "orientation": "portrait",
     "userInterfaceStyle": "light",
+    "androidNavigationBar": {
+      "backgroundColor": "#ffffff"
+    },
     "platforms": ["android", "ios"],
     "android": {
       "package": "it.fidasverona",
