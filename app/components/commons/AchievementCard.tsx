@@ -5,8 +5,11 @@ import { View } from 'react-native';
 import Card from './Card';
 import LocaleText from './LocaleText';
 
+// Utils
+import { clx } from '../../utils/utils';
+
 // Assets
-import { TrophyIcon } from 'lucide-react-native';
+import { TrophyIcon, LockIcon } from 'lucide-react-native';
 
 // Types
 import { Achievement } from '../../types/structs';
@@ -14,22 +17,44 @@ import { Achievement } from '../../types/structs';
 type AchievementCardProps = {
   /** Achievement */
   achievement: Achievement;
+  /** Card variant */
+  variant?: 'unlocked' | 'locked';
 };
 
 /**
  * Achievement card component
  * @param props
  */
-function AchievementCard({ achievement }: AchievementCardProps) {
+function AchievementCard(props: AchievementCardProps) {
+  const { achievement, variant = 'unlocked' } = props;
+
   // Render
   return (
-    <Card className='flex-row items-center gap-3 bg-secondary-500 p-4'>
-      <TrophyIcon size={30} color='white' />
+    <Card
+      className={clx(
+        'flex-row items-center gap-3 border border-transparent bg-secondary-500 p-4',
+        variant === 'locked' && 'border-gray-400 bg-secondary-100 opacity-80',
+      )}
+    >
+      {variant === 'unlocked' ? (
+        <TrophyIcon size={30} color='white' />
+      ) : (
+        <LockIcon size={30} color='gray' />
+      )}
       <View>
-        <LocaleText text={achievement.label} className='text-xl font-bold text-white' />
+        <LocaleText
+          text={achievement.label}
+          className={clx('text-xl font-bold text-white', variant === 'locked' && 'text-gray-500')}
+        />
         <View className='mt-[-5] flex-row items-center gap-1'>
-          <LocaleText text={achievement.value} className='text-lg font-bold text-white' />
-          <LocaleText text='general:donations' className='font-semibold text-white' />
+          <LocaleText
+            text={achievement.value}
+            className={clx('text-lg font-bold text-white', variant === 'locked' && 'text-gray-500')}
+          />
+          <LocaleText
+            text='general:donations'
+            className={clx('font-semibold text-white', variant === 'locked' && 'text-gray-500')}
+          />
         </View>
       </View>
     </Card>

@@ -37,18 +37,20 @@ function UserScreen() {
   const user = useAuthStore(state => state.user!);
 
   // Memos
-  const achievements = useMemo(
+  const [unlockedAchievements, lockedAchievements] = useMemo(
     () =>
-      Object.entries(DONATIONS_ACHIEVEMENTS)
-        .reduce((acc, [label, item]) => {
-          acc.push({
+      Object.entries(DONATIONS_ACHIEVEMENTS).reduce(
+        (acc, [label, item]) => {
+          const a = {
             label: label,
             value: item[user.gender],
-          });
+          };
+          if (a.value <= user.donations_count) acc[0].unshift(a);
+          else acc[1].push(a);
           return acc;
-        }, [] as Achievement[])
-        .filter(achievement => achievement.value < user.donations_count)
-        .reverse(),
+        },
+        [[], []] as [Achievement[], Achievement[]],
+      ),
     [user.gender, user.donations_count],
   );
 
@@ -114,8 +116,11 @@ function UserScreen() {
       </Card>
       <View className='flex-1 gap-2'>
         <LocaleText text='messages:achievements' className='text-lg font-bold' />
-        {achievements.map(achievement => (
+        {unlockedAchievements.map(achievement => (
           <AchievementCard key={achievement.value} achievement={achievement} />
+        ))}
+        {lockedAchievements.map(achievement => (
+          <AchievementCard key={achievement.value} achievement={achievement} variant='locked' />
         ))}
       </View>
       <LocaleText
