@@ -40,13 +40,15 @@ function UserScreen() {
   const [unlockedAchievements, lockedAchievements] = useMemo(
     () =>
       Object.entries(DONATIONS_ACHIEVEMENTS).reduce(
-        (acc, [label, item]) => {
-          const a = {
+        (acc, [label, item], index, arr) => {
+          const achievement = {
             label: label,
-            value: item[user.gender],
+            value: item.interval[user.gender],
           };
-          if (a.value <= user.donations_count) acc[0].unshift(a);
-          else acc[1].push(a);
+          if (achievement.value <= user.donations_count) acc[0].unshift(achievement);
+          else if (!item.hidden) acc[1].push(achievement);
+          else if (item.hidden && arr[index - 1][1].interval[user.gender] <= user.donations_count)
+            acc[1].push(achievement);
           return acc;
         },
         [[], []] as [Achievement[], Achievement[]],

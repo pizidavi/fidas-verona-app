@@ -26,7 +26,7 @@ function TotalDonationsCard({ donationsNumber, gender }: TotalDonationsCardProps
   // Memos
   const lastAchievement = useMemo<number>(() => {
     const achievements = Object.values(DONATIONS_ACHIEVEMENTS).reduce((acc, item) => {
-      acc.push(item[gender]);
+      acc.push(item.interval[gender]);
       return acc;
     }, [] as number[]);
 
@@ -37,7 +37,7 @@ function TotalDonationsCard({ donationsNumber, gender }: TotalDonationsCardProps
 
   const nextAchievement = useMemo<number>(() => {
     const achievements = Object.values(DONATIONS_ACHIEVEMENTS).reduce((acc, item) => {
-      acc.push(item[gender]);
+      acc.push(item.interval[gender]);
       return acc;
     }, [] as number[]);
 
