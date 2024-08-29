@@ -14,3 +14,9 @@ fi
 
 sed -i -e "s/\"version\": \".*\"/\"version\": \"$new_version\"/" package.json
 sed -i -e "s/\"version\": \".*\"/\"version\": \"$new_version\"/" app.json
+
+git add package.json app.json
+git commit -m "build: bump version to v$new_version"
+git tag "v$new_version"
+git push origin $(git rev-parse --abbrev-ref HEAD)
+git push --tags
