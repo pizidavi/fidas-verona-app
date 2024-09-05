@@ -80,7 +80,7 @@ export const getNextDonationDate = (donations: Donation[], gender: User['gender'
     const lastSADonationDate = new Date(lastSADonation?.date ?? 0);
 
     nextSADonationDate.setDate(
-      Math.max(
+      Math.min(
         lastDonation.date.getDate() + PL_DONATION_INTERVAL[gender],
         lastSADonationDate.getDate() + SA_DONATION_INTERVAL[gender],
       ),
