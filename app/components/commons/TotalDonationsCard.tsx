@@ -67,7 +67,8 @@ function TotalDonationsCard({ donationsNumber, gender }: TotalDonationsCardProps
         <LocaleText text='messages:nextAchievement' className='font-bold' />
         <ProgressBar progress={nextAchievementProgress} />
         <LocaleText
-          text={[nextAchievement, 'general:donations']}
+          text='general:donations'
+          values={{ count: nextAchievement }}
           className='lowercase text-dark-300'
         />
       </View>

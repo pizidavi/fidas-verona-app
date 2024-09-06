@@ -56,8 +56,9 @@ function HomeScreen() {
       />
       <View>
         <LocaleText
+          text='messages:hello'
+          values={{ name: user.name }}
           className='text-3xl font-bold capitalize text-secondary-500'
-          text={['messages:hello', user.name]}
         />
       </View>
       <TotalDonationsCard donationsNumber={user.donations_count} gender={user.gender} />

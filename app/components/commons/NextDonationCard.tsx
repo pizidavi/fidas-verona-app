@@ -1,6 +1,6 @@
 // React
 import { useMemo } from 'react';
-import { View } from 'react-native';
+import { Text, View } from 'react-native';
 
 // Components
 import Badge, { BADGE_THEME } from './Badge';
@@ -41,6 +41,8 @@ function NextDonationCard({ donations, gender }: NextDonationCardProps) {
             : 'messages:nextDonationSince'
         }
         className='font-bold'
+        values={{ type: 'general:blood' }}
+        components={[<Text key='0' className='text-primary-500' />]}
       />
       <Countdown targetDate={nextSADonationDate} />
       <View className='gap-2'>

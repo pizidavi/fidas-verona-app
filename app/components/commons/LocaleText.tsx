@@ -1,18 +1,24 @@
 // React
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import { Text, TextProps } from 'react-native';
 
 // Utils
 import { clx } from '../../utils/utils';
 
 // Others
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 
 export type LocaleTextProps = {
-  /** Text key */
-  text: string | number | (string | number)[];
+  /** Text */
+  text: string | number;
   /** Avoid translation */
   avoidTranslation?: boolean;
+  /** Class Name */
+  className?: string;
+  /** Values */
+  values?: Record<string | number, string | number>;
+  /** Components */
+  components?: readonly React.ReactElement[] | { readonly [tagName: string]: React.ReactElement };
 } & Omit<TextProps, 'children'>;
 
 /**
@@ -20,30 +26,41 @@ export type LocaleTextProps = {
  * @param props
  */
 function LocaleText(props: LocaleTextProps) {
-  const { text, avoidTranslation, className, ...rest } = props;
+  const { text, avoidTranslation, className, values, components, ...rest } = props;
 
   // Hooks
-  const { t: traslate, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   // Memos
-  const translatedText = useMemo(() => {
-    if (avoidTranslation) return Array.isArray(text) ? text.join(' ') : String(text);
-    if (Array.isArray(text)) {
-      return text
-        .map(t => String(t))
-        .map(t => traslate(t))
-        .filter(Boolean)
-        .join(' ');
-    }
-    return traslate(String(text));
-  }, [i18n.language, text, avoidTranslation]);
+  const translatedValues = useMemo(() => {
+    if (!values) return undefined;
+    return Object.entries(values).reduce(
+      (acc, [key, value]) => {
+        acc[key] = typeof value === 'string' ? t(value) : value;
+        return acc;
+      },
+      {} as typeof values,
+    );
+  }, [values]);
+
+  // Callbacks
+  const BaseText = useCallback(
+    (props: { children: React.ReactNode }) => (
+      <Text className={clx('text-md text-contrast font-medium', className)} {...rest} {...props} />
+    ),
+    [className],
+  );
 
   // Render
-  return (
-    <Text className={clx('text-base text-dark-500', className)} {...rest}>
-      {translatedText}
-    </Text>
+  return avoidTranslation ? (
+    <BaseText>{text}</BaseText>
+  ) : (
+    <Trans
+      i18nKey={text.toString()}
+      values={translatedValues}
+      components={components}
+      parent={BaseText}
+    />
   );
 }
-
 export default LocaleText;

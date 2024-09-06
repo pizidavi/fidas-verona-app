@@ -46,16 +46,14 @@ function AchievementCard(props: AchievementCardProps) {
           text={achievement.label}
           className={clx('text-xl font-bold text-white', variant === 'locked' && 'text-gray-500')}
         />
-        <View className='mt-[-5] flex-row items-center gap-1'>
-          <LocaleText
-            text={achievement.value}
-            className={clx('text-lg font-bold text-white', variant === 'locked' && 'text-gray-500')}
-          />
-          <LocaleText
-            text='general:donations'
-            className={clx('font-semibold text-white', variant === 'locked' && 'text-gray-500')}
-          />
-        </View>
+        <LocaleText
+          text='general:donations'
+          values={{ count: achievement.value }}
+          className={clx(
+            'mt-[-5] font-semibold text-white',
+            variant === 'locked' && 'text-gray-500',
+          )}
+        />
       </View>
     </Card>
   );

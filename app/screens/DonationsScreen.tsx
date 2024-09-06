@@ -2,7 +2,7 @@
 import { useMemo } from 'react';
 import { View } from 'react-native';
 
-// Redux
+// Store
 import { useAuthStore } from '../store';
 
 // Screens
@@ -51,7 +51,8 @@ function DonationsScreen() {
         </Card>
         <Card className='aspect-square flex-1 items-center justify-center bg-secondary-300'>
           <LocaleText
-            text={['general:in', currentYear]}
+            text='general:in'
+            values={{ year: currentYear }}
             className='text-2xl font-bold uppercase text-secondary-500'
           />
           <LocaleText text={donationsInCurrentYear} className='text-4xl font-bold text-white' />
