@@ -13,10 +13,8 @@ export type LocaleTextProps = {
   text: string | number;
   /** Avoid translation */
   avoidTranslation?: boolean;
-  /** Class Name */
-  className?: string;
   /** Values */
-  values?: Record<string | number, string | number>;
+  values?: Record<string, string | number>;
   /** Components */
   components?: readonly React.ReactElement[] | { readonly [tagName: string]: React.ReactElement };
 } & Omit<TextProps, 'children'>;
@@ -41,14 +39,14 @@ function LocaleText(props: LocaleTextProps) {
       },
       {} as typeof values,
     );
-  }, [values]);
+  }, [t, values]);
 
   // Callbacks
   const BaseText = useCallback(
     (props: { children: React.ReactNode }) => (
       <Text className={clx('text-md text-contrast font-medium', className)} {...rest} {...props} />
     ),
-    [className],
+    [className, rest],
   );
 
   // Render
