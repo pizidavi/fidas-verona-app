@@ -1,6 +1,6 @@
 // Types
 import { Auth } from '../types/entities';
-import { STORAGE_KEY } from '../types/enums';
+import { SECURE_STORAGE_KEY } from '../types/enums';
 import { NoLocalAuthError } from '../types/errors';
 
 // Others
@@ -28,7 +28,7 @@ export const getLocalAuth = async (): Promise<Auth> => {
 };
 
 export const getUnsafeLocalAuth = async (): Promise<Auth | undefined> => {
-  const user = await SecureStore.getItemAsync(STORAGE_KEY.USER);
+  const user = await SecureStore.getItemAsync(SECURE_STORAGE_KEY.USER);
   if (!user) return undefined;
   try {
     return JSON.parse(user);
@@ -38,4 +38,4 @@ export const getUnsafeLocalAuth = async (): Promise<Auth | undefined> => {
 };
 
 export const setLocalAuth = (user: Auth) =>
-  SecureStore.setItem(STORAGE_KEY.USER, JSON.stringify(user));
+  SecureStore.setItem(SECURE_STORAGE_KEY.USER, JSON.stringify(user));

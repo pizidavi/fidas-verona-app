@@ -12,7 +12,7 @@ export enum LANGUAGE {
   IT = 'it',
 }
 
-export enum STORAGE_KEY {
+export enum SECURE_STORAGE_KEY {
   USER = 'USER',
 }
 

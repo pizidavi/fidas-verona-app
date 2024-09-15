@@ -28,6 +28,7 @@ function HomeView() {
       tabBar={TabBar}
       screenOptions={{
         headerShown: false,
+        freezeOnBlur: true,
       }}
     >
       <Tab.Screen

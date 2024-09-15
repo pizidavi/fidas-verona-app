@@ -4,14 +4,21 @@ import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 
 // Types
+import { SECURE_STORAGE_KEY } from '../types/enums';
 import { AuthStore, ConfigStore, DataStore } from '../types/store';
+
+// Others
+import * as SecureStore from 'expo-secure-store';
 
 export const useAuthStore = create(
   persist<AuthStore>(
     set => ({
       user: undefined,
       setUser: user => set({ user }),
-      logout: () => set({ user: null }),
+      logout: () => {
+        set({ user: null });
+        Object.values(SECURE_STORAGE_KEY).forEach(value => SecureStore.deleteItemAsync(value));
+      },
     }),
     {
       name: 'auth-store',

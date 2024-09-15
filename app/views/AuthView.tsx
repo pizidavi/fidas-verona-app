@@ -27,6 +27,7 @@ function AuthView() {
       initialRouteName='HomeView'
       screenOptions={{
         headerShown: false,
+        freezeOnBlur: true,
         animation: Platform.select({ ios: 'ios', android: 'fade' }),
       }}
     >
