@@ -65,9 +65,10 @@ function LoginForm() {
   return (
     <View className='gap-2'>
       <BaseInput
-        title='login:username'
+        title='general:caiCode'
         value={form.username}
         onChangeText={v => setForm({ ...form, username: v })}
+        keyboardType='numeric'
         autoComplete='username'
         autoCapitalize='none'
         autoCorrect={false}
