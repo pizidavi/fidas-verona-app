@@ -2,7 +2,7 @@
 import { useCallback, useMemo } from 'react';
 import { View } from 'react-native';
 
-// Redux
+// Store
 import { useConfigStore, useDataStore } from '../../store';
 
 // Components
@@ -14,11 +14,11 @@ import LocaleText from './LocaleText';
 // Utils
 import { showAlert } from '../../utils/alert';
 
-// Types
-import { DonationsCenter } from '../../types/entities';
-
-// Others
+// Assets
 import { PencilIcon } from 'lucide-react-native';
+
+// Types
+import type { DonationsCenter } from '../../types/entities';
 
 type DonationsCentersCardProps = {
   onEditPress?: () => void;

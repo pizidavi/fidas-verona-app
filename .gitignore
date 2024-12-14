@@ -18,7 +18,10 @@ ios/
 *.key
 *.mobileprovision
 *.keystore
-debug.keystore
+!debug.keystore
+*.apk
+*.aab
+*.ipa
 
 # Metro
 .metro-health-check*

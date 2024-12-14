@@ -1,9 +1,9 @@
 // React
-import { ComponentType, useCallback, useMemo, useState } from 'react';
-import { TextInput, TextInputProps, View } from 'react-native';
+import { type ComponentType, useCallback, useMemo, useState } from 'react';
+import { TextInput, type TextInputProps, View } from 'react-native';
 
 // Components
-import LocaleText, { LocaleTextProps } from './LocaleText';
+import LocaleText, { type LocaleTextProps } from './LocaleText';
 
 // Utils
 import { clx } from '../../utils/utils';
@@ -13,6 +13,7 @@ import { EyeIcon, EyeOffIcon } from 'lucide-react-native';
 
 // Others
 import colors from '../../../colors';
+import type { Dictionary } from '../../locales';
 import { useTranslation } from 'react-i18next';
 
 export type BaseInputProps = {
@@ -25,7 +26,7 @@ export type BaseInputProps = {
   /** Custom component type */
   as?: ComponentType<TextInputProps>;
   /** Validator | Not working with defaultValue */
-  validator?: (value: string) => string | undefined;
+  validator?: (value: string) => Dictionary | undefined;
 } & TextInputProps;
 
 /**
@@ -60,7 +61,7 @@ function BaseInput(props: BaseInputProps) {
 
   const error = useMemo(() => {
     if (!validator || value === undefined || !touched) return undefined;
-    return validator(value ?? '');
+    return validator(value);
   }, [validator, value, touched]);
 
   const SecureTextIcon = useMemo(() => (isSecureText ? EyeOffIcon : EyeIcon), [isSecureText]);
@@ -77,7 +78,7 @@ function BaseInput(props: BaseInputProps) {
       <View className={clx('flex-row items-center rounded border px-2', className)}>
         {props.icon && <props.icon size={20} color={colors.dark[300]} className='m-1' />}
         <Input
-          className='flex-1 py-1 text-dark-500'
+          className='flex-1 py-1 text-lg text-dark-500'
           placeholder={inputPlaceholder}
           secureTextEntry={isSecureText}
           value={value}

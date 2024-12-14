@@ -1,6 +1,6 @@
 // React
 import { useMemo } from 'react';
-import { DimensionValue, View } from 'react-native';
+import { type DimensionValue, View } from 'react-native';
 
 type ProgressBarProps = {
   /** Progress | value between 0 and 1 */

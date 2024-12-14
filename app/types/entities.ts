@@ -1,5 +1,5 @@
 // Types
-import { NEWS_TYPE } from './enums';
+import type { NEWS_TYPE } from './enums';
 
 export type Auth = {
   userId: number;

@@ -1,29 +1,30 @@
 // React
 import { useCallback, useMemo } from 'react';
-import { Text, TextProps } from 'react-native';
+import { Text, type TextProps } from 'react-native';
 
 // Utils
 import { clx } from '../../utils/utils';
 
 // Others
+import { type Dictionary } from '../../locales';
 import { Trans, useTranslation } from 'react-i18next';
 
-export type LocaleTextProps = {
+export type LocaleTextProps<T extends boolean = false> = {
   /** Text */
-  text: string | number;
+  text: T extends false ? Dictionary : string | number;
   /** Avoid translation */
-  avoidTranslation?: boolean;
+  avoidTranslation?: T;
   /** Values */
-  values?: Record<string, string | number>;
+  values?: Record<string, Dictionary | (string & {}) | number>;
   /** Components */
-  components?: readonly React.ReactElement[] | { readonly [tagName: string]: React.ReactElement };
+  components?: readonly React.ReactElement[] | Record<string, React.ReactElement>;
 } & Omit<TextProps, 'children'>;
 
 /**
  * LocaleText component
  * @param props
  */
-function LocaleText(props: LocaleTextProps) {
+function LocaleText<T extends boolean = false>(props: LocaleTextProps<T>) {
   const { text, avoidTranslation, className, values, components, ...rest } = props;
 
   // Hooks
@@ -32,13 +33,10 @@ function LocaleText(props: LocaleTextProps) {
   // Memos
   const translatedValues = useMemo(() => {
     if (!values) return undefined;
-    return Object.entries(values).reduce(
-      (acc, [key, value]) => {
-        acc[key] = typeof value === 'string' ? t(value) : value;
-        return acc;
-      },
-      {} as typeof values,
-    );
+    return Object.entries(values).reduce<typeof values>((acc, [key, value]) => {
+      acc[key] = typeof value === 'string' ? t(value) : value;
+      return acc;
+    }, {});
   }, [t, values]);
 
   // Callbacks
@@ -54,7 +52,8 @@ function LocaleText(props: LocaleTextProps) {
     <BaseText>{text}</BaseText>
   ) : (
     <Trans
-      i18nKey={text.toString()}
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+      i18nKey={text.toString() as any}
       values={translatedValues}
       components={components}
       parent={BaseText}

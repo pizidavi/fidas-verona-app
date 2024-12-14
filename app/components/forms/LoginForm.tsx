@@ -1,5 +1,5 @@
 // React
-import { useCallback, useState } from 'react';
+import { useCallback, useRef } from 'react';
 import { Linking, View } from 'react-native';
 
 // Api
@@ -24,24 +24,22 @@ import { validateRequired } from '../../utils/validators';
  * Login form
  */
 function LoginForm() {
-  // State
-  const [form, setForm] = useState({
-    username: __DEV__ && DEV_USERNAME ? DEV_USERNAME : '',
-    password: __DEV__ && DEV_PASSWORD ? DEV_PASSWORD : '',
-  });
+  // References
+  const usernameRef = useRef<string>(__DEV__ && DEV_USERNAME ? DEV_USERNAME : '');
+  const passwordRef = useRef<string>(__DEV__ && DEV_PASSWORD ? DEV_PASSWORD : '');
 
   // Api
   const loginMutation = useMutation({ mutationFn: postLogin });
 
   // Callbacks
   const handleLoginPress = useCallback(() => {
-    if (!form.username || !form.password)
+    if (!usernameRef.current || !passwordRef.current)
       return showAlert('general:error', 'errors:completeFields');
 
     loginMutation
       .mutateAsync({
-        username: form.username.replace(/^0+/, ''),
-        password: form.password,
+        username: usernameRef.current.replace(/^0+/, ''),
+        password: passwordRef.current,
       })
       .then(() => appLog.info('Login success'))
       .catch(e => {
@@ -50,12 +48,12 @@ function LoginForm() {
         if (axiosError) {
           if (!axiosError.response?.status)
             showAlert('general:error', 'errors:networkMissingError');
-          else if (axiosError.response?.status >= 400)
+          else if (axiosError.response.status >= 400)
             showAlert('general:error', 'errors:invalidCredentials');
           else showAlert('general:error', 'errors:networkRequestError');
         } else if (error) showAlert('general:error', 'errors:internalApplicationError');
       });
-  }, [form]);
+  }, []);
 
   const handleForgotPasswordPress = useCallback(() => {
     Linking.openURL(FORGOT_PASSWORD_URL);
@@ -66,8 +64,8 @@ function LoginForm() {
     <View className='gap-2'>
       <BaseInput
         title='general:caiCode'
-        value={form.username}
-        onChangeText={v => setForm({ ...form, username: v })}
+        defaultValue={usernameRef.current}
+        onChangeText={v => (usernameRef.current = v)}
         keyboardType='numeric'
         autoComplete='username'
         autoCapitalize='none'
@@ -76,8 +74,8 @@ function LoginForm() {
       />
       <BaseInput
         title='login:password'
-        value={form.password}
-        onChangeText={v => setForm({ ...form, password: v })}
+        defaultValue={passwordRef.current}
+        onChangeText={v => (passwordRef.current = v)}
         autoComplete='password'
         autoCapitalize='none'
         autoCorrect={false}

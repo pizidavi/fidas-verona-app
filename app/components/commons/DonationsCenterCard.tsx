@@ -13,7 +13,7 @@ import LocaleText from './LocaleText';
 import { BookmarkIcon, BookmarkPlusIcon } from 'lucide-react-native';
 
 // Types
-import { DonationsCenter } from '../../types/entities';
+import type { DonationsCenter } from '../../types/entities';
 
 // Others
 import colors from '../../../colors';
@@ -47,17 +47,25 @@ function DonationsCenterCard({ donationsCenter, onBookmarkPress }: DonationsCent
   return (
     <View className='flex-row gap-2'>
       <View className='flex-1'>
-        <LocaleText className='text-lg font-bold text-secondary-500' text={donationsCenter.name} />
-        <LocaleText text={donationsCenter.address} />
+        <LocaleText
+          className='text-lg font-bold text-secondary-500'
+          text={donationsCenter.name}
+          avoidTranslation
+        />
+        <LocaleText text={donationsCenter.address} avoidTranslation />
         <View className='flex-row flex-wrap' style={styles.contactContainer}>
           {donationsCenter.phone1 && (
-            <LocaleText className='font-semibold' text={donationsCenter.phone1} />
+            <LocaleText className='font-semibold' text={donationsCenter.phone1} avoidTranslation />
           )}
           {donationsCenter.phone2 && (
-            <LocaleText className='font-semibold' text={donationsCenter.phone2} />
+            <LocaleText className='font-semibold' text={donationsCenter.phone2} avoidTranslation />
           )}
           {donationsCenter.email && (
-            <LocaleText className='font-semibold lowercase' text={donationsCenter.email} />
+            <LocaleText
+              className='font-semibold lowercase'
+              text={donationsCenter.email}
+              avoidTranslation
+            />
           )}
         </View>
       </View>

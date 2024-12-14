@@ -5,10 +5,10 @@ import { COMPANY_ID } from '../config/constants';
 import { generateNonce, generateTimestamp } from './utils';
 
 // Types
-import { UrlParam } from '../types/structs';
+import type { UrlParam } from '../types/structs';
 
 // Others
-import axios, { AxiosError } from 'axios';
+import axios, { type AxiosError } from 'axios';
 import Crypto from 'react-native-quick-crypto';
 import { Buffer } from '@craftzdog/react-native-buffer';
 
@@ -43,6 +43,7 @@ export const generateDigest = (saltedPassword: string) => {
   const bytes = Array.from(toBeDigested, char => char.charCodeAt(0));
 
   const instance = Crypto.createHash('SHA1');
+  //@ts-expect-error Buffer as ArrayBuffer
   instance.update(Buffer.from(bytes));
 
   return {
@@ -64,7 +65,10 @@ export const generateSaltedPassword = (password: string, salt: string) => {
     digest1.length,
   );
 
-  const digest2 = Crypto.createHash('sha512').update(bArr).digest();
+  const digest2 = Crypto.createHash('sha512')
+    //@ts-expect-error Buffer as ArrayBuffer
+    .update(bArr)
+    .digest();
   return Buffer.from(digest2).toString('base64');
 };
 

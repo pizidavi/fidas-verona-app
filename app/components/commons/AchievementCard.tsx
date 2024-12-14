@@ -12,7 +12,7 @@ import { clx } from '../../utils/utils';
 import { TrophyIcon, LockIcon } from 'lucide-react-native';
 
 // Types
-import { Achievement } from '../../types/structs';
+import type { Achievement } from '../../types/structs';
 
 type AchievementCardProps = {
   /** Achievement */

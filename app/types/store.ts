@@ -1,5 +1,5 @@
 // Types
-import { Company, User } from './entities';
+import type { Company, User } from './entities';
 
 export type ConfigStore = {
   favoriteDonationsCenterIds: number[];

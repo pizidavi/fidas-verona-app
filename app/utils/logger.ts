@@ -1,7 +1,8 @@
 // Others
-import { configLoggerType, logger } from 'react-native-logs';
+import { consoleTransport, logger } from 'react-native-logs';
 
-const config: configLoggerType = {
+const log = logger.createLogger({
+  transport: consoleTransport,
   enabledExtensions: ['API', 'APP'],
   severity: 'debug',
   transportOptions: {
@@ -11,9 +12,7 @@ const config: configLoggerType = {
       error: 'redBright',
     },
   },
-};
-
-const log = logger.createLogger(config);
+});
 const apiLog = log.extend('API');
 const appLog = log.extend('APP');
 

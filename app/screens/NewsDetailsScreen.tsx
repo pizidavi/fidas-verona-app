@@ -24,8 +24,8 @@ import { appLog } from '../utils/logger';
 import { FileTextIcon, ShareIcon } from 'lucide-react-native';
 
 // Types
-import { Attachment } from '../types/entities';
-import { NewsDetailsScreenProps } from '../types/navigation';
+import type { Attachment } from '../types/entities';
+import type { NewsDetailsScreenProps } from '../types/navigation';
 
 // Others
 import colors from '../../colors';
@@ -76,11 +76,12 @@ function NewsDetailsScreen(props: NewsDetailsScreenProps) {
       <Header />
       <View>
         <LocaleText
-          className='text-3xl font-bold capitalize text-secondary-500'
           text={news.title}
+          className='text-3xl font-bold capitalize text-secondary-500'
+          avoidTranslation
         />
         <View className='flex-row items-center justify-between'>
-          <LocaleText text={formateDate(news.date)} />
+          <LocaleText text={formateDate(news.date)} avoidTranslation />
           <BaseIcon icon={ShareIcon} onPress={handleShare} />
         </View>
       </View>
@@ -92,7 +93,12 @@ function NewsDetailsScreen(props: NewsDetailsScreenProps) {
             <Pressable key={index} onPress={() => handleAttachmentPress(attachment)}>
               <View className='flex-row items-center gap-2 rounded-md border border-dark-300 p-2'>
                 <FileTextIcon color={colors.dark.DEFAULT} size={20} />
-                <LocaleText text={attachment.name} className='flex-1' numberOfLines={1} />
+                <LocaleText
+                  text={attachment.name}
+                  className='flex-1'
+                  numberOfLines={1}
+                  avoidTranslation
+                />
               </View>
             </Pressable>
           ))}

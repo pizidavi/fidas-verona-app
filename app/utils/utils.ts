@@ -6,10 +6,10 @@ import {
 } from '../config/constants';
 
 // Types
-import { Donation, User } from '../types/entities';
+import type { Donation, User } from '../types/entities';
 
 // Others
-import { ClassNameValue, twMerge } from 'tailwind-merge';
+import { type ClassNameValue, twMerge } from 'tailwind-merge';
 
 /**
  * Sleep
@@ -30,7 +30,7 @@ export const clx = (...classNames: ClassNameValue[]) => twMerge(...classNames);
  * @return Nonce
  */
 export const generateNonce = (length = 10) =>
-  [...Array(length)].map(() => Math.random().toString(36)[2]).join('');
+  [...Array<undefined>(length)].map(() => Math.random().toString(36)[2]).join('');
 
 /**
  * Generate timestamp

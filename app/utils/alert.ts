@@ -2,13 +2,14 @@
 import { Alert } from 'react-native';
 
 // Others
+import type { Dictionary } from '../locales';
 import { t } from 'i18next';
 
 export const showAlert = (
-  title: string,
-  body: string | string[],
+  title: Dictionary,
+  body: Dictionary | Dictionary[],
   buttons?: {
-    text: string;
+    text: Dictionary;
     onPress?: () => void;
     style?: 'default' | 'cancel' | 'destructive';
     disabled?: boolean;
@@ -22,9 +23,7 @@ export const showAlert = (
       .map(b => ({
         text: t(b.text) || b.text,
         style: b.style,
-        onPress: () => {
-          b.onPress && b.onPress();
-        },
+        onPress: b.onPress,
       })),
   );
 };

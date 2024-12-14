@@ -1,5 +1,5 @@
 // Assets
-import { Path, Svg, SvgProps } from 'react-native-svg';
+import { Path, Svg, type SvgProps } from 'react-native-svg';
 
 function Logo(props: SvgProps & { size?: number }) {
   const { size } = props;

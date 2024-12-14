@@ -19,8 +19,6 @@ import { appLog } from '../utils/logger';
 import { versionToNumber } from '../utils/utils';
 
 // Others
-import i18n, { isLanguageAvailable } from '../locales';
-import * as Localization from 'expo-localization';
 import { channel } from 'expo-updates';
 
 /**
@@ -41,7 +39,7 @@ function useOnResume() {
     } else useAuthStore.getState().logout();
   }, []);
 
-  const searchAppUpdate = useCallback(async () => {
+  const searchAppUpdate = useCallback(() => {
     if (channel !== 'production' && channel !== 'preview') return;
     appLog.debug(`Searching for updates in "${channel}"`);
 
@@ -53,7 +51,7 @@ function useOnResume() {
         if (currentVersion < newVersion)
           showAlert(
             'general:update',
-            ['messages:updateAvailable', `v${APP_VERSION} ⇾ v${version}`],
+            ['messages:updateAvailable', `v${APP_VERSION} ⇾ v${version}` as any],
             [
               { text: 'general:later', style: 'cancel' },
               {
@@ -66,20 +64,9 @@ function useOnResume() {
       .catch(e => appLog.error('Update search failed', e));
   }, []);
 
-  const updateLanguage = useCallback(() => {
-    const locale = Localization.getLocales()[0];
-    const languageCode = locale.languageCode || locale.languageTag.split('-')[0];
-
-    if (isLanguageAvailable(languageCode) && languageCode !== i18n.language) {
-      appLog.debug(`Updated language from ${i18n.language} to ${languageCode}`);
-      i18n.changeLanguage(languageCode);
-    }
-  }, [i18n.language]);
-
   // Effects
   useEffect(() => {
     refreshOnStartup();
-    updateLanguage();
     if (!__DEV__) searchAppUpdate();
   }, []);
 

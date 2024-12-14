@@ -31,6 +31,7 @@
     "bloodGroup": "Blood group",
     "caiCode": "CAI code",
     "cancel": "Cancel",
+    "date": "Date",
     "days": "Days",
     "donations": "{{count}} Donations",
     "email": "Email",
@@ -55,6 +56,7 @@
     "section": "Section",
     "total": "Total",
     "totals": "Totals",
+    "type": "Type",
     "update": "Update",
     "warning": "Warning"
   },

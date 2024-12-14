@@ -1,4 +1,4 @@
-// Redux
+// Store
 import { getLocalAuth } from '../store/local';
 
 // Config
@@ -9,7 +9,7 @@ import { generateXWsseHeader } from '../utils/api';
 import { apiLog } from '../utils/logger';
 
 // Others
-import axios, { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
+import axios, { type AxiosError, type AxiosResponse, type InternalAxiosRequestConfig } from 'axios';
 
 const unauthAxios = axios.create({
   baseURL: `${API_URL}/companyrests`,
@@ -25,7 +25,7 @@ const requestInterceptor = (request: InternalAxiosRequestConfig) => {
 };
 
 const appendAccessHeaderInterceptor = async (request: InternalAxiosRequestConfig) => {
-  if (request.headers && !request.headers.Authorization && !request.headers[X_WSSE_HEADER_KEY]) {
+  if (!request.headers.Authorization && !request.headers[X_WSSE_HEADER_KEY]) {
     const user = await getLocalAuth();
 
     request.headers.Authorization = AUTHORIZATION_HEADER;
@@ -34,9 +34,9 @@ const appendAccessHeaderInterceptor = async (request: InternalAxiosRequestConfig
   return request;
 };
 
-const responseInterceptor = (response: AxiosResponse<any>) => response;
+const responseInterceptor = (response: AxiosResponse) => response;
 
-const errorLoggerInterceptor = (error: AxiosError<any>) => {
+const errorLoggerInterceptor = (error: AxiosError) => {
   apiLog.warn(`Error on ${error.config?.url}: ${JSON.stringify(error.response?.data)}`);
   throw error;
 };

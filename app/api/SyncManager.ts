@@ -18,15 +18,15 @@ import {
 import { parseUrl } from '../utils/api';
 
 // Types
-import { Company, News } from '../types/entities';
-import { NEWS_TYPE } from '../types/enums';
-import { InternalApplicationError } from '../types/errors';
-import {
+import type { Company, News } from '../types/entities';
+import type {
   CompanyResponse,
   EventResponse,
   GithubReleaseResponse,
   PublicationResponse,
 } from '../types/responses';
+import { NEWS_TYPE } from '../types/enums';
+import { InternalApplicationError } from '../types/errors';
 
 // Others
 import axios, { AxiosError } from 'axios';

@@ -5,7 +5,7 @@ import { TouchableOpacity } from 'react-native';
 import { clx } from '../../utils/utils';
 
 // Assets
-import { LucideIcon, LucideProps } from 'lucide-react-native';
+import type { LucideIcon, LucideProps } from 'lucide-react-native';
 
 // Others
 import colors from '../../../colors';

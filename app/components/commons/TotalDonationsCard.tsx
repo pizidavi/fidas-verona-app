@@ -11,7 +11,7 @@ import ProgressBar from './ProgressBar';
 import { DONATIONS_ACHIEVEMENTS } from '../../config/constants';
 
 // Types
-import { User } from '../../types/entities';
+import type { User } from '../../types/entities';
 
 type TotalDonationsCardProps = {
   donationsNumber: number;
@@ -25,10 +25,10 @@ type TotalDonationsCardProps = {
 function TotalDonationsCard({ donationsNumber, gender }: TotalDonationsCardProps) {
   // Memos
   const lastAchievement = useMemo<number>(() => {
-    const achievements = Object.values(DONATIONS_ACHIEVEMENTS).reduce((acc, item) => {
+    const achievements = Object.values(DONATIONS_ACHIEVEMENTS).reduce<number[]>((acc, item) => {
       acc.push(item.interval[gender]);
       return acc;
-    }, [] as number[]);
+    }, []);
 
     const index = achievements.findIndex(achievement => achievement > donationsNumber) - 1;
     if (index < 0) return 0;
@@ -36,10 +36,10 @@ function TotalDonationsCard({ donationsNumber, gender }: TotalDonationsCardProps
   }, [donationsNumber, gender]);
 
   const nextAchievement = useMemo<number>(() => {
-    const achievements = Object.values(DONATIONS_ACHIEVEMENTS).reduce((acc, item) => {
+    const achievements = Object.values(DONATIONS_ACHIEVEMENTS).reduce<number[]>((acc, item) => {
       acc.push(item.interval[gender]);
       return acc;
-    }, [] as number[]);
+    }, []);
 
     return (
       achievements.find(achievement => achievement > donationsNumber) ??
@@ -60,7 +60,11 @@ function TotalDonationsCard({ donationsNumber, gender }: TotalDonationsCardProps
           <LocaleText text='messages:congratulations' className='text-lg font-bold' />
         )}
         <LocaleText text='messages:youPerformed' />
-        <LocaleText text={donationsNumber} className='text-5xl font-bold text-primary-500' />
+        <LocaleText
+          text={donationsNumber}
+          className='text-5xl font-bold text-primary-500'
+          avoidTranslation
+        />
         <LocaleText text='messages:totalDonations' className='lowercase text-dark-300' />
       </View>
       <View className='w-2/3 items-center gap-1'>

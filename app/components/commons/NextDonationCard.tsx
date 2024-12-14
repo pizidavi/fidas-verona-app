@@ -13,7 +13,7 @@ import { formateDate } from '../../utils/formatters';
 import { getNextDonationDate } from '../../utils/utils';
 
 // Types
-import { Donation, User } from '../../types/entities';
+import type { Donation, User } from '../../types/entities';
 
 type NextDonationCardProps = {
   donations: Donation[];
@@ -48,11 +48,11 @@ function NextDonationCard({ donations, gender }: NextDonationCardProps) {
       <View className='gap-2'>
         <View className='flex-row gap-2'>
           <Badge theme={BADGE_THEME.SA} className='min-w-11' />
-          <LocaleText text={formateDate(nextSADonationDate)} />
+          <LocaleText text={formateDate(nextSADonationDate)} avoidTranslation />
         </View>
         <View className='flex-row gap-2'>
           <Badge theme={BADGE_THEME.PL} className='min-w-11' />
-          <LocaleText text={formateDate(nextPLDonationDate)} />
+          <LocaleText text={formateDate(nextPLDonationDate)} avoidTranslation />
         </View>
       </View>
     </Card>

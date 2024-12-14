@@ -44,6 +44,14 @@ An example `.env.sample` file can be found inside the repository
 | `DEV_USER`            | `false`  | `string` |
 | `DEV_PASSWORD`        | `false`  | `string` |
 
+### Create native files
+
+```bash
+npx expo prebuild
+```
+
+This app use custom native code, [Expo Development Build](https://docs.expo.dev/develop/development-builds/introduction) are required
+
 ### Start application
 
 ```bash

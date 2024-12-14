@@ -1,6 +1,6 @@
 // Types
-import { User } from '../types/entities';
-import { ACHIEVEMENT, ENV } from '../types/enums';
+import type { User } from '../types/entities';
+import { ACHIEVEMENT, type ENV } from '../types/enums';
 
 // Others
 import { expo } from '../../app.json';

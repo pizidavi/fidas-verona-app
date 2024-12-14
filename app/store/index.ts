@@ -4,8 +4,8 @@ import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 
 // Types
+import type { AuthStore, ConfigStore, DataStore } from '../types/store';
 import { SECURE_STORAGE_KEY } from '../types/enums';
-import { AuthStore, ConfigStore, DataStore } from '../types/store';
 
 // Others
 import * as SecureStore from 'expo-secure-store';

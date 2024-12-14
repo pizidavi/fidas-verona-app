@@ -10,10 +10,11 @@ import { clx } from '../../utils/utils';
 
 // Others
 import colors from '../../../colors';
+import type { Dictionary } from '../../locales';
 
 type BaseButtonProps = {
   /** Text */
-  text: string;
+  text: Dictionary;
   /** Type */
   theme?: 'primary' | 'outline';
   /** Loading */
@@ -21,7 +22,7 @@ type BaseButtonProps = {
   /** Disabled */
   disabled?: boolean;
   /** Icon */
-  icon?: (props: any) => JSX.Element;
+  icon?: (props: any) => React.JSX.Element;
   /** On press callback */
   onPress?: () => void;
   className?: string;
@@ -76,7 +77,7 @@ function BaseButton(props: BaseButtonProps) {
       onPress={props.onPress}
       activeOpacity={0.7}
       className='flex'
-      disabled={props.loading || props.disabled}
+      disabled={!!props.loading || !!props.disabled}
     >
       <View className={mainClassName}>
         <View className='w-6 justify-center'>

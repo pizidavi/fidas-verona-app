@@ -47,7 +47,11 @@ function DonationsScreen() {
             text='general:totals'
             className='text-2xl font-bold uppercase text-secondary-300'
           />
-          <LocaleText text={user.donations_count} className='text-4xl font-bold text-white' />
+          <LocaleText
+            text={user.donations_count}
+            className='text-4xl font-bold text-white'
+            avoidTranslation
+          />
         </Card>
         <Card className='aspect-square flex-1 items-center justify-center bg-secondary-300'>
           <LocaleText
@@ -55,7 +59,11 @@ function DonationsScreen() {
             values={{ year: currentYear }}
             className='text-2xl font-bold uppercase text-secondary-500'
           />
-          <LocaleText text={donationsInCurrentYear} className='text-4xl font-bold text-white' />
+          <LocaleText
+            text={donationsInCurrentYear}
+            className='text-4xl font-bold text-white'
+            avoidTranslation
+          />
         </Card>
       </View>
       <View className='gap-2'>
@@ -64,10 +72,10 @@ function DonationsScreen() {
           <View className='gap-2'>
             <View className='flex-row gap-2'>
               <View className='w-1/3 items-center'>
-                <LocaleText text='Tipologia' className='text-sm' />
+                <LocaleText text='general:type' className='text-sm' />
               </View>
               <View className='w-2/3'>
-                <LocaleText text='Data' className='text-sm' />
+                <LocaleText text='general:date' className='text-sm' />
               </View>
             </View>
             {user.donations.map(donation => (
@@ -86,7 +94,7 @@ function DonationsScreen() {
                   />
                 </View>
                 <View className='w-2/3'>
-                  <LocaleText text={formateDate(donation.date)} />
+                  <LocaleText text={formateDate(donation.date)} avoidTranslation />
                 </View>
               </View>
             ))}

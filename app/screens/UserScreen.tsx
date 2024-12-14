@@ -26,10 +26,11 @@ import { formateDate } from '../utils/formatters';
 import { LogOutIcon } from 'lucide-react-native';
 
 // Types
-import { Achievement } from '../types/structs';
+import type { Achievement } from '../types/structs';
 
 // Others
 import colors from '../../colors';
+import type { Dictionary } from '../locales';
 import * as Updates from 'expo-updates';
 
 function UserScreen() {
@@ -39,10 +40,10 @@ function UserScreen() {
   // Memos
   const [unlockedAchievements, lockedAchievements] = useMemo(
     () =>
-      Object.entries(DONATIONS_ACHIEVEMENTS).reduce(
+      Object.entries(DONATIONS_ACHIEVEMENTS).reduce<[Achievement[], Achievement[]]>(
         (acc, [label, item], index, arr) => {
           const achievement = {
-            label: label,
+            label: label as Dictionary,
             value: item.interval[user.gender],
           };
           if (achievement.value <= user.donations_count) acc[0].unshift(achievement);
@@ -51,7 +52,7 @@ function UserScreen() {
             acc[1].push(achievement);
           return acc;
         },
-        [[], []] as [Achievement[], Achievement[]],
+        [[], []],
       ),
     [user.gender, user.donations_count],
   );

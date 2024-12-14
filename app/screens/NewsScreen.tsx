@@ -22,9 +22,9 @@ import { useNavigation } from '@react-navigation/native';
 import { formateDate } from '../utils/formatters';
 
 // Types
-import { News } from '../types/entities';
+import type { News } from '../types/entities';
+import type { BottomTapNavigationProp, HomeNavigationProp } from '../types/navigation';
 import { NEWS_TYPE } from '../types/enums';
-import { BottomTapNavigationProp, HomeNavigationProp } from '../types/navigation';
 
 // Others
 import colors from '../../colors';
@@ -50,7 +50,7 @@ function NewsScreen() {
           <Image source={{ uri: item.image }} className='h-32 w-full rounded-lg rounded-b-none' />
           <View className='p-5 pt-0'>
             <View className='flex-row items-center justify-between gap-2'>
-              <LocaleText text={formateDate(item.date)} className='text-sm' />
+              <LocaleText text={formateDate(item.date)} className='text-sm' avoidTranslation />
               {item.type === NEWS_TYPE.EVENT && (
                 <LocaleText text='general:event' className='text-sm' />
               )}
@@ -58,6 +58,7 @@ function NewsScreen() {
             <LocaleText
               text={item.title}
               className='text-lg font-bold capitalize text-secondary-500'
+              avoidTranslation
             />
           </View>
         </Card>

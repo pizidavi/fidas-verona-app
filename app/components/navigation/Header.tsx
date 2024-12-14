@@ -12,7 +12,7 @@ import { useNavigation } from '@react-navigation/native';
 import { ChevronLeftIcon } from 'lucide-react-native';
 
 // Types
-import { AppNavigationProp } from '../../types/navigation';
+import type { AppNavigationProp } from '../../types/navigation';
 
 // Others
 import colors from '../../../colors';
@@ -29,7 +29,7 @@ type HeaderProps = {
 function Header({ back, headerRight }: HeaderProps) {
   // Hooks
   const navigation = useNavigation<AppNavigationProp>();
-  const canGoBack = back || (back === undefined && navigation.canGoBack());
+  const canGoBack = back ?? navigation.canGoBack();
 
   // Render
   return (

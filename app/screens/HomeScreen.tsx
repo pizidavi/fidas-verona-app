@@ -28,7 +28,7 @@ import { useNavigation } from '@react-navigation/native';
 import { MegaphoneIcon, UserIcon } from 'lucide-react-native';
 
 // Types
-import { HomeNavigationProp } from '../types/navigation';
+import type { HomeNavigationProp } from '../types/navigation';
 
 // Others
 import colors from '../../colors';
@@ -85,7 +85,11 @@ function HomeScreen() {
                 color={colors.secondary[500]}
                 className='p-0'
               />
-              <LocaleText className='font-semibold text-secondary-500' text={importantNews.title} />
+              <LocaleText
+                className='font-semibold text-secondary-500'
+                text={importantNews.title}
+                avoidTranslation
+              />
             </View>
           </Card>
         </Pressable>

@@ -1,6 +1,6 @@
 // React
-import { ReactNode, useMemo } from 'react';
-import { ScrollView, View, ViewProps, ScrollViewProps } from 'react-native';
+import { type ReactNode, useMemo } from 'react';
+import { ScrollView, View, type ViewProps, type ScrollViewProps } from 'react-native';
 
 // Utils
 import { clx } from '../utils/utils';

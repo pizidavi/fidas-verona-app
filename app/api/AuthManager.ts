@@ -1,4 +1,4 @@
-// Redux
+// Store
 import { useAuthStore } from '../store';
 import { getLocalAuth, setLocalAuth } from '../store/local';
 
@@ -14,10 +14,10 @@ import { GET_USER, POST_ACCOUNT_SALT, POST_LOGIN } from '../config/endpoint';
 import { generateSaltedPassword, generateXWsseHeader, parseUrl } from '../utils/api';
 
 // Types
-import { User } from '../types/entities';
+import type { User } from '../types/entities';
+import type { LoginRequest } from '../types/requests';
+import type { LoginResponse, SaltResponse, UserResponse } from '../types/responses';
 import { InternalApplicationError } from '../types/errors';
-import { LoginRequest } from '../types/requests';
-import { LoginResponse, SaltResponse, UserResponse } from '../types/responses';
 
 // Others
 import axios from 'axios';

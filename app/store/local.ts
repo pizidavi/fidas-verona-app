@@ -1,5 +1,8 @@
+// Utils
+import { appLog } from '../utils/logger';
+
 // Types
-import { Auth } from '../types/entities';
+import type { Auth } from '../types/entities';
 import { SECURE_STORAGE_KEY } from '../types/enums';
 import { NoLocalAuthError } from '../types/errors';
 
@@ -10,9 +13,7 @@ import { MMKVLoader } from 'react-native-mmkv-storage';
 const MMKV = new MMKVLoader().initialize();
 
 export const LocalStorage = {
-  getItem: (key: string) => {
-    return MMKV.getString(key);
-  },
+  getItem: (key: string) => MMKV.getString(key) ?? null,
   setItem: (key: string, value: string) => {
     MMKV.setString(key, value);
   },
@@ -31,8 +32,9 @@ export const getUnsafeLocalAuth = async (): Promise<Auth | undefined> => {
   const user = await SecureStore.getItemAsync(SECURE_STORAGE_KEY.USER);
   if (!user) return undefined;
   try {
-    return JSON.parse(user);
+    return JSON.parse(user) as Auth;
   } catch (error) {
+    appLog.error('Error parsing Auth json', error);
     return undefined;
   }
 };

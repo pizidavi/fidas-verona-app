@@ -5,7 +5,7 @@ import { TouchableOpacity, View } from 'react-native';
 import LocaleText from '../commons/LocaleText';
 
 // Navigation
-import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
+import type { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 
 // Others
 import colors from '../../../colors';
@@ -60,7 +60,8 @@ function TabBar(props: BottomTabBarProps) {
               />
             )}
             <LocaleText
-              text={label}
+              // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+              text={label as any}
               className='text-sm capitalize'
               style={{ color: isFocused ? colors.primary[500] : colors.dark[300] }}
             />

@@ -1,5 +1,8 @@
 // Assets
-import { SvgProps } from 'react-native-svg';
+import type { SvgProps } from 'react-native-svg';
+
+// Others
+import type { Dictionary } from '../locales';
 
 export type UrlParam = {
   key: string;
@@ -9,6 +12,6 @@ export type UrlParam = {
 export type HeroIcon = SvgProps & { size?: number };
 
 export type Achievement = {
-  label: string;
+  label: Dictionary;
   value: number;
 };

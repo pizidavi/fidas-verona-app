@@ -13,7 +13,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { AlignJustifyIcon, HomeIcon, NewspaperIcon } from 'lucide-react-native';
 
 // Types
-import { BottomTabParamList } from '../types/navigation';
+import type { BottomTabParamList } from '../types/navigation';
 
 const Tab = createBottomTabNavigator<BottomTabParamList>();
 

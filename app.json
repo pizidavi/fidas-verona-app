@@ -3,10 +3,11 @@
     "name": "FIDAS Verona",
     "slug": "fidas-verona-app",
     "version": "2.4.0",
-    "runtimeVersion": "2.0.0",
+    "runtimeVersion": "2.1.0",
     "icon": "./assets/ic_launcher.png",
     "orientation": "portrait",
     "userInterfaceStyle": "light",
+    "newArchEnabled": true,
     "androidNavigationBar": {
       "backgroundColor": "#ffffff"
     },

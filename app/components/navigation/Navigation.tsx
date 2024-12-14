@@ -1,7 +1,7 @@
 // React
 import { useMemo } from 'react';
 
-// Redux
+// Store
 import { useAuthStore } from '../../store';
 
 // Views

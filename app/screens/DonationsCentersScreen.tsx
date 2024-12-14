@@ -2,7 +2,7 @@
 import { useCallback } from 'react';
 import { View } from 'react-native';
 
-// Redux
+// Store
 import { useConfigStore, useDataStore } from '../store';
 
 // Screens
@@ -14,7 +14,7 @@ import LocaleText from '../components/commons/LocaleText';
 import Header from '../components/navigation/Header';
 
 // Types
-import { DonationsCenter } from '../types/entities';
+import type { DonationsCenter } from '../types/entities';
 
 function DonationsCentersScreen() {
   // Global state

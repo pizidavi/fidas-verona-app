@@ -13,7 +13,7 @@ import UserScreen from '../screens/UserScreen';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 // Types
-import { HomeStackParamList } from '../types/navigation';
+import type { HomeStackParamList } from '../types/navigation';
 
 const Stack = createNativeStackNavigator<HomeStackParamList>();
 
@@ -28,7 +28,7 @@ function AuthView() {
       screenOptions={{
         headerShown: false,
         freezeOnBlur: true,
-        animation: Platform.select({ ios: 'ios', android: 'fade' }),
+        animation: Platform.select({ ios: 'ios_from_right', android: 'fade' }),
       }}
     >
       <Stack.Screen name='HomeView' component={HomeView} />

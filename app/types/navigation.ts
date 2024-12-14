@@ -1,9 +1,12 @@
 // Navigation
-import { NavigatorScreenParams, Route } from '@react-navigation/native';
-import { NativeStackNavigationProp, NativeStackScreenProps } from '@react-navigation/native-stack';
+import { type NavigatorScreenParams, type Route } from '@react-navigation/native';
+import {
+  type NativeStackNavigationProp,
+  type NativeStackScreenProps,
+} from '@react-navigation/native-stack';
 
 // Types
-import { News } from './entities';
+import type { News } from './entities';
 
 export type RootStackParamList = {
   // UnAuth
