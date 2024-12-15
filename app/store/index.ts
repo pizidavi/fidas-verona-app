@@ -5,10 +5,12 @@ import { createJSONStorage, persist } from 'zustand/middleware';
 
 // Types
 import type { AuthStore, ConfigStore, DataStore } from '../types/store';
-import { SECURE_STORAGE_KEY } from '../types/enums';
+import { BACKGROUND_TASK, SECURE_STORAGE_KEY } from '../types/enums';
 
 // Others
-import * as SecureStore from 'expo-secure-store';
+import { unregisterTaskAsync } from 'expo-background-fetch';
+import { deleteItemAsync } from 'expo-secure-store';
+import { isTaskRegisteredAsync } from 'expo-task-manager';
 
 export const useAuthStore = create(
   persist<AuthStore>(
@@ -17,7 +19,13 @@ export const useAuthStore = create(
       setUser: user => set({ user }),
       logout: () => {
         set({ user: null });
-        Object.values(SECURE_STORAGE_KEY).forEach(value => SecureStore.deleteItemAsync(value));
+
+        Object.values(SECURE_STORAGE_KEY).forEach(value => deleteItemAsync(value));
+        Object.values(BACKGROUND_TASK).forEach(value => {
+          isTaskRegisteredAsync(value).then(isTaskRegistered => {
+            if (isTaskRegistered) unregisterTaskAsync(value);
+          });
+        });
       },
     }),
     {

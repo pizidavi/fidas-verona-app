@@ -1,6 +1,6 @@
 // Types
 import type { User } from '../types/entities';
-import { ACHIEVEMENT, type ENV } from '../types/enums';
+import { ACHIEVEMENT, BACKGROUND_TASK, type ENV } from '../types/enums';
 
 // Others
 import { expo } from '../../app.json';
@@ -21,6 +21,10 @@ export const APP_VERSION = expo.version;
 
 export const AUTHORIZATION_HEADER = 'WSSE profile="UsernameToken"';
 export const X_WSSE_HEADER_KEY = 'X-WSSE';
+
+export const BACKGROUND_TASK_INTERVALS: Record<BACKGROUND_TASK, number> = {
+  [BACKGROUND_TASK.REFRESH_USER]: __DEV__ ? 60 : 60 * 60 * 8,
+};
 
 export const DONATIONS_ACHIEVEMENTS: Record<
   ACHIEVEMENT,

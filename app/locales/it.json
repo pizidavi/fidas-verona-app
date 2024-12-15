@@ -72,12 +72,14 @@
   "messages": {
     "achievements": "Traguardi raggiunti",
     "addDonationsCenter": "Usa la matita per aggiungere i tuoi Centri Donazioni preferiti",
+    "addedDonationToAccount": "È stata aggiunta una nuova donazione al tuo profilo",
     "confirmOperation": "Confermi l'operazione?",
     "congratulations": "Complimenti!",
     "hello": "Ciao, {{name}}",
     "logoutMessage": "Sei sicuro di voler fare il logout?",
     "nextAchievement": "Prossimo traguardo",
     "nextDonationIn": "Potrai donare <0>{{type}}</0> tra",
+    "newDonation": "Nuova donazione",
     "nextDonationSince": "Puoi donare <0>{{type}}</0> da",
     "noDonationsToShow": "Nessuna donaziona da mostrare",
     "totalDonations": "Donazioni totali",
@@ -87,5 +89,8 @@
   },
   "news": {
     "title": "News"
+  },
+  "notifications": {
+    "addedDonation": "Donazione aggiunta"
   }
 }

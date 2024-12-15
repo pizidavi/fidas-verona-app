@@ -16,6 +16,14 @@ export enum SECURE_STORAGE_KEY {
   USER = 'USER',
 }
 
+export enum BACKGROUND_TASK {
+  REFRESH_USER = 'REFRESH_USER',
+}
+
+export enum NOTIFICATION_CHANNEL {
+  ADDED_DONATION = 'ADDED_DONATION',
+}
+
 export enum ACHIEVEMENT {
   // Original
   CERTIFICATE_OF_MERIT = 'achievements:certificateOfMerit',

@@ -3,7 +3,7 @@
     "name": "FIDAS Verona",
     "slug": "fidas-verona-app",
     "version": "2.4.0",
-    "runtimeVersion": "2.1.0",
+    "runtimeVersion": "2.2.0",
     "icon": "./assets/ic_launcher.png",
     "orientation": "portrait",
     "userInterfaceStyle": "light",
@@ -20,7 +20,8 @@
         "backgroundImage": "./assets/ic_launcher_background.png",
         "monochromeImage": "./assets/ic_launcher_monochrome.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "permissions": ["android.permission.POST_NOTIFICATIONS"]
     },
     "ios": {},
     "plugins": [
@@ -28,7 +29,8 @@
         "expo-build-properties",
         {
           "android": {
-            "usesCleartextTraffic": true
+            "usesCleartextTraffic": true,
+            "extraMavenRepos": ["../../node_modules/@notifee/react-native/android/libs"]
           }
         }
       ],
