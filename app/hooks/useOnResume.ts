@@ -8,7 +8,7 @@ import { getUnsafeLocalAuth } from '../store/local';
 
 // Api
 import { getUser } from '../api/AuthManager';
-import { getCompany, getLatestVersion } from '../api/SyncManager';
+import { getCompany, getLatestPreRelease, getLatestRelease } from '../api/SyncManager';
 
 // Config
 import { APP_VERSION } from '../config/constants';
@@ -21,6 +21,7 @@ import { versionToNumber } from '../utils/utils';
 // Others
 import i18n, { isLanguageAvailable } from '../locales';
 import * as Localization from 'expo-localization';
+import { channel } from 'expo-updates';
 
 /**
  * OnResume hook
@@ -41,24 +42,28 @@ function useOnResume() {
   }, []);
 
   const searchAppUpdate = useCallback(async () => {
-    appLog.debug('Searching for updates');
-    getLatestVersion()
+    if (channel !== 'production' && channel !== 'preview') return;
+    appLog.debug(`Searching for updates in "${channel}"`);
+
+    const action = channel === 'production' ? getLatestRelease : getLatestPreRelease;
+    action()
       .then(({ version, url }) => {
         const currentVersion = versionToNumber(APP_VERSION);
         const newVersion = versionToNumber(version);
-        if (currentVersion < newVersion) {
-          showAlert('general:update', 'messages:updateAvailable', [
-            { text: 'general:later', style: 'cancel' },
-            {
-              text: 'general:update',
-              onPress: () => Linking.openURL(url),
-            },
-          ]);
-        }
+        if (currentVersion < newVersion)
+          showAlert(
+            'general:update',
+            ['messages:updateAvailable', `v${APP_VERSION} ⇾ v${version}`],
+            [
+              { text: 'general:later', style: 'cancel' },
+              {
+                text: 'general:update',
+                onPress: () => Linking.openURL(url),
+              },
+            ],
+          );
       })
-      .catch(e => {
-        appLog.debug('Update search failed', e);
-      });
+      .catch(e => appLog.error('Update search failed', e));
   }, []);
 
   const updateLanguage = useCallback(() => {

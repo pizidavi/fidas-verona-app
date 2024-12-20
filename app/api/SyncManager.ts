@@ -6,7 +6,13 @@ import { unauthAxios } from './axios';
 
 // Config
 import { COMPANY_ID, REPOSITORY_URL } from '../config/constants';
-import { GET_COMPANY, GET_EVENTS, GET_LATEST_RELEASE, GET_PUBBLICATIONS } from '../config/endpoint';
+import {
+  GET_COMPANY,
+  GET_EVENTS,
+  GET_LATEST_RELEASE,
+  GET_PUBBLICATIONS,
+  GET_RELEASES,
+} from '../config/endpoint';
 
 // Utils
 import { parseUrl } from '../utils/api';
@@ -15,10 +21,15 @@ import { parseUrl } from '../utils/api';
 import { Company, News } from '../types/entities';
 import { NEWS_TYPE } from '../types/enums';
 import { InternalApplicationError } from '../types/errors';
-import { CompanyResponse, EventResponse, PublicationResponse } from '../types/responses';
+import {
+  CompanyResponse,
+  EventResponse,
+  GithubReleaseResponse,
+  PublicationResponse,
+} from '../types/responses';
 
 // Others
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 
 export const getCompany = async (): Promise<Company> => {
   const url = parseUrl(GET_COMPANY, [{ key: 'companyId', value: COMPANY_ID }]);
@@ -103,15 +114,35 @@ export const getNews = async (): Promise<News[]> => {
   }
 };
 
-export const getLatestVersion = async () => {
+export const getLatestRelease = async () => {
   const url = parseUrl(GET_LATEST_RELEASE, [{ key: 'repo', value: REPOSITORY_URL }]);
 
   try {
-    const response = await axios.get(url);
+    const response = await axios.get<GithubReleaseResponse>(url);
     return {
-      tag_name: response.data.tag_name,
+      name: response.data.name,
       version: response.data.tag_name.replace(/^v/, ''),
       url: response.data.html_url,
+    };
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      throw error;
+    } else throw new InternalApplicationError();
+  }
+};
+
+export const getLatestPreRelease = async () => {
+  const url = parseUrl(GET_RELEASES, [{ key: 'repo', value: REPOSITORY_URL }]);
+
+  try {
+    const response = await axios.get<GithubReleaseResponse[]>(url);
+    const preReleases = response.data.filter(release => release.prerelease);
+    if (preReleases.length === 0) throw new AxiosError('Not found', '404');
+
+    return {
+      name: response.data[0].name,
+      version: response.data[0].tag_name.replace(/^v/, ''),
+      url: response.data[0].html_url,
     };
   } catch (error) {
     if (axios.isAxiosError(error)) {

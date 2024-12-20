@@ -17,3 +17,4 @@ export const POST_LOGIN = '/checkloginwsse';
 // Extra
 // GET
 export const GET_LATEST_RELEASE = 'https://api.github.com/repos/:repo/releases/latest';
+export const GET_RELEASES = 'https://api.github.com/repos/:repo/releases';

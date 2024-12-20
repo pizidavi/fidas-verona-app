@@ -137,3 +137,13 @@ export type EventResponse = {
     }[];
   }[];
 };
+
+export type GithubReleaseResponse = {
+  id: number;
+  name: string;
+  body: string;
+  tag_name: string;
+  prerelease: boolean;
+  html_url: string;
+  published_at: string;
+};
