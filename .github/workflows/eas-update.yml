@@ -2,8 +2,8 @@ name: EAS Update
 on:
   workflow_dispatch:
   push:
-    branches:
-      - main
+    tags:
+      - 'v*.*.*'
     paths:
       - '**.js'
       - '**.jsx'
@@ -34,13 +34,13 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20.x
+          node-version: 22.x
           cache: yarn
 
       - name: Setup EAS
         uses: expo/expo-github-action@v8
         with:
-          eas-version: latest
+          eas-version: 14
           token: ${{ secrets.EXPO_TOKEN }}
 
       - name: Set environment variables
