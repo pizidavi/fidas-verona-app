@@ -82,38 +82,48 @@ function UserScreen() {
         }
       />
       <View className='items-center gap-2'>
-        <LocaleText className='text-3xl font-bold capitalize text-secondary-500' text={user.name} />
+        <LocaleText
+          text={user.name}
+          className='text-3xl font-bold capitalize text-secondary-500'
+          avoidTranslation
+        />
       </View>
       <Card className='gap-1 px-5'>
         <View className='flex-row items-center justify-between'>
           <LocaleText text='general:caiCode' className='text-sm' />
-          <LocaleText text={user.caiCode} className='font-bold' />
+          <LocaleText text={user.caiCode} className='font-bold' avoidTranslation />
         </View>
         <View className='flex-row items-center justify-between'>
           <LocaleText text='general:birthdate' className='text-sm' />
-          <LocaleText text={formateDate(user.birthdate)} className='font-bold' />
+          <LocaleText text={formateDate(user.birthdate)} className='font-bold' avoidTranslation />
         </View>
         <View className='flex-row items-center justify-between'>
           <LocaleText text='general:section' className='text-sm' />
-          <LocaleText text={user.province} className='font-bold' />
+          <LocaleText text={user.province} className='font-bold' avoidTranslation />
         </View>
         <View className='flex-row items-center justify-between'>
           <LocaleText text='general:email' className='text-sm' />
-          <LocaleText text={user.email} className='font-bold' />
+          <LocaleText text={user.email} className='font-bold' avoidTranslation />
         </View>
         <View className='flex-row items-center justify-between'>
           <LocaleText text='general:phone' className='text-sm' />
           <View>
-            <LocaleText text={user.phone} className='font-bold' />
-            {user.secondaryPhone && <LocaleText text={user.secondaryPhone} className='font-bold' />}
+            <LocaleText text={user.phone} className='font-bold' avoidTranslation />
+            {user.secondaryPhone && (
+              <LocaleText text={user.secondaryPhone} className='font-bold' avoidTranslation />
+            )}
           </View>
         </View>
         <View className='flex-row items-center justify-between'>
           <LocaleText text='general:bloodGroup' className='text-sm' />
           <LocaleText
-            text='{{group}} {{type}} {{rh}}'
-            values={{ group: user.traits.group, type: user.traits.type ?? '', rh: user.traits.rh }}
+            text={
+              user.traits.group +
+              (user.traits.type ? ' ' + user.traits.type + ' ' : ' ') +
+              user.traits.rh
+            }
             className='font-bold'
+            avoidTranslation
           />
         </View>
       </Card>

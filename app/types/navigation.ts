@@ -15,9 +15,9 @@ export type RootStackParamList = {
 
 export type HomeStackParamList = {
   HomeView: NavigatorScreenParams<BottomTabParamList>;
-  User: undefined;
   DonationsCenters: undefined;
   NewsDetails: { news: News };
+  User: undefined;
 };
 
 export type BottomTabParamList = {

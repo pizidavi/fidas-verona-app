@@ -80,6 +80,7 @@ export const getUser = async (): Promise<User> => {
       province: data.province,
       donations: data.donations
         .sort((a, b) => b.date - a.date)
+        .filter(d => d.date < new Date().getTime())
         .map(donation => ({
           date: donation.date,
           description: donation.descr ? donation.descr : undefined,

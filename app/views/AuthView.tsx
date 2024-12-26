@@ -32,9 +32,9 @@ function AuthView() {
       }}
     >
       <Stack.Screen name='HomeView' component={HomeView} />
-      <Stack.Screen name='User' component={UserScreen} />
       <Stack.Screen name='DonationsCenters' component={DonationsCentersScreen} />
       <Stack.Screen name='NewsDetails' component={NewsDetailsScreen} />
+      <Stack.Screen name='User' component={UserScreen} />
     </Stack.Navigator>
   );
 }
