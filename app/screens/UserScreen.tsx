@@ -1,5 +1,5 @@
 // React
-import { useCallback, useMemo } from 'react';
+import { useMemo } from 'react';
 import { View } from 'react-native';
 
 // Store
@@ -15,25 +15,30 @@ import Card from '../components/commons/Card';
 import LocaleText from '../components/commons/LocaleText';
 import Header from '../components/navigation/Header';
 
+// Navigation
+import { useNavigation } from '@react-navigation/native';
+
 // Config
-import { APP_VERSION, DONATIONS_ACHIEVEMENTS } from '../config/constants';
+import { DONATIONS_ACHIEVEMENTS } from '../config/constants';
 
 // Utils
-import { showAlert } from '../utils/alert';
 import { formateDate } from '../utils/formatters';
 
 // Assets
-import { LogOutIcon } from 'lucide-react-native';
+import { SettingsIcon } from 'lucide-react-native';
 
 // Types
+import type { HomeNavigationProp } from '../types/navigation';
 import type { Achievement } from '../types/structs';
 
 // Others
 import colors from '../../colors';
 import type { Dictionary } from '../locales';
-import * as Updates from 'expo-updates';
 
 function UserScreen() {
+  // Hooks
+  const navigation = useNavigation<HomeNavigationProp>();
+
   // Global state
   const user = useAuthStore(state => state.user!);
 
@@ -57,28 +62,16 @@ function UserScreen() {
     [user.gender, user.donations_count],
   );
 
-  // Callbacks
-  const handleLogoutPress = useCallback(() => {
-    showAlert('general:warning', 'messages:logoutMessage', [
-      { text: 'general:cancel', style: 'cancel' },
-      {
-        text: 'general:logout',
-        style: 'destructive',
-        onPress: () => useAuthStore.getState().logout(),
-      },
-    ]);
-  }, []);
-
   // Render
   return (
     <BaseScreen as='scroll' className='gap-5 p-5'>
       <Header
         headerRight={
           <BaseIcon
-            icon={LogOutIcon}
+            icon={SettingsIcon}
             size={20}
             color={colors.secondary[500]}
-            onPress={handleLogoutPress}
+            onPress={() => navigation.navigate('Settings')}
           />
         }
       />
@@ -137,16 +130,6 @@ function UserScreen() {
           <AchievementCard key={achievement.value} achievement={achievement} variant='locked' />
         ))}
       </View>
-      <LocaleText
-        text={
-          `v${APP_VERSION}` +
-          (!Updates.isEmbeddedLaunch && Updates.createdAt
-            ? ' - ' + formateDate(Updates.createdAt)
-            : '')
-        }
-        className='text-center text-xs'
-        avoidTranslation
-      />
     </BaseScreen>
   );
 }

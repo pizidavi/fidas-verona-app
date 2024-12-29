@@ -20,6 +20,7 @@ export type HomeStackParamList = {
   HomeView: NavigatorScreenParams<BottomTabParamList>;
   DonationsCenters: undefined;
   NewsDetails: { news: News };
+  Settings: undefined;
   User: undefined;
 };
 

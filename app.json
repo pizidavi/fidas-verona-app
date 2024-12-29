@@ -25,6 +25,7 @@
     },
     "ios": {},
     "plugins": [
+      ["react-native-permissions", { "iosPermissions": [] }],
       [
         "expo-build-properties",
         {

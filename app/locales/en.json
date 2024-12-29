@@ -77,10 +77,10 @@
     "congratulations": "Congratulations!",
     "hello": "Hello, {{name}}",
     "logoutMessage": "Are you sure you want to logout?",
+    "newDonation": "New donation",
     "nextAchievement": "Next achievement",
     "nextDonationIn": "You can donate <0>{{type}}</0> in",
     "nextDonationSince": "You can donate <0>{{type}}</0> since",
-    "newDonation": "New donation",
     "noDonationsToShow": "No donation to show",
     "totalDonations": "Total donations",
     "updateAvailable": "A new update is available!",
@@ -92,5 +92,13 @@
   },
   "notifications": {
     "addedDonation": "Added donation"
+  },
+  "settings": {
+    "batteryOptimization": "Battery optimization",
+    "batteryOptimizationDescription": "Disable battery optimization in phone settings to get notification even when the app is closed.",
+    "notifications": "Notification",
+    "sourceCode": "Source Code",
+    "title": "Settings",
+    "version": "Version"
   }
 }
