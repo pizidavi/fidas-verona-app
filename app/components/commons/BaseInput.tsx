@@ -27,7 +27,9 @@ export type BaseInputProps = {
   as?: ComponentType<TextInputProps>;
   /** Validator | Not working with defaultValue */
   validator?: (value: string) => Dictionary | undefined;
-} & TextInputProps;
+  /** Placeholder */
+  placeholder?: Dictionary;
+} & Omit<TextInputProps, 'placeholder' | 'onBlur'>;
 
 /**
  * Input component

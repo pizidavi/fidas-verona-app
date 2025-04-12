@@ -7,6 +7,7 @@ import useOnForegroundEffect from '../hooks/useOnForeground';
 
 // Store
 import { useAuthStore } from '../store';
+import { LocalStorage } from '../store/local';
 
 // Screens
 import BaseScreen from './BaseScreen';
@@ -29,6 +30,9 @@ import { formateDate } from '../utils/formatters';
 // Assets
 import { LogOutIcon } from 'lucide-react-native';
 
+// Types
+import { STORAGE_KEY } from '../types/enums';
+
 // Others
 import colors from '../../colors';
 import notifee, { AuthorizationStatus } from '@notifee/react-native';
@@ -37,6 +41,8 @@ import { registerNotifications } from '../services/notifications';
 import { requestNotifications, openSettings } from 'react-native-permissions';
 
 function SettingsScreen() {
+  const lastRefreshUserUpdate = LocalStorage.getItem(STORAGE_KEY.LAST_BACKGROUND_TASK_REFRESH_USER);
+
   // References
   const notificationStatusSwitchRef = useRef<BaseSwitchRef>(null);
   const batteryStatusSwitchRef = useRef<BaseSwitchRef>(null);
@@ -111,7 +117,7 @@ function SettingsScreen() {
           text='settings:title'
         />
       </View>
-      <Card className='gap-0'>
+      <Card className='gap-1'>
         <Pressable
           onPress={() => notifee.openNotificationSettings()}
           className='flex-row items-center justify-between'
@@ -119,8 +125,18 @@ function SettingsScreen() {
           <LocaleText text='settings:notifications' className='font-bold' />
           <BaseSwitch ref={notificationStatusSwitchRef} onValueChange={handleNotificationsPress} />
         </Pressable>
+        {lastRefreshUserUpdate && (
+          <View className='flex-row flex-wrap items-center justify-between gap-2'>
+            <LocaleText text='settings:lastUpdate' className='text-sm text-dark-300' />
+            <LocaleText
+              text={new Date(lastRefreshUserUpdate).toLocaleString()}
+              className='text-sm text-dark-300'
+              avoidTranslation
+            />
+          </View>
+        )}
       </Card>
-      <Card className='gap-0'>
+      <Card className='gap-1'>
         <Pressable onPress={handleBatteryPress} className='flex-row items-center justify-between'>
           <LocaleText text='settings:batteryOptimization' className='font-bold' />
           <BaseSwitch ref={batteryStatusSwitchRef} onValueChange={handleBatteryPress} />

@@ -96,6 +96,7 @@
   "settings": {
     "batteryOptimization": "Battery optimization",
     "batteryOptimizationDescription": "Disable battery optimization in phone settings to get notification even when the app is closed.",
+    "lastUpdate": "Last update",
     "notifications": "Notification",
     "sourceCode": "Source Code",
     "title": "Settings",

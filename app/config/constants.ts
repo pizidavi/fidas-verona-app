@@ -3,7 +3,7 @@ import type { User } from '../types/entities';
 import { ACHIEVEMENT, BACKGROUND_TASK, type ENV } from '../types/enums';
 
 // Others
-import { expo } from '../../app.json';
+import { version } from '../../package.json';
 
 // eslint-disable-next-line no-var
 declare var process: {
@@ -17,7 +17,7 @@ export const REPOSITORY_URL = process.env.EXPO_PUBLIC_REPOSITORY_URL!;
 export const DEV_USERNAME = process.env.EXPO_PUBLIC_DEV_USER;
 export const DEV_PASSWORD = process.env.EXPO_PUBLIC_DEV_PASSWORD;
 
-export const APP_VERSION = expo.version;
+export const APP_VERSION = version;
 
 export const AUTHORIZATION_HEADER = 'WSSE profile="UsernameToken"';
 export const X_WSSE_HEADER_KEY = 'X-WSSE';

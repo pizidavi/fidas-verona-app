@@ -1,9 +1,13 @@
+// Others
+import { version } from './package.json';
+
 const env = process.env.NODE_ENV || 'development';
 
 module.exports = ({ config }) => {
   return {
     ...config,
     name: getAppName(config.name),
+    version,
     android: {
       ...config.android,
       package: getPackageName(config.android.package),

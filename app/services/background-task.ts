@@ -1,5 +1,6 @@
 // Store
 import { useAuthStore } from '../store';
+import { LocalStorage } from '../store/local';
 
 // Api
 import { getUser } from '../api/AuthManager';
@@ -8,7 +9,7 @@ import { getUser } from '../api/AuthManager';
 import { appLog } from '../utils/logger';
 
 // Types
-import { NOTIFICATION_CHANNEL } from '../types/enums';
+import { NOTIFICATION_CHANNEL, STORAGE_KEY } from '../types/enums';
 
 // Others
 import notifee from '@notifee/react-native';
@@ -34,6 +35,8 @@ export const userBackgroundTask = async () => {
         },
       });
     }
+
+    LocalStorage.setItem(STORAGE_KEY.LAST_BACKGROUND_TASK_REFRESH_USER, new Date().toISOString());
 
     return BackgroundFetchResult.NewData;
   } catch (error) {

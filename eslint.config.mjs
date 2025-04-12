@@ -21,6 +21,7 @@ export default tseslint.config(
   },
   {
     rules: {
+      'no-console': 'error',
       '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
       '@typescript-eslint/consistent-type-exports': 'error',
       '@typescript-eslint/consistent-type-imports': 'error',

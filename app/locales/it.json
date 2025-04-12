@@ -96,6 +96,7 @@
   "settings": {
     "batteryOptimization": "Ottimizzazione batteria",
     "batteryOptimizationDescription": "Disabilitare l'ottimizzazione batteria nelle impostazioni del telefono per consentire all'app di inviare notifiche anche se chiusa.",
+    "lastUpdate": "Ultimo aggiornamento",
     "notifications": "Notifiche",
     "sourceCode": "Source Code",
     "title": "Impostazioni",

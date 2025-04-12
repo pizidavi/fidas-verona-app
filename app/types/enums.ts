@@ -12,6 +12,10 @@ export enum LANGUAGE {
   IT = 'it',
 }
 
+export enum STORAGE_KEY {
+  LAST_BACKGROUND_TASK_REFRESH_USER = 'LAST_BACKGROUND_TASK_REFRESH_USER',
+}
+
 export enum SECURE_STORAGE_KEY {
   USER = 'USER',
 }

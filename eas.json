@@ -1,34 +1,37 @@
 {
   "cli": {
     "version": ">= 14",
-    "appVersionSource": "local"
+    "appVersionSource": "remote"
   },
   "build": {
     "development": {
       "developmentClient": true,
       "distribution": "internal",
       "channel": "development",
+      "environment": "development",
       "env": {
         "NODE_ENV": "development"
       }
     },
     "preview": {
       "channel": "preview",
-      "android": {
-        "buildType": "apk"
-      },
+      "environment": "preview",
       "env": {
         "NODE_ENV": "test"
+      },
+      "android": {
+        "buildType": "apk"
       }
     },
     "production": {
-      "channel": "production",
       "autoIncrement": true,
-      "android": {
-        "buildType": "apk"
-      },
+      "channel": "production",
+      "environment": "production",
       "env": {
         "NODE_ENV": "production"
+      },
+      "android": {
+        "buildType": "apk"
       }
     }
   }
