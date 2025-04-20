@@ -20,6 +20,7 @@ export const useAuthStore = create(
       logout: () => {
         set({ user: null });
 
+        LocalStorage.clear();
         Object.values(SECURE_STORAGE_KEY).forEach(value => deleteItemAsync(value));
         Object.values(BACKGROUND_TASK).forEach(value => {
           isTaskRegisteredAsync(value).then(isTaskRegistered => {

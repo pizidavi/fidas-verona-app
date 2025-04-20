@@ -7,7 +7,7 @@ import useOnForegroundEffect from '../hooks/useOnForeground';
 
 // Store
 import { useAuthStore } from '../store';
-import { LocalStorage } from '../store/local';
+import { MMKV } from '../store/local';
 
 // Screens
 import BaseScreen from './BaseScreen';
@@ -21,7 +21,7 @@ import GithubIcon from '../components/icons/Github';
 import Header from '../components/navigation/Header';
 
 // Config
-import { APP_VERSION, REPOSITORY_URL } from '../config/constants';
+import { APP_ENV, APP_VERSION, REPOSITORY_URL } from '../config/constants';
 
 // Utils
 import { showAlert } from '../utils/alert';
@@ -38,10 +38,16 @@ import colors from '../../colors';
 import notifee, { AuthorizationStatus } from '@notifee/react-native';
 import * as Updates from 'expo-updates';
 import { registerNotifications } from '../services/notifications';
+import { useMMKVRef } from 'react-native-mmkv-storage';
 import { requestNotifications, openSettings } from 'react-native-permissions';
 
 function SettingsScreen() {
-  const lastRefreshUserUpdate = LocalStorage.getItem(STORAGE_KEY.LAST_BACKGROUND_TASK_REFRESH_USER);
+  // Hooks
+  const lastRefreshUserUpdate = useMMKVRef<string | null>(
+    STORAGE_KEY.LAST_BACKGROUND_TASK_REFRESH_USER,
+    MMKV,
+    null,
+  );
 
   // References
   const notificationStatusSwitchRef = useRef<BaseSwitchRef>(null);
@@ -96,7 +102,7 @@ function SettingsScreen() {
     notifee.isBatteryOptimizationEnabled().then(isEnabled => {
       batteryStatusSwitchRef.current?.setValue(isEnabled);
     });
-  });
+  }, []);
 
   // Render
   return (
@@ -125,11 +131,15 @@ function SettingsScreen() {
           <LocaleText text='settings:notifications' className='font-bold' />
           <BaseSwitch ref={notificationStatusSwitchRef} onValueChange={handleNotificationsPress} />
         </Pressable>
-        {lastRefreshUserUpdate && (
+        {APP_ENV !== 'production' && notificationStatusSwitchRef.current?.getValue() && (
           <View className='flex-row flex-wrap items-center justify-between gap-2'>
             <LocaleText text='settings:lastUpdate' className='text-sm text-dark-300' />
             <LocaleText
-              text={new Date(lastRefreshUserUpdate).toLocaleString()}
+              text={
+                lastRefreshUserUpdate.current
+                  ? new Date(lastRefreshUserUpdate.current).toLocaleString()
+                  : '-'
+              }
               className='text-sm text-dark-300'
               avoidTranslation
             />

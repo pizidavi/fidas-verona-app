@@ -111,11 +111,7 @@ function UserScreen() {
         <View className='flex-row items-center justify-between'>
           <LocaleText text='general:bloodGroup' className='text-sm' />
           <LocaleText
-            text={
-              user.traits.group +
-              (user.traits.type ? ' ' + user.traits.type + ' ' : ' ') +
-              user.traits.rh
-            }
+            text={`${user.traits.group} ${user.traits.rh}`}
             className='font-bold'
             avoidTranslation
           />

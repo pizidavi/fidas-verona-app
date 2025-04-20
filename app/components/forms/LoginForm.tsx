@@ -4,6 +4,7 @@ import { Linking, View } from 'react-native';
 
 // Api
 import { postLogin } from '../../api/AuthManager';
+import { getCompany } from '../../api/SyncManager';
 import { useMutation } from '@tanstack/react-query';
 
 // Components
@@ -16,7 +17,7 @@ import { DEV_PASSWORD, DEV_USERNAME, FORGOT_PASSWORD_URL } from '../../config/co
 
 // Utils
 import { showAlert } from '../../utils/alert';
-import { handleStandardError } from '../../utils/api';
+import { generateHash, handleStandardError } from '../../utils/api';
 import { appLog } from '../../utils/logger';
 import { validateRequired } from '../../utils/validators';
 
@@ -39,19 +40,21 @@ function LoginForm() {
     loginMutation
       .mutateAsync({
         username: usernameRef.current.replace(/^0+/, ''),
-        password: passwordRef.current,
+        passwordSHA256: generateHash(passwordRef.current),
+      })
+      .then(() => {
+        getCompany();
       })
       .then(() => appLog.info('Login success'))
       .catch(e => {
         appLog.error('Error during login', e);
-        const { axiosError, error } = handleStandardError(e);
-        if (axiosError) {
-          if (!axiosError.response?.status)
-            showAlert('general:error', 'errors:networkMissingError');
-          else if (axiosError.response.status >= 400)
-            showAlert('general:error', 'errors:invalidCredentials');
-          else showAlert('general:error', 'errors:networkRequestError');
-        } else if (error) showAlert('general:error', 'errors:internalApplicationError');
+        const { axiosError } = handleStandardError(e);
+        if (!axiosError?.response?.status) showAlert('general:error', 'errors:networkMissingError');
+        else if (axiosError.response.data.code >= 400 && axiosError.response.data.code < 500)
+          showAlert('general:error', 'errors:invalidCredentials');
+        else if (axiosError.response.data.code >= 500)
+          showAlert('general:error', 'errors:serverUnavailable');
+        else showAlert('general:error', 'errors:internalApplicationError');
       });
   }, []);
 

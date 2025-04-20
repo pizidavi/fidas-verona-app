@@ -12,7 +12,7 @@
   },
   "donations": {
     "donationsHistory": "Storico donazioni",
-    "oldDonationsWarning": "Donazioni prima del 2014 non sono disponibili",
+    "oldDonationsWarning": "Le donazioni precedenti non sono disponibili",
     "title": "Le mie donazioni"
   },
   "errors": {
@@ -42,7 +42,6 @@
     "in": "Nel {{year}}",
     "later": "Più tardi",
     "logout": "Esci",
-    "max": "Max",
     "months": "Mesi",
     "ok": "Ok",
     "phone": "Telefono",
@@ -50,7 +49,6 @@
     "pl": "PL",
     "plasma": "Plasma",
     "platelet": "Piastrine",
-    "publication": "News",
     "retry": "Riprova",
     "sa": "SA",
     "section": "Sezione provinciale",
@@ -81,14 +79,14 @@
     "nextAchievement": "Prossimo traguardo",
     "nextDonationIn": "Potrai donare <0>{{type}}</0> tra",
     "nextDonationSince": "Puoi donare <0>{{type}}</0> da",
-    "noDonationsToShow": "Nessuna donaziona da mostrare",
+    "noDonationsToShow": "Nessuna donazione da mostrare",
     "totalDonations": "Donazioni totali",
     "updateAvailable": "È disponibile un nuovo aggiornamento!",
     "whereDonate": "Dove puoi donare",
     "youPerformed": "Hai effettuato"
   },
   "news": {
-    "title": "News"
+    "title": "Notizie"
   },
   "notifications": {
     "addedDonation": "Donazione aggiunta"
@@ -98,7 +96,7 @@
     "batteryOptimizationDescription": "Disabilitare l'ottimizzazione batteria nelle impostazioni del telefono per consentire all'app di inviare notifiche anche se chiusa.",
     "lastUpdate": "Ultimo aggiornamento",
     "notifications": "Notifiche",
-    "sourceCode": "Source Code",
+    "sourceCode": "Codice sorgente",
     "title": "Impostazioni",
     "version": "Versione"
   }

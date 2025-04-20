@@ -44,8 +44,10 @@ export default tseslint.config(
           ignoreRestSiblings: true,
         },
       ],
-      '@typescript-eslint/restrict-template-expressions': 'off',
-      '@typescript-eslint/use-unknown-in-catch-callback-variable': 'off',
+      '@typescript-eslint/restrict-template-expressions': [
+        'error',
+        { allowArray: true, allowBoolean: true, allowNumber: true },
+      ],
     },
   },
 );

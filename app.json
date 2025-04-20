@@ -14,7 +14,6 @@
     "platforms": ["android", "ios"],
     "android": {
       "package": "it.fidasverona",
-      "versionCode": 200000,
       "adaptiveIcon": {
         "foregroundImage": "./assets/ic_launcher_foreground.png",
         "backgroundImage": "./assets/ic_launcher_background.png",

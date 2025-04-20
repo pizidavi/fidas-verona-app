@@ -1,55 +1,45 @@
 // Store
 import { useAuthStore } from '../store';
-import { getLocalAuth, setLocalAuth } from '../store/local';
+import { setLocalAuth } from '../store/local';
 
 // Api
-import { secureAxios, unauthAxios } from './axios';
-import { getCompany } from './SyncManager';
+import { authAxios, unauthAxios } from './axios';
 
 // Config
-import { AUTHORIZATION_HEADER, COMPANY_ID, X_WSSE_HEADER_KEY } from '../config/constants';
-import { GET_USER, POST_ACCOUNT_SALT, POST_LOGIN } from '../config/endpoint';
+import { GET_DONATIONS, GET_DONOR, POST_LOGIN } from '../config/endpoint';
 
 // Utils
-import { generateSaltedPassword, generateXWsseHeader, parseUrl } from '../utils/api';
+import { stringToDate } from '../utils/formatters';
 
 // Types
 import type { User } from '../types/entities';
-import type { LoginRequest } from '../types/requests';
-import type { LoginResponse, SaltResponse, UserResponse } from '../types/responses';
+import type { LoginResponse, DonationsResponse, DonorResponse } from '../types/responses';
+import { SECURE_STORAGE_KEY } from '../types/enums';
 import { InternalApplicationError } from '../types/errors';
 
 // Others
 import axios from 'axios';
+import * as SecureStore from 'expo-secure-store';
 
-export const postLogin = async (request: LoginRequest): Promise<void> => {
+export const postLogin = async (variables: {
+  username: string;
+  passwordSHA256: string;
+}): Promise<User> => {
   try {
-    const url = parseUrl(POST_ACCOUNT_SALT, [{ key: 'companyId', value: COMPANY_ID }]);
-    const saltResponse = await unauthAxios.post<SaltResponse>(url, {
-      username: request.username,
+    // await unauthAxios.post<BaseResponse<void>>(POST_REGISTER_DEVICE, { dev: 'fidas-app' });
+    const response = await unauthAxios.post<LoginResponse>(POST_LOGIN, {
+      usr: variables.username,
+      pwd: variables.passwordSHA256,
+      dev: 'fidas-app',
     });
 
-    const saltedPassword = generateSaltedPassword(request.password, saltResponse.data.response);
-
-    const data = new URLSearchParams();
-    data.append('device', '2');
-    data.append('pushtoken', 'notoken');
-    const loginResponse = await secureAxios.post<LoginResponse>(POST_LOGIN, data, {
-      headers: {
-        Authorization: AUTHORIZATION_HEADER,
-        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
-        [X_WSSE_HEADER_KEY]: generateXWsseHeader(request.username, saltedPassword),
-      },
-    });
-
+    SecureStore.setItem(SECURE_STORAGE_KEY.TOKEN, response.data.token);
     setLocalAuth({
-      userId: loginResponse.data.userid,
-      username: request.username,
-      passwordSalt: saltedPassword,
+      username: variables.username,
+      passwordSHA256: variables.passwordSHA256,
     });
 
-    await getCompany();
-    await getUser();
+    return await getUser();
   } catch (error) {
     if (axios.isAxiosError(error)) {
       throw error;
@@ -58,39 +48,36 @@ export const postLogin = async (request: LoginRequest): Promise<void> => {
 };
 
 export const getUser = async (): Promise<User> => {
-  const { userId } = await getLocalAuth();
-
-  const url = parseUrl(GET_USER, [
-    { key: 'companyId', value: COMPANY_ID },
-    { key: 'userId', value: userId },
-  ]);
-
   try {
-    const userResponse = await secureAxios.post<UserResponse>(url);
-    const data = userResponse.data;
+    const donorResponse = await authAxios.get<DonorResponse>(GET_DONOR);
+    const donationsResponse = await authAxios.get<DonationsResponse>(GET_DONATIONS);
+    const donorData = donorResponse.data.data;
+    const donationsData = donationsResponse.data.data;
 
     const user: User = {
-      name: data.name,
-      gender: data.gender as User['gender'],
-      email: data.mail,
-      phone: data.phone,
-      secondaryPhone: data.secondaryPhone ? data.secondaryPhone : undefined,
-      caiCode: data.caiCode,
-      birthdate: data.birthdate,
-      province: data.province,
-      donations: data.donations
-        .sort((a, b) => b.date - a.date)
-        .filter(d => d.date < new Date().getTime())
-        .map(donation => ({
-          date: donation.date,
-          description: donation.descr ? donation.descr : undefined,
-          type: donation.type as User['donations'][number]['type'],
-        })),
-      donations_count: parseInt(data.donations_count),
+      name: donorData.fullName,
+      gender: donorData.sex as User['gender'],
+      email: donorData.address.email,
+      phone: donorData.address.phone,
+      secondaryPhone: donorData.address.phone_alt ? donorData.address.phone_alt : undefined,
+      caiCode: donorData.cai,
+      birthdate: stringToDate(donorData.birthday, 'dd-mm-yyyy', '-').getTime(),
+      province: donorData.section.description,
+      donations: donationsData.list.map(donation => ({
+        date: new Date(donation.dt).getTime(),
+        type:
+          donation.bloodType === 1
+            ? 'SA'
+            : donation.bloodType === 2
+              ? 'PL'
+              : donation.bloodType === 4
+                ? 'PI'
+                : 'SA',
+      })),
+      donations_count: donationsData.stats.total,
       traits: {
-        group: data.traits.group,
-        rh: data.traits.rh,
-        type: data.traits.type ? data.traits.type : undefined,
+        group: donorData.bloodType.ab0,
+        rh: donorData.bloodType.rh,
       },
     };
     useAuthStore.setState({ user });

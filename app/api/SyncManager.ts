@@ -2,10 +2,10 @@
 import { useDataStore } from '../store';
 
 // Api
-import { unauthAxios } from './axios';
+import { legacyUnauthAxios } from './axios';
 
 // Config
-import { COMPANY_ID, REPOSITORY_URL } from '../config/constants';
+import { LEGACY_COMPANY_ID, REPOSITORY_URL } from '../config/constants';
 import {
   GET_COMPANY,
   GET_EVENTS,
@@ -32,10 +32,10 @@ import { InternalApplicationError } from '../types/errors';
 import axios, { AxiosError } from 'axios';
 
 export const getCompany = async (): Promise<Company> => {
-  const url = parseUrl(GET_COMPANY, [{ key: 'companyId', value: COMPANY_ID }]);
+  const url = parseUrl(GET_COMPANY, [{ key: 'companyId', value: LEGACY_COMPANY_ID }]);
 
   try {
-    const response = await unauthAxios.get<CompanyResponse>(url);
+    const response = await legacyUnauthAxios.get<CompanyResponse>(url);
     const data: Company = {
       name: response.data.name,
       description: response.data.description,
@@ -64,12 +64,15 @@ export const getCompany = async (): Promise<Company> => {
 };
 
 export const getNews = async (): Promise<News[]> => {
-  const pubblicationsUrl = parseUrl(GET_PUBBLICATIONS, [{ key: 'companyId', value: COMPANY_ID }]);
-  const eventsUrl = parseUrl(GET_EVENTS, [{ key: 'companyId', value: COMPANY_ID }]);
+  const pubblicationsUrl = parseUrl(GET_PUBBLICATIONS, [
+    { key: 'companyId', value: LEGACY_COMPANY_ID },
+  ]);
+  const eventsUrl = parseUrl(GET_EVENTS, [{ key: 'companyId', value: LEGACY_COMPANY_ID }]);
 
   try {
-    const pubblicationsResponse = await unauthAxios.get<PublicationResponse>(pubblicationsUrl);
-    const eventsResponse = await unauthAxios.get<EventResponse>(eventsUrl);
+    const pubblicationsResponse =
+      await legacyUnauthAxios.get<PublicationResponse>(pubblicationsUrl);
+    const eventsResponse = await legacyUnauthAxios.get<EventResponse>(eventsUrl);
 
     const pubblicationsData = pubblicationsResponse.data.publications.map(publication => ({
       id: publication.id,

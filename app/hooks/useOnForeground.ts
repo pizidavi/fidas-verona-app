@@ -1,4 +1,5 @@
 // React
+import type { DependencyList } from 'react';
 import { useEffect, useRef } from 'react';
 import { AppState } from 'react-native';
 
@@ -9,7 +10,7 @@ import { AppState } from 'react-native';
  * @param effect Effect callback
  * @param deps Dependencies
  */
-function useOnForegroundEffect(effect: () => void, deps: any[] = []) {
+function useOnForegroundEffect(effect: () => void, deps?: DependencyList) {
   // Reference
   const appState = useRef(AppState.currentState);
 

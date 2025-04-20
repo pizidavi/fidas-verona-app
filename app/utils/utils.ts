@@ -75,7 +75,7 @@ export const getNextDonationDate = (donations: Donation[], gender: User['gender'
       nextPLDonationDate,
       nextPIDonationDate,
     };
-  } else if (lastDonation.type === 'PL' || lastDonation.type === 'PI') {
+  } else {
     const lastSADonation = donations.find(donation => donation.type === 'SA');
     const lastSADonationDate = new Date(lastSADonation?.date ?? 0);
 
@@ -93,8 +93,5 @@ export const getNextDonationDate = (donations: Donation[], gender: User['gender'
       nextPLDonationDate,
       nextPIDonationDate,
     };
-  } else {
-    lastDonation.type satisfies never;
-    throw new Error('Invalid donation type');
   }
 };

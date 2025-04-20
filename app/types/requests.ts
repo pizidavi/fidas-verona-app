@@ -1,8 +1,5 @@
 export type LoginRequest = {
-  username: string;
-  password: string;
-};
-
-export type SaltRequest = {
-  username: string;
+  usr: string;
+  pwd: string; // sha256
+  dev: string;
 };

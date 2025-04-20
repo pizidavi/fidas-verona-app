@@ -87,7 +87,9 @@ function DonationsScreen() {
                         ? BADGE_THEME.SA
                         : donation.type === 'PL'
                           ? BADGE_THEME.PL
-                          : BADGE_THEME.PI
+                          : donation.type === 'PI'
+                            ? BADGE_THEME.PI
+                            : BADGE_THEME.SA
                     }
                     full
                     className='min-w-11'

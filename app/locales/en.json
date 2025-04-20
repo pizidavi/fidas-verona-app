@@ -12,7 +12,7 @@
   },
   "donations": {
     "donationsHistory": "Donations history",
-    "oldDonationsWarning": "Donations before 2014 are not available",
+    "oldDonationsWarning": "Previous donations are not available",
     "title": "My donations"
   },
   "errors": {
@@ -42,7 +42,6 @@
     "in": "In {{year}}",
     "later": "Later",
     "logout": "Logout",
-    "max": "Max",
     "months": "Months",
     "ok": "Ok",
     "phone": "Phone",
@@ -50,7 +49,6 @@
     "pl": "PL",
     "plasma": "Plasma",
     "platelet": "Platelet",
-    "publication": "News",
     "retry": "Retry",
     "sa": "SA",
     "section": "Section",
@@ -97,7 +95,7 @@
     "batteryOptimization": "Battery optimization",
     "batteryOptimizationDescription": "Disable battery optimization in phone settings to get notification even when the app is closed.",
     "lastUpdate": "Last update",
-    "notifications": "Notification",
+    "notifications": "Notifications",
     "sourceCode": "Source Code",
     "title": "Settings",
     "version": "Version"

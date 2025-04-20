@@ -11,12 +11,14 @@ declare var process: {
 };
 
 export const API_URL = process.env.EXPO_PUBLIC_API_URL!;
-export const COMPANY_ID = process.env.EXPO_PUBLIC_COMPANY_ID!;
+export const LEGACY_API_URL = process.env.EXPO_PUBLIC_LEGACY_API_URL!;
+export const LEGACY_COMPANY_ID = process.env.EXPO_PUBLIC_LEGACY_COMPANY_ID!;
 export const FORGOT_PASSWORD_URL = process.env.EXPO_PUBLIC_FORGOT_PASSWORD_URL!;
 export const REPOSITORY_URL = process.env.EXPO_PUBLIC_REPOSITORY_URL!;
 export const DEV_USERNAME = process.env.EXPO_PUBLIC_DEV_USER;
 export const DEV_PASSWORD = process.env.EXPO_PUBLIC_DEV_PASSWORD;
 
+export const APP_ENV = process.env.EXPO_PUBLIC_APP_ENV ?? 'development';
 export const APP_VERSION = version;
 
 export const AUTHORIZATION_HEADER = 'WSSE profile="UsernameToken"';

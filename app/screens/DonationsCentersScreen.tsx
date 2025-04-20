@@ -18,7 +18,7 @@ import type { DonationsCenter } from '../types/entities';
 
 function DonationsCentersScreen() {
   // Global state
-  const company = useDataStore(state => state.company!);
+  const company = useDataStore(state => state.company);
 
   // Callbacks
   const handleSavePress = useCallback((id: DonationsCenter['id']) => {
@@ -36,13 +36,13 @@ function DonationsCentersScreen() {
         />
       </View>
       <View className='gap-5'>
-        {company.donationsCenters.map((donationCenter, index) => (
+        {company?.donationsCenters.map((donationCenter, index) => (
           <DonationsCenterCard
             key={index}
             donationsCenter={donationCenter}
             onBookmarkPress={handleSavePress}
           />
-        ))}
+        )) ?? <LocaleText text='errors:networkRequestError' />}
       </View>
     </BaseScreen>
   );

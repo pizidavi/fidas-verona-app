@@ -1,6 +1,6 @@
 {
   "cli": {
-    "version": ">= 14",
+    "version": "16",
     "appVersionSource": "remote"
   },
   "build": {
@@ -10,14 +10,17 @@
       "channel": "development",
       "environment": "development",
       "env": {
-        "NODE_ENV": "development"
+        "NODE_ENV": "development",
+        "EXPO_PUBLIC_APP_ENV": "development"
       }
     },
     "preview": {
+      "autoIncrement": true,
       "channel": "preview",
       "environment": "preview",
       "env": {
-        "NODE_ENV": "test"
+        "NODE_ENV": "production",
+        "EXPO_PUBLIC_APP_ENV": "preview"
       },
       "android": {
         "buildType": "apk"
@@ -28,7 +31,8 @@
       "channel": "production",
       "environment": "production",
       "env": {
-        "NODE_ENV": "production"
+        "NODE_ENV": "production",
+        "EXPO_PUBLIC_APP_ENV": "production"
       },
       "android": {
         "buildType": "apk"

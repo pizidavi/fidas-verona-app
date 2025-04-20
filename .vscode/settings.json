@@ -1,10 +1,14 @@
 {
-  "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "i18n-ally.sortKeys": true,
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "i18n-ally.annotationDelimiter": ":",
   "i18n-ally.indent": 2,
   "i18n-ally.keystyle": "nested",
-  "i18n-ally.annotationDelimiter": ":",
   "i18n-ally.regex.usageMatchAppend": ["'([a-zA-Z0-9]+:[a-zA-Z0-9]+)+'"],
+  "i18n-ally.sortKeys": true,
+  "typescript.tsdk": "node_modules/typescript/lib",
   "i18n-ally.localesPaths": ["app/locales"]
 }

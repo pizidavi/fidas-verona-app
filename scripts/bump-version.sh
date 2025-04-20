@@ -8,11 +8,11 @@ if [ -z "$new_version" ]; then
 fi
 
 if ! [[ $new_version =~ ^([0-9]+)\.([0-9]+)\.([0-9]+)$ ]]; then
-  echo "$new_version is not a valid semver version."
-  exit 1
+  echo "\"$new_version\" is not a valid semver version."
+  exit 2
 fi
 
-sed -i -e "s/\"version\": \".*\"/\"version\": \"$new_version\"/" package.json
+npm pkg set version="$new_version"
 
 echo "Version updated to $new_version"
 read -p "Commit and push? (Y/n): " answare

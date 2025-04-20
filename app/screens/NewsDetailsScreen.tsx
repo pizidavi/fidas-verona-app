@@ -11,7 +11,7 @@ import LocaleText from '../components/commons/LocaleText';
 import Header from '../components/navigation/Header';
 
 // Config
-import { API_URL, COMPANY_ID } from '../config/constants';
+import { LEGACY_API_URL, LEGACY_COMPANY_ID } from '../config/constants';
 import { GET_ATTACHMENT } from '../config/endpoint';
 
 // Utils
@@ -64,10 +64,10 @@ function NewsDetailsScreen(props: NewsDetailsScreenProps) {
 
   const handleAttachmentPress = useCallback((attachment: Attachment) => {
     const url = parseUrl(GET_ATTACHMENT, [
-      { key: 'companyId', value: COMPANY_ID },
+      { key: 'companyId', value: LEGACY_COMPANY_ID },
       { key: 'fileId', value: attachment.id },
     ]);
-    Linking.openURL(API_URL + url);
+    Linking.openURL(LEGACY_API_URL + url);
   }, []);
 
   // Render

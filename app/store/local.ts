@@ -10,7 +10,7 @@ import { NoLocalAuthError } from '../types/errors';
 import * as SecureStore from 'expo-secure-store';
 import { MMKVLoader } from 'react-native-mmkv-storage';
 
-const MMKV = new MMKVLoader().initialize();
+export const MMKV = new MMKVLoader().initialize();
 
 export const LocalStorage = {
   getItem: (key: string) => MMKV.getString(key) ?? null,
@@ -19,6 +19,10 @@ export const LocalStorage = {
   },
   removeItem: (key: string) => {
     MMKV.removeItem(key);
+  },
+  clear: () => {
+    MMKV.clearMemoryCache();
+    MMKV.clearStore();
   },
 };
 

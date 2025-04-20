@@ -35,14 +35,15 @@ yarn install
 A `.env` file is needed to run this application.
 An example `.env.sample` file can be found inside the repository
 
-| Parameter             | Required | Type     |
-| :-------------------- | :------- | :------- |
-| `API_URL`             | `true`   | `string` |
-| `COMPANY_ID`          | `true`   | `number` |
-| `FORGOT_PASSWORD_URL` | `true`   | `string` |
-| `REPOSITORY_URL`      | `true`   | `string` |
-| `DEV_USER`            | `false`  | `string` |
-| `DEV_PASSWORD`        | `false`  | `string` |
+| Parameter                         | Required | Type     |
+| :-------------------------------- | :------- | :------- |
+| `EXPO_PUBLIC_API_URL`             | `true`   | `string` |
+| `EXPO_PUBLIC_LEGACY_API_URL`      | `true`   | `string` |
+| `EXPO_PUBLIC_LEGACY_COMPANY_ID`   | `true`   | `number` |
+| `EXPO_PUBLIC_FORGOT_PASSWORD_URL` | `true`   | `string` |
+| `EXPO_PUBLIC_REPOSITORY_URL`      | `true`   | `string` |
+| `EXPO_PUBLIC_DEV_USER`            | `false`  | `string` |
+| `EXPO_PUBLIC_DEV_PASSWORD`        | `false`  | `string` |
 
 ### Create native files
 
@@ -55,7 +56,7 @@ This app use custom native code, [Expo Development Build](https://docs.expo.dev/
 ### Start application
 
 ```bash
-yarn start
+yarn dev
 ```
 
 ## License

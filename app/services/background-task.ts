@@ -1,9 +1,9 @@
 // Store
 import { useAuthStore } from '../store';
-import { LocalStorage } from '../store/local';
+import { getUnsafeLocalAuth, LocalStorage } from '../store/local';
 
 // Api
-import { getUser } from '../api/AuthManager';
+import { postLogin } from '../api/AuthManager';
 
 // Utils
 import { appLog } from '../utils/logger';
@@ -18,10 +18,12 @@ import { t } from 'i18next';
 
 export const userBackgroundTask = async () => {
   try {
+    const auth = await getUnsafeLocalAuth();
+    if (!auth) throw new Error('Auth not found');
     const user = useAuthStore.getState().user;
     if (!user) throw new Error('User not found');
 
-    const response = await getUser();
+    const response = await postLogin(auth);
 
     if (user?.donations_count !== response.donations_count) {
       await notifee.displayNotification({

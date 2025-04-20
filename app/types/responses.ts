@@ -1,35 +1,77 @@
-export type LoginResponse = {
-  response: string;
-  userid: number;
-};
+export type BaseResponse<T> = {
+  code: number;
+} & T;
 
-export type SaltResponse = {
-  response: string;
-};
+export type LoginResponse = BaseResponse<{
+  token: string;
+}>;
 
-export type UserResponse = {
-  birthdate: number; // timestamp
-  caiCode: string;
-  donations: {
-    date: number; // timestamp
-    descr: string;
-    type: string;
-  }[];
-  donations_count: string;
-  gender: string;
-  mail: string;
-  name: string;
-  nextGoal: string;
-  phone: string;
-  province: string;
-  secondaryPhone: string;
-  taxCode: null;
-  traits: {
-    group: string;
-    rh: string;
-    type: string;
+export type DonorResponse = BaseResponse<{
+  data: {
+    id: number;
+    donorType: string;
+    cai: string;
+    fullName: string;
+    birthday: string; // dd-mm-yyyy
+    sex: string;
+    bloodType: {
+      ab0: string;
+      rh: string;
+      code: string;
+    };
+    enrolment: string; // dd-mm-yyyy
+    section: {
+      code: number;
+      description: string;
+    };
+    address: {
+      street: string;
+      postalCode: string;
+      city: string;
+      province: string;
+      phone: string;
+      phone_alt: string;
+      mobile: string;
+      mobile_alt: string;
+      email: string;
+    };
+    merit: {
+      description: string;
+      goal: number;
+    };
   };
-};
+}>;
+
+export type DonationsResponse = BaseResponse<{
+  data: {
+    id: number;
+    donorType: string;
+    last: string;
+    list: {
+      bloodType: number;
+      dt: string; // yyyy-mm-dd
+      section: number;
+    }[];
+    sections: Record<string, string>;
+    bloodTypes: {
+      '1': string;
+      '2': string;
+      '4': string;
+      start: string;
+    };
+    stats: {
+      '1': number;
+      '2': number;
+      start: number;
+      total: number;
+    };
+    next: {
+      '1': string; // dd-mm-yyyy
+      '2': string;
+      '4': string;
+    };
+  };
+}>;
 
 export type CompanyResponse = {
   id: number;

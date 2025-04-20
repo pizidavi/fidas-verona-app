@@ -7,14 +7,15 @@ import { useAuthStore } from '../store';
 import { getUnsafeLocalAuth } from '../store/local';
 
 // Api
-import { getUser } from '../api/AuthManager';
-import { getCompany, getLatestPreRelease, getLatestRelease } from '../api/SyncManager';
+import { postLogin } from '../api/AuthManager';
+import { getLatestPreRelease, getLatestRelease } from '../api/SyncManager';
 
 // Config
 import { APP_VERSION } from '../config/constants';
 
 // Utils
 import { showAlert } from '../utils/alert';
+import { handleStandardError } from '../utils/api';
 import { appLog } from '../utils/logger';
 import { versionToNumber } from '../utils/utils';
 
@@ -31,12 +32,22 @@ function useOnResume() {
 
     if (auth) {
       appLog.debug('Refreshing on startup');
-      getUser()
-        .then(() => getCompany())
-        .catch(() => {
-          showAlert('general:error', 'errors:networkMissingError');
-        });
-    } else useAuthStore.getState().logout();
+      postLogin({
+        username: auth.username,
+        passwordSHA256: auth.passwordSHA256,
+      }).catch(e => {
+        const { axiosError } = handleStandardError(e);
+        if (!axiosError?.response?.status) showAlert('general:error', 'errors:networkMissingError');
+        else if (axiosError.response.data.code >= 400 && axiosError.response.data.code < 500) {
+          showAlert('general:error', 'errors:invalidCredentials');
+          useAuthStore.getState().logout();
+        } else if (axiosError.response.data.code >= 500)
+          showAlert('general:error', 'errors:serverUnavailable');
+        else showAlert('general:error', 'errors:internalApplicationError');
+      });
+    } else {
+      useAuthStore.getState().logout();
+    }
   }, []);
 
   const searchAppUpdate = useCallback(() => {

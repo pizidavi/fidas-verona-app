@@ -2,9 +2,8 @@
 import type { NEWS_TYPE } from './enums';
 
 export type Auth = {
-  userId: number;
   username: string;
-  passwordSalt: string;
+  passwordSHA256: string;
 };
 
 export type User = {
@@ -19,13 +18,11 @@ export type User = {
   donations: {
     date: number;
     type: 'SA' | 'PL' | 'PI';
-    description?: string;
   }[];
   donations_count: number;
   traits: {
     group: string;
     rh: string;
-    type?: string;
   };
 };
 

@@ -1,7 +1,7 @@
 // Others
 import { version } from './package.json';
 
-const env = process.env.NODE_ENV || 'development';
+const env = process.env.EXPO_PUBLIC_APP_ENV || 'development';
 
 module.exports = ({ config }) => {
   return {
@@ -25,7 +25,7 @@ module.exports = ({ config }) => {
 function getAppName(name) {
   if (env === 'development') {
     return `${name} (Dev)`;
-  } else if (env === 'test') {
+  } else if (env === 'preview') {
     return `${name} (Preview)`;
   }
   return name;
@@ -38,7 +38,7 @@ function getPackageName(packageName) {
   if (!packageName) return packageName;
   if (env === 'development') {
     return `${packageName}.dev`;
-  } else if (env === 'test') {
+  } else if (env === 'preview') {
     return `${packageName}.preview`;
   }
   return packageName;
@@ -51,7 +51,7 @@ function getBundleIdentifier(bundleIdentifier) {
   if (!bundleIdentifier) return bundleIdentifier;
   if (env === 'development') {
     return `${bundleIdentifier}.dev`;
-  } else if (env === 'test') {
+  } else if (env === 'preview') {
     return `${bundleIdentifier}.preview`;
   }
   return bundleIdentifier;
