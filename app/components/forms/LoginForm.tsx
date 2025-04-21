@@ -33,15 +33,15 @@ function LoginForm() {
   const loginMutation = useMutation({ mutationFn: postLogin });
 
   // Callbacks
-  const handleLoginPress = useCallback(() => {
+  const handleLoginPress = useCallback(async () => {
     if (!usernameRef.current || !passwordRef.current)
       return showAlert('general:error', 'errors:completeFields');
 
+    const username = usernameRef.current.replace(/^0+/, '');
+    const passwordSHA256 = await generateHash(passwordRef.current);
+
     loginMutation
-      .mutateAsync({
-        username: usernameRef.current.replace(/^0+/, ''),
-        passwordSHA256: generateHash(passwordRef.current),
-      })
+      .mutateAsync({ username, passwordSHA256 })
       .then(() => {
         getCompany();
       })

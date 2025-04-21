@@ -1,8 +1,8 @@
 // Others
 import { AxiosError } from 'axios';
 
-abstract class AppError extends Error {}
-abstract class ApiError extends AxiosError {}
+export abstract class AppError extends Error {}
+export abstract class ApiError extends AxiosError {}
 
 export class InternalApplicationError extends AppError {
   constructor() {

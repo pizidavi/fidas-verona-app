@@ -1,9 +1,10 @@
 // Types
 import type { UrlParam } from '../types/structs';
+import { AppError } from '../types/errors';
 
 // Others
 import axios, { type AxiosError } from 'axios';
-import Crypto from 'react-native-quick-crypto';
+import * as Crypto from 'expo-crypto';
 
 export const parseUrl = (url: string, params: UrlParam[] = []) => {
   let parsedUrl = url;
@@ -23,16 +24,16 @@ export const parseUrl = (url: string, params: UrlParam[] = []) => {
   return parsedUrl;
 };
 
-export const generateHash = (text: string) => {
-  const hash = Crypto.createHash('sha256');
-  hash.update(text);
-  return hash.digest('hex');
+export const generateHash = async (data: string) => {
+  return await Crypto.digestStringAsync(Crypto.CryptoDigestAlgorithm.SHA256, data);
 };
 
-export const handleStandardError = (error: unknown) => {
+export const handleStandardError = <T = unknown>(error: T) => {
   if (axios.isAxiosError(error)) {
     const e = error as AxiosError<{ code: number; message: string }>;
     return { axiosError: e };
+  } else if (error instanceof AppError) {
+    return { error: error as AppError };
   }
-  return { error };
+  return { unknownError: error };
 };

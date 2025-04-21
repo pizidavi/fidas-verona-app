@@ -12,6 +12,10 @@ on:
       - '**.json'
       - '**.lock'
 
+concurrency:
+  group: eas-update
+  cancel-in-progress: true
+
 jobs:
   update:
     name: EAS Update

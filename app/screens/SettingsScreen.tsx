@@ -7,7 +7,7 @@ import useOnForegroundEffect from '../hooks/useOnForeground';
 
 // Store
 import { useAuthStore } from '../store';
-import { MMKV } from '../store/local';
+import { LocalStorage } from '../store/local';
 
 // Screens
 import BaseScreen from './BaseScreen';
@@ -38,16 +38,10 @@ import colors from '../../colors';
 import notifee, { AuthorizationStatus } from '@notifee/react-native';
 import * as Updates from 'expo-updates';
 import { registerNotifications } from '../services/notifications';
-import { useMMKVRef } from 'react-native-mmkv-storage';
 import { requestNotifications, openSettings } from 'react-native-permissions';
 
 function SettingsScreen() {
-  // Hooks
-  const lastRefreshUserUpdate = useMMKVRef<string | null>(
-    STORAGE_KEY.LAST_BACKGROUND_TASK_REFRESH_USER,
-    MMKV,
-    null,
-  );
+  const lastRefreshUserUpdate = LocalStorage.getItem(STORAGE_KEY.LAST_BACKGROUND_TASK_REFRESH_USER);
 
   // References
   const notificationStatusSwitchRef = useRef<BaseSwitchRef>(null);
@@ -131,15 +125,11 @@ function SettingsScreen() {
           <LocaleText text='settings:notifications' className='font-bold' />
           <BaseSwitch ref={notificationStatusSwitchRef} onValueChange={handleNotificationsPress} />
         </Pressable>
-        {APP_ENV !== 'production' && notificationStatusSwitchRef.current?.getValue() && (
+        {APP_ENV !== 'production' && lastRefreshUserUpdate && (
           <View className='flex-row flex-wrap items-center justify-between gap-2'>
             <LocaleText text='settings:lastUpdate' className='text-sm text-dark-300' />
             <LocaleText
-              text={
-                lastRefreshUserUpdate.current
-                  ? new Date(lastRefreshUserUpdate.current).toLocaleString()
-                  : '-'
-              }
+              text={new Date(lastRefreshUserUpdate).toLocaleString()}
               className='text-sm text-dark-300'
               avoidTranslation
             />
