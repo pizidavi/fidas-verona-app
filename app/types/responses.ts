@@ -139,47 +139,6 @@ export type CompanyResponse = {
   }[];
 };
 
-export type PublicationResponse = {
-  publications: {
-    id: number;
-    date: string; // ISO 8601
-    title: string;
-    description: string;
-    abstract: string;
-    type: number;
-    status: number;
-    imagename: string;
-    imagepath: string;
-    publicationmedias: {
-      id: number;
-      name: string;
-      path: string;
-      position: number;
-      type: number;
-    }[];
-  }[];
-};
-
-export type EventResponse = {
-  events: {
-    id: number;
-    date: string; // ISO 8601
-    title: string;
-    description: string;
-    abstract: string;
-    status: number;
-    imagename: string;
-    imagepath: string;
-    eventmedias: {
-      id: number;
-      name: string;
-      path: string;
-      position: number;
-      type: number;
-    }[];
-  }[];
-};
-
 export type GithubReleaseResponse = {
   id: number;
   name: string;

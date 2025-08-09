@@ -37,7 +37,8 @@ function useOnResume() {
         passwordSHA256: auth.passwordSHA256,
       }).catch(e => {
         const { axiosError } = handleStandardError(e);
-        if (!axiosError?.response?.status) showAlert('general:error', 'errors:networkMissingError');
+        if (!axiosError?.response || axiosError.response.status === 0)
+          showAlert('general:error', 'errors:networkMissingError');
         else if (axiosError.response.data.code >= 400 && axiosError.response.data.code < 500) {
           showAlert('general:error', 'errors:invalidCredentials');
           useAuthStore.getState().logout();

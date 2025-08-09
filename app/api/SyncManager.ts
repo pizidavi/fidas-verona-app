@@ -6,26 +6,14 @@ import { legacyUnauthAxios } from './axios';
 
 // Config
 import { LEGACY_COMPANY_ID, REPOSITORY_URL } from '../config/constants';
-import {
-  GET_COMPANY,
-  GET_EVENTS,
-  GET_LATEST_RELEASE,
-  GET_PUBBLICATIONS,
-  GET_RELEASES,
-} from '../config/endpoint';
+import { GET_COMPANY, GET_LATEST_RELEASE, GET_RELEASES } from '../config/endpoint';
 
 // Utils
 import { parseUrl } from '../utils/api';
 
 // Types
-import type { Company, News } from '../types/entities';
-import type {
-  CompanyResponse,
-  EventResponse,
-  GithubReleaseResponse,
-  PublicationResponse,
-} from '../types/responses';
-import { NEWS_TYPE } from '../types/enums';
+import type { Company } from '../types/entities';
+import type { CompanyResponse, GithubReleaseResponse } from '../types/responses';
 import { InternalApplicationError } from '../types/errors';
 
 // Others
@@ -56,60 +44,6 @@ export const getCompany = async (): Promise<Company> => {
     };
     useDataStore.getState().setCompany(data);
     return data;
-  } catch (error) {
-    if (axios.isAxiosError(error)) {
-      throw error;
-    } else throw new InternalApplicationError();
-  }
-};
-
-export const getNews = async (): Promise<News[]> => {
-  const pubblicationsUrl = parseUrl(GET_PUBBLICATIONS, [
-    { key: 'companyId', value: LEGACY_COMPANY_ID },
-  ]);
-  const eventsUrl = parseUrl(GET_EVENTS, [{ key: 'companyId', value: LEGACY_COMPANY_ID }]);
-
-  try {
-    const pubblicationsResponse =
-      await legacyUnauthAxios.get<PublicationResponse>(pubblicationsUrl);
-    const eventsResponse = await legacyUnauthAxios.get<EventResponse>(eventsUrl);
-
-    const pubblicationsData = pubblicationsResponse.data.publications.map(publication => ({
-      id: publication.id,
-      type: NEWS_TYPE.PUBLICATION,
-      title: publication.title,
-      description: publication.description,
-      date: new Date(publication.date).getTime(),
-      image: publication.imagepath,
-      attachments:
-        publication.publicationmedias?.length > 0
-          ? publication.publicationmedias.map(media => ({
-              id: media.id,
-              name: media.name,
-              position: media.position,
-              type: media.type,
-            }))
-          : undefined,
-    }));
-    const eventsData = eventsResponse.data.events.map(event => ({
-      id: event.id,
-      type: NEWS_TYPE.EVENT,
-      title: event.title,
-      description: event.description,
-      date: new Date(event.date).getTime(),
-      image: event.imagepath,
-      attachments:
-        event.eventmedias?.length > 0
-          ? event.eventmedias.map(media => ({
-              id: media.id,
-              name: media.name,
-              position: media.position,
-              type: media.type,
-            }))
-          : undefined,
-    }));
-
-    return [...pubblicationsData, ...eventsData].sort((a, b) => b.date - a.date).slice(0, 10);
   } catch (error) {
     if (axios.isAxiosError(error)) {
       throw error;

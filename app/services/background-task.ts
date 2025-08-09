@@ -25,7 +25,7 @@ export const userBackgroundTask = async () => {
 
     const response = await postLogin(auth);
 
-    if (user?.donations_count !== response.donations_count) {
+    if (user.donations_count !== response.donations_count) {
       await notifee.displayNotification({
         title: t('messages:newDonation'),
         body: t('messages:addedDonationToAccount'),

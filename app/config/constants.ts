@@ -21,9 +21,6 @@ export const DEV_PASSWORD = process.env.EXPO_PUBLIC_DEV_PASSWORD;
 export const APP_ENV = process.env.EXPO_PUBLIC_APP_ENV ?? 'development';
 export const APP_VERSION = version;
 
-export const AUTHORIZATION_HEADER = 'WSSE profile="UsernameToken"';
-export const X_WSSE_HEADER_KEY = 'X-WSSE';
-
 export const BACKGROUND_TASK_INTERVALS: Record<BACKGROUND_TASK, number> = {
   [BACKGROUND_TASK.REFRESH_USER]: __DEV__ ? 60 : 60 * 60 * 8,
 };

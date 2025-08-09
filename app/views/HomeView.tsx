@@ -1,7 +1,6 @@
 // Screens
 import DonationsScreen from '../screens/DonationsScreen';
 import HomeScreen from '../screens/HomeScreen';
-import NewsScreen from '../screens/NewsScreen';
 
 // Components
 import TabBar from '../components/navigation/TabBar';
@@ -10,7 +9,7 @@ import TabBar from '../components/navigation/TabBar';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 // Assets
-import { AlignJustifyIcon, HomeIcon, NewspaperIcon } from 'lucide-react-native';
+import { AlignJustifyIcon, HomeIcon } from 'lucide-react-native';
 
 // Types
 import type { BottomTabParamList } from '../types/navigation';
@@ -47,14 +46,6 @@ function HomeView() {
           tabBarIcon: DonationsTabBarIcon,
         }}
       />
-      <Tab.Screen
-        name='News'
-        component={NewsScreen}
-        options={{
-          tabBarLabel: 'news:title',
-          tabBarIcon: NewsTabBarIcon,
-        }}
-      />
     </Tab.Navigator>
   );
 }
@@ -65,10 +56,6 @@ const HomeTabBarIcon = ({ color, size }: { color: string; size: number }) => (
 
 const DonationsTabBarIcon = ({ color, size }: { color: string; size: number }) => (
   <AlignJustifyIcon color={color} size={size} />
-);
-
-const NewsTabBarIcon = ({ color, size }: { color: string; size: number }) => (
-  <NewspaperIcon color={color} size={size} />
 );
 
 export default HomeView;

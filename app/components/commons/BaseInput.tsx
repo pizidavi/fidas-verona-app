@@ -57,7 +57,7 @@ function BaseInput(props: BaseInputProps) {
 
   // Memos
   const inputPlaceholder = useMemo(() => {
-    if (!placeholder) return;
+    if (placeholder === undefined) return;
     return t(placeholder);
   }, [placeholder]);
 
@@ -76,7 +76,7 @@ function BaseInput(props: BaseInputProps) {
   // Render
   return (
     <View className='gap-1'>
-      {title && <LocaleText text={title} className='font-semibold text-dark-500' />}
+      {title !== undefined && <LocaleText text={title} className='font-semibold text-dark-500' />}
       <View className={clx('flex-row items-center rounded border px-2', className)}>
         {props.icon && <props.icon size={20} color={colors.dark[300]} className='m-1' />}
         <Input
@@ -91,8 +91,8 @@ function BaseInput(props: BaseInputProps) {
           <SecureTextIcon color={colors.dark[300]} onPress={handleIconPress} className='ml-1' />
         )}
       </View>
-      {error && <LocaleText text={error} className='px-1 text-red-500' />}
-      {description && <LocaleText text={description} className='text-dark-300' />}
+      {error !== undefined && <LocaleText text={error} className='px-1 text-red-500' />}
+      {description !== undefined && <LocaleText text={description} className='text-dark-300' />}
     </View>
   );
 }

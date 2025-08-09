@@ -49,7 +49,8 @@ function LoginForm() {
       .catch(e => {
         appLog.error('Error during login', e);
         const { axiosError } = handleStandardError(e);
-        if (!axiosError?.response?.status) showAlert('general:error', 'errors:networkMissingError');
+        if (!axiosError?.response || axiosError.response.status === 0)
+          showAlert('general:error', 'errors:networkMissingError');
         else if (axiosError.response.data.code >= 400 && axiosError.response.data.code < 500)
           showAlert('general:error', 'errors:invalidCredentials');
         else if (axiosError.response.data.code >= 500)

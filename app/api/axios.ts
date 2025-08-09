@@ -37,7 +37,7 @@ const appendAccessHeaderInterceptor = (request: InternalAxiosRequestConfig) => {
 
 const responseInterceptor = (response: AxiosResponse) => {
   const data = response.data as { code: number; message: string } | undefined;
-  if (!data?.code || data.code !== 200)
+  if (!data || data.code !== 200)
     throw new AxiosError(
       data?.message ?? 'Error',
       data?.code.toString(),

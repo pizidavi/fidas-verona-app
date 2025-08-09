@@ -1,6 +1,3 @@
-// Types
-import type { NEWS_TYPE } from './enums';
-
 export type Auth = {
   username: string;
   passwordSHA256: string;
@@ -42,20 +39,3 @@ export type Company = {
 };
 
 export type DonationsCenter = Company['donationsCenters'][number];
-
-export type News = {
-  id: number;
-  type: NEWS_TYPE;
-  title: string;
-  description: string;
-  date: number;
-  image: string;
-  attachments?: Attachment[];
-};
-
-export type Attachment = {
-  id: number;
-  name: string;
-  position: number;
-  type: number;
-};

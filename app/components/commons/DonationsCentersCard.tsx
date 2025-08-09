@@ -67,7 +67,7 @@ function DonationsCentersCard({ onEditPress }: DonationsCentersCardProps) {
         />
       </View>
       <View className='gap-3'>
-        {favoriteDonationsCenters?.length ? (
+        {favoriteDonationsCenters && favoriteDonationsCenters.length > 0 ? (
           favoriteDonationsCenters.map((donationsCenter, index) => (
             <DonationsCenterCard
               key={index}

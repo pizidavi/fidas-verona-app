@@ -22,7 +22,7 @@ function useOnForegroundEffect(effect: () => void, deps?: DependencyList) {
         appState.current.match(/inactive|background/) &&
         nextAppState === 'active'
       )
-        effect?.();
+        effect();
       appState.current = nextAppState;
     });
 

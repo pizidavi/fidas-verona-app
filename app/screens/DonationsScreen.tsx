@@ -68,7 +68,7 @@ function DonationsScreen() {
       </View>
       <View className='gap-2'>
         <LocaleText text='donations:donationsHistory' className='text-lg font-bold' />
-        {user.donations.length ? (
+        {user.donations.length > 0 ? (
           <View className='gap-2'>
             <View className='flex-row gap-2'>
               <View className='w-1/3 items-center'>
